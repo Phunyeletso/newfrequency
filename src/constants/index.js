@@ -273,7 +273,7 @@ export const benefits = [
   {
     id: "3",
     title: "Reels",
-    text: "This is where content creators post videos using their purchased music NFTs, showcasing their unique music taste and creativity to the community.",
+    text: "This is where content creators post videos using their purchased music NFTs to showcase their unique music taste. When users watch a video, they pay a small gas fee directly to the creator, enabling fair monetization.",
     backgroundUrl: "./src/assets/benefits/card-4.svg",
     iconUrl: benefitIcon4,
     imageUrl: benefitImage2,
@@ -281,8 +281,8 @@ export const benefits = [
   },
   {
     id: "4",
-    title: "Ask anything",
-    text: "Lets users quickly find answers to their questions without having to search through multiple sources.",
+    title: "Wallet",
+    text: "Wallet is where you can view all your available coins and their current value. You can buy, transfer, and withdraw coins securely within the app.",
     backgroundUrl: "./src/assets/benefits/card-5.svg",
     iconUrl: benefitIcon1,
     imageUrl: benefitImage2,
