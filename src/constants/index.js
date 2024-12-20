@@ -263,7 +263,7 @@ export const benefits = [
   {
     id: "2",
     title: "Collection",
-    text: "The Collection is where you can view, play, and sell your owned music NFTs. It showcases your unique music taste and serves as your personal music library on the platform.",
+    text: "The Collection is where you can view, play, and sell your purchased music NFTs. It showcases your unique music taste and serves as your personal music library on the platform.",
 
 
     backgroundUrl: "./src/assets/benefits/card-3.svg",
