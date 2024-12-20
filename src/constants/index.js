@@ -274,8 +274,6 @@ export const benefits = [
     id: "3",
     title: "Reels",
     text: "This is where content creators post videos using their purchased music NFTs, showcasing their unique music taste and creativity to the community.",
-
- ,
     backgroundUrl: "./src/assets/benefits/card-4.svg",
     iconUrl: benefitIcon4,
     imageUrl: benefitImage2,
