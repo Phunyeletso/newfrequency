@@ -24,14 +24,14 @@ const Pricing = () => {
           </div>
         </div>
 
-        <h1 className="text-center text-white text-4xl font-bold mt-8">Breakthrough</h1>
+        <h1 className="text-center text-white text-4xl font-bold mt-8">newFrequency</h1>
 
         <div className="mt-16 px-8 text-white text-center text-xl italic">
-          <p className="mb-6">Music was never meant to be controlled. That’s why I built newFrequency — a platform where artists truly own their creations, and fans become part of the journey.</p>
+          <p className="mb-6">Music was never meant to be controlled. That’s why we built newFrequency — a platform where artists truly own their creations, and fans become part of the journey.</p>
 
           <p className="mb-6">In this new era, music isn’t just something you listen to — it’s something you own, share, and preserve forever on the blockchain.</p>
 
-          <p className="mb-6">But the future of music won’t be shaped by me — it’s yours to define. The creators, the innovators, the dreamers... the next great music revolution begins with you.</p>
+          <p className="mb-6">The future of music is shaped by us — it’s yours to define. The creators, the innovators, the dreamers... the next great music revolution begins with you.</p>
 
           <p className="mb-6">Your challenge is simple:</p>
           <p className="mb-6 font-bold">Create. Share. Inspire.</p>
