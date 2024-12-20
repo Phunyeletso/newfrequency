@@ -253,7 +253,8 @@ export const benefits = [
   {
     id: "1",
     title: "Marketplace",
-    text: "The app uses natural language processing to understand user queries and provide accurate and relevant responses.",
+    text: "Users can browse a marketplace of music NFTs listed by various artists. Each NFT displays its listed price, and users can purchase their desired NFTs securely using their integrated crypto wallet.",
+
     backgroundUrl: "./src/assets/benefits/card-2.svg",
     iconUrl: benefitIcon2,
     imageUrl: benefitImage2,
@@ -262,7 +263,9 @@ export const benefits = [
   {
     id: "2",
     title: "Collection",
-    text: "Connect with the AI chatbot from anywhere, on any device, making it more accessible and convenient.",
+    text: "The Collection is where you can view, play, and sell your owned music NFTs. It showcases your unique music taste and serves as your personal music library on the platform.",
+
+
     backgroundUrl: "./src/assets/benefits/card-3.svg",
     iconUrl: benefitIcon3,
     imageUrl: benefitImage2,
