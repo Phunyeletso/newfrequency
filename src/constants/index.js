@@ -245,7 +245,7 @@ export const benefits = [
   {
     id: "0",
     title: "Create",
-    text: "Artists can create music NFTs by: Uploading their song, Entering the song name, Choosing the number of NFT copies, Setting the selling price per copy, Adding cover art, And adding collaborators to split royalties",
+    text: "Artists can create music NFTs by: Uploading their song, Entering the song name, Choosing the number of NFT copies, Setting the selling price per copy, Adding cover art, Adding collaborators to split royalties, Lastly providing stems to prove ownership.",
     backgroundUrl: "./src/assets/benefits/card-1.svg",
     iconUrl: benefitIcon1,
     imageUrl: benefitImage2,
