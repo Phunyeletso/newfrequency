@@ -289,8 +289,8 @@ export const benefits = [
   },
   {
     id: "5",
-    title: "Improve everyday",
-    text: "The app uses natural language processing to understand user queries and provide accurate and relevant responses.",
+    title: "Content",
+    text: "Users will only be able to post content captured using our in-app camera, ensuring that all posts are authentically created by them. This approach prevents content theft and fosters an app experience built on genuine, original creations from real creators.",
     backgroundUrl: "./src/assets/benefits/card-6.svg",
     iconUrl: benefitIcon2,
     imageUrl: benefitImage2,
