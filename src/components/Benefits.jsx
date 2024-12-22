@@ -34,7 +34,7 @@ const Benefits = () => {
                     alt={item.title}
                   />
                   
-                  <Arrow />
+                  
                 </div>
               </div>
 
