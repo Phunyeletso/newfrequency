@@ -47,12 +47,7 @@ export const navigation = [
     title: "The Movement",
     url: "#pricing",
   },
-  {
-    id: "5",
-    title: "Sign in",
-    url: "#login",
-    onlyMobile: true,
-  },
+
 ];
 
 export const heroIcons = [homeSmile, file02, searchMd, plusSquare];
