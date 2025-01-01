@@ -49,10 +49,10 @@ const Pricing = () => {
             href="https://drive.google.com/file/d/1HLOgcOLwT-8yfxlLQvRcUFUk1xfWGuoq/view"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center text-white bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold text-lg"
+            className="inline-flex items-center justify-center gap-2 text-white bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold text-lg"
           >
-            <span className="material-icons" style={{ marginRight: "8px" }}>download</span>
-            newFrequency App for Android
+            <span className="material-icons">download</span>
+            <span>newFrequency App for Android</span>
           </a>
         </div>
       </div>
@@ -61,4 +61,5 @@ const Pricing = () => {
 };
 
 export default Pricing;
+
 
