@@ -42,9 +42,23 @@ const Pricing = () => {
 
           <p className="mb-6 font-bold">Let the music begin. 🎵✨</p>
         </div>
+
+        {/* Download Section */}
+        <div className="mt-12 text-center">
+          <a
+            href="https://drive.google.com/file/d/1HLOgcOLwT-8yfxlLQvRcUFUk1xfWGuoq/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center text-white bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold text-lg"
+          >
+            <span className="material-icons" style={{ marginRight: "8px" }}>download</span>
+            Download newFrequency App for Android
+          </a>
+        </div>
       </div>
     </Section>
   );
 };
 
 export default Pricing;
+
