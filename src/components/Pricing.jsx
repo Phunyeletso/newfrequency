@@ -52,7 +52,7 @@ const Pricing = () => {
             className="inline-flex items-center justify-center text-white bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold text-lg"
           >
             <span className="material-icons" style={{ marginRight: "8px" }}>download</span>
-            Download newFrequency App for Android
+            newFrequency App for Android
           </a>
         </div>
       </div>
