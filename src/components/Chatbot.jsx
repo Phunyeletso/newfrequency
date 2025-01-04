@@ -18,11 +18,13 @@ const Chatbot = () => {
         setMessages((prev) => [...prev, userMessage]);
 
         try {
-            const response = await fetch("https://newfrequency.vercel.app/api/chat", {
+            const response = await fetch("https://www.newfrequency.co.za/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: input }),
             });
+
+
 
 
             console.log("API response status:", response.status); // Log the API response status
