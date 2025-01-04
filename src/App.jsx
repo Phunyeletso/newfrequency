@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import AffiliateSignUp from "./components/AffiliateSignUp";
+import Testers from "./components/testers";
 import ButtonGradient from "./assets/svg/ButtonGradient";
 import Benefits from "./components/Benefits";
 import Collaboration from "./components/Collaboration";
@@ -37,6 +38,7 @@ const App = () => {
       />
       {/* Route for the affiliate sign-up page */}
       <Route path="/affiliate" element={<AffiliateSignUp />} />
+      <Route path="/testers" element={<Testers />} />
     </Routes>
   );
 };

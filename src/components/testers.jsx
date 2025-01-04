@@ -57,7 +57,7 @@ const AffiliatePage = () => {
     };
 
     return (
-        <Section className="overflow-hidden" id="affiliate">
+        <Section className="overflow-hidden" id="tester">
             <div className="container relative z-2">
                 <div className="hidden relative justify-center mb-[6.5rem] lg:flex">
                     <img
@@ -78,39 +78,25 @@ const AffiliatePage = () => {
                     </div>
                 </div>
 
-                <h1 className="text-center text-white text-4xl font-bold mt-8">Become a newFrequency Affiliate</h1>
+                <h1 className="text-center text-white text-4xl font-bold mt-8">Become a Tester</h1>
 
                 <div className="mt-16 px-8 text-white text-center text-xl italic">
-                    <p className="mb-6">Unlock exclusive rewards and benefits by joining our affiliate program. Earn commissions, gain early access to features, and grow your network by sharing the power of newFrequency.</p>
+                    <p className="mb-6">Join our exclusive tester program and gain early access to new features and updates. Help shape the future of our platform while enjoying unique rewards and insights.</p>
 
-                    <p className="mb-6">Our platform empowers artists and fans to own, share, and monetize music like never before. As an affiliate, you’ll play a key role in revolutionizing the music industry.</p>
+                    <p className="mb-6">As a tester, you’ll collaborate directly with our team, provide valuable feedback, and be the first to explore groundbreaking tools and functionalities.</p>
 
-                    <h2 className="text-2xl font-bold mt-8">Membership Plans:</h2>
-                    <div className="mt-6 text-left px-6">
-                        <h3 className="text-lg font-bold">1. Premium Membership (R300/month):</h3>
-                        <ul className="list-disc list-inside mb-6">
-                            <li>3000 NFC Coins Monthly (potential future value of $300 when NFC reaches $0.10 USDT).</li>
-                            <li>20% Personal Commission on all monthly subscriptions.</li>
-                            <li>10% Indirect Commission from members invited by your network.</li>
-                        </ul>
-
-                        <h3 className="text-lg font-bold">2. Starter Membership (R100/month):</h3>
-                        <ul className="list-disc list-inside">
-                            <li>500 NFC Coins Monthly.</li>
-                            <li>20% Personal Commission on monthly subscriptions.</li>
-                            <li>No indirect commissions.</li>
-                        </ul>
-                    </div>
-
-                    <h2 className="text-2xl font-bold mt-8">Benefits of Joining:</h2>
-                    <ul className="list-disc list-inside mt-6 px-6">
-                        <li>Early access to a revolutionary NFT platform.</li>
-                        <li>Growth potential as the platform gains traction.</li>
-                        <li>Exclusive rewards and bonuses for top-performing affiliates.</li>
+                    <p className="mb-6 font-bold">Benefits for Testers:</p>
+                    <ul className="list-disc list-inside mb-6">
+                        <li>Earn <strong>5000 NFC (newFrequency Coins)</strong> upon completing the 14-day testing program.</li>
+                        <li>These coins can be used for transactions, staking, and other platform activities as their value grows.</li>
+                        <li>Exclusive tester-only access to premium features and content.</li>
+                        <li>Gain recognition as a founding member of our tester community.</li>
+                        <li>Opportunity to influence the future development of our app.</li>
                     </ul>
 
-                    <p className="mt-8 font-bold">LIMITED TIME OFFER:</p>
-                    <p className="mt-2">Premium members receive 3000 NFC Coins monthly (free of charge) until the day before NFC trading opens. After this, coins will no longer be freely distributed.</p>
+                    <p className="mb-6 font-bold">Limited Slots Available - Only the first 12 testers can join!</p>
+
+                    <p className="mb-6 font-bold">Act fast! The program lasts for 14 days only!</p>
 
                     <p className="mb-6 font-bold">Start your journey with us today!</p>
                 </div>
@@ -120,14 +106,14 @@ const AffiliatePage = () => {
                         onClick={() => setShowForm(true)}
                         className="inline-flex items-center justify-center gap-2 text-white bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold text-lg w-auto max-w-xs mx-auto"
                     >
-                        Join as an Affiliate
+                        Join as a Tester
                     </button>
                 </div>
 
                 {showForm && (
                     <div style={styles.formOverlay}>
                         <div style={styles.formContainer}>
-                            <h2 style={styles.title}>Affiliate Sign-Up</h2>
+                            <h2 style={styles.title}>Tester Sign-Up</h2>
                             <form onSubmit={handleSubmit}>
                                 <div style={styles.formGroup}>
                                     <label htmlFor="name" style={styles.label}>Name</label>
