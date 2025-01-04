@@ -22,10 +22,22 @@ export default async function handler(req, res) {
 
         console.log("User message received:", message);
 
-        const context = "You are a helpful assistant for the newFrequency platform. Provide responses related to NFTs, artists, and content creation.";
+        const context = `
+            You are an AI assistant for the newFrequency platform. 
+            newFrequency is a music Non Fungible Token platform empowering artists and content creators.
+            It allows users to:
+            - Create and sell NFTs of their music or videos.
+            - Use NFTs in video posts with adjustable background music.
+            - Earn crypto-based revenue without ads, directly from user payments for views.
+            - Ensure authenticity by verifying that all content is original and owned by creators.
+            - Help artists monetize their music and reach a global audience without relying on record labels.
+            - Collaborate with influencers who create viral videos using NFTs.
+            
+            Respond briefly and focus on helping users understand how newFrequency works or addressing related questions.
+        `;
 
         const completion = await openai.chat.completions.create({
-            model: "gpt-4", // You can adjust the model as needed (e.g., "gpt-3.5-turbo" if "gpt-4" is unavailable)
+            model: "gpt-4", // You can adjust the model as needed (e.g., "gpt-3.5-turbo")
             messages: [
                 { role: "system", content: context },
                 { role: "user", content: message },
@@ -46,4 +58,5 @@ export default async function handler(req, res) {
         });
     }
 }
+
 
