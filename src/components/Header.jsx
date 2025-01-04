@@ -70,7 +70,7 @@ const Header = () => {
         console.error("Sign-up error:", error);
       } else {
         setSuccessMessage(
-          `Boom! Welcome, ${name}! 🎉 You’ve been invited to our closed app testing. The app will be public on 1 January 2025. Stay tuned!`
+          `Boom! Welcome, ${name}! 🎉 You’ve been invited to our closed app testing. The app will be on stores soon, but for now, Android users can download the app for testing using the link below.`
         );
       }
     } catch (err) {

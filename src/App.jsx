@@ -1,3 +1,6 @@
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import AffiliateSignUp from "./components/AffiliateSignUp";
 import ButtonGradient from "./assets/svg/ButtonGradient";
 import Benefits from "./components/Benefits";
 import Collaboration from "./components/Collaboration";
@@ -11,21 +14,30 @@ import Chatbot from "./components/Chatbot";
 
 const App = () => {
   return (
-    <>
-      <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
-        <Header />
-        <Hero />
-        <Benefits />
-        <Collaboration />
-        <Services />
-        <Pricing />
-        <Roadmap />
-        <Footer />
-      </div>
-
-      <ButtonGradient />
-      <Chatbot />
-    </>
+    <Routes>
+      {/* Default route for the website homepage */}
+      <Route
+        path="/"
+        element={
+          <>
+            <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
+              <Header />
+              <Hero />
+              <Benefits />
+              <Collaboration />
+              <Services />
+              <Pricing />
+              <Roadmap />
+              <Footer />
+            </div>
+            <ButtonGradient />
+            <Chatbot />
+          </>
+        }
+      />
+      {/* Route for the affiliate sign-up page */}
+      <Route path="/affiliate" element={<AffiliateSignUp />} />
+    </Routes>
   );
 };
 
