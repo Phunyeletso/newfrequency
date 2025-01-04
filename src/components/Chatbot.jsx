@@ -25,20 +25,19 @@ const Chatbot = () => {
             });
 
             console.log("API response status:", response.status); // Log the API response status
-
-            if (!response.ok) {
-                throw new Error(`API error: ${response.status}`);
-            }
-
             const data = await response.json();
             console.log("API response data:", data); // Log the response data
 
-            const botMessage = { text: data.reply, sender: "bot" };
+            if (data.reply) {
+                const botMessage = { text: data.reply, sender: "bot" };
 
-            // Add bot's message to chat and convert it to speech
-            setMessages((prev) => [...prev, botMessage]);
-            const utterance = new SpeechSynthesisUtterance(botMessage.text);
-            speechSynthesis.speak(utterance);
+                // Add bot's message to chat and convert it to speech
+                setMessages((prev) => [...prev, botMessage]);
+                const utterance = new SpeechSynthesisUtterance(botMessage.text);
+                speechSynthesis.speak(utterance);
+            } else {
+                console.error("No reply received from API");
+            }
         } catch (error) {
             console.error("Error communicating with the chatbot:", error); // Log any errors
         }
@@ -199,4 +198,5 @@ const styles = {
 };
 
 export default Chatbot;
+
 
