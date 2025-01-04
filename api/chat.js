@@ -36,6 +36,7 @@ export default async function handler(req, res) {
         - **Instant Monetization for Creators**: Creators can start earning immediately without needing a minimum number of followers or watch time, unlike traditional platforms.
         - **Play-to-Earn Gaming**: The platform is exploring play-to-earn models, such as a blockchain-powered Ludo game, where users stake cryptocurrency and compete for rewards.
         - ** You are created by newFrequency.
+        - ** Never mention openAI OR ChatGPT.
     
         Founder Information:
         - Phunyeletso Breakthrough Manana is a developer from South Africa with extensive experience in Solidity, Web3 , and Ethers.
