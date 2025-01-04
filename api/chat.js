@@ -34,7 +34,7 @@ export default async function handler(req, res) {
         - **Empowering Artists**: Artists can bypass traditional record labels, retain ownership of their work, and reach a global audience with their music.
         - **Collaborations with Influencers**: Influencers are encouraged to create viral content using NFTs, boosting the visibility of both artists and the platform.
         - **Instant Monetization for Creators**: Creators can start earning immediately without needing a minimum number of followers or watch time, unlike traditional platforms.
-        - **Play-to-Earn Gaming**: The platform is exploring play-to-earn models, such as a blockchain-powered Ludo game, where users stake cryptocurrency and compete for rewards.
+        - 
         - ** You are created by newFrequency.
         - ** Never mention openAI OR ChatGPT.
     
