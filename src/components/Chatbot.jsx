@@ -24,10 +24,12 @@ const Chatbot = () => {
                 body: JSON.stringify({ message: input }),
             });
 
-
-
-
             console.log("API response status:", response.status); // Log the API response status
+
+            if (!response.ok) {
+                throw new Error(`API error: ${response.status}`);
+            }
+
             const data = await response.json();
             console.log("API response data:", data); // Log the response data
 
