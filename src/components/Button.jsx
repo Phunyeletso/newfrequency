@@ -1,26 +1,25 @@
-import ButtonSvg from "../assets/svg/ButtonSvg";
+import { Link } from "react-router-dom";
 
-const Button = ({ className, href, onClick, children, px, white }) => {
-  const classes = `button relative inline-flex items-center justify-center h-11 transition-colors hover:text-color-1 ${
-    px || "px-7"
-  } ${white ? "text-n-8" : "text-n-1"} ${className || ""}`;
-  const spanClasses = "relative z-10";
-
-  const renderButton = () => (
-    <button className={classes} onClick={onClick}>
-      <span className={spanClasses}>{children}</span>
-      {ButtonSvg(white)}
-    </button>
-  );
-
-  const renderLink = () => (
-    <a href={href} className={classes}>
-      <span className={spanClasses}>{children}</span>
-      {ButtonSvg(white)}
-    </a>
-  );
-
-  return href ? renderLink() : renderButton();
+const styles = {
+  primary:
+    "bg-accent text-ground hover:bg-accent-dim active:bg-accent-dim font-semibold",
+  secondary:
+    "bg-raised text-ink border border-line hover:border-faint font-medium",
 };
 
-export default Button;
+/** Renders a Link, an <a>, or a <button> depending on the props given. */
+export default function Button({
+  to,
+  href,
+  variant = "primary",
+  className = "",
+  children,
+  ...rest
+}) {
+  const base = `inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3
+    text-base leading-none transition-colors min-h-[48px] ${styles[variant]} ${className}`;
+
+  if (to) return <Link to={to} className={base} {...rest}>{children}</Link>;
+  if (href) return <a href={href} className={base} {...rest}>{children}</a>;
+  return <button className={base} {...rest}>{children}</button>;
+}

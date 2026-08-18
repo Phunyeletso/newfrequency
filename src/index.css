@@ -1,88 +1,33 @@
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-sora: "Sora", sans-serif;
-  --font-code: "Source Code Pro", monospace;
-  --font-grotesk: "Space Grotesk", sans-serif;
-  color-scheme: dark;
-}
-
-* {
-  scroll-behavior: smooth
-}
-
 @layer base {
-  body {
-    @apply font-sans bg-n-8 text-n-1 text-base;
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  body {
+    @apply bg-ground text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  /* Visible keyboard focus everywhere */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-ground rounded-sm;
+  }
+  h1, h2, h3, h4 { @apply font-semibold tracking-tight text-balance; }
+  ::selection { @apply bg-accent text-ground; }
 }
 
-.rotate-45 {
-  @apply rotate-[45deg]
-}
-
-.rotate-90 {
-  @apply rotate-[90deg]
-}
-
-.rotate-135 {
-  @apply rotate-[135deg]
-}
-
-.rotate-180 {
-  @apply rotate-[180deg]
-}
-
-.rotate-225 {
-  @apply rotate-[225deg]
-}
-
-.rotate-270 {
-  @apply rotate-[270deg]
-}
-
-.rotate-315 {
-  @apply rotate-[315deg]
-}
-
-.rotate-360 {
-  @apply rotate-[360deg]
-}
-
-.-rotate-45 {
-  @apply rotate-[-45deg]
-}
-
-.-rotate-90 {
-  @apply rotate-[-90deg]
-}
-
-.-rotate-135 {
-  @apply rotate-[-135deg]
-}
-
-.-rotate-180 {
-  @apply rotate-[-180deg]
-}
-
-.-rotate-225 {
-  @apply rotate-[-225deg]
-}
-
-.-rotate-270 {
-  @apply rotate-[-270deg]
-}
-
-.-rotate-315 {
-  @apply rotate-[-315deg]
-}
-
-.-rotate-360 {
-  @apply rotate-[-360deg]
+@layer components {
+  .link-underline {
+    @apply underline decoration-line underline-offset-4 hover:decoration-accent transition-colors;
+  }
 }

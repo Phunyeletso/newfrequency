@@ -23,3 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# build + check artefacts
+.checks
+dist-smoke
+
+# local env — never commit real credentials
+.env
+.env.local

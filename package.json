@@ -1,5 +1,5 @@
 {
-  "name": "brainwave",
+  "name": "newfrequency-website",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,16 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:render": "vite build --ssr scripts/render-check.jsx --outDir .checks --logLevel error && node .checks/render-check.js",
+    "check:claims": "vite build --ssr scripts/claims-check.jsx --outDir .checks --logLevel error && node .checks/claims-check.js",
+    "check": "npm run lint && npm run check:render && npm run check:claims"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.47.10",
-    "openai": "^4.77.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-just-parallax": "^3.1.16",
-    "react-router-dom": "^6.22.1",
-    "scroll-lock": "^2.1.5"
+    "react-router-dom": "^6.22.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",
@@ -30,5 +29,6 @@
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "vite": "^5.1.0"
-  }
+  },
+  "description": "Marketing and tester-recruitment site for the newFrequency app."
 }

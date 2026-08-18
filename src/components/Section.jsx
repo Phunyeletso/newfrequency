@@ -1,41 +1,18 @@
-import SectionSvg from "../assets/svg/SectionSvg";
-
-const Section = ({
-  className,
-  id,
-  crosses,
-  crossesOffset,
-  customPaddings,
-  children,
-}) => {
+/** A page section with a real <h2> and consistent rhythm. */
+export default function Section({ title, lead, children, className = "", id }) {
   return (
-    <div
-      id={id}
-      className={`
-      relative 
-      ${
-        customPaddings ||
-        `py-10 lg:py-16 xl:py-20 ${crosses ? "lg:py-32 xl:py-40" : ""}`
-      } 
-      ${className || ""}`}
-    >
-      {children}
-
-      <div className="hidden absolute top-0 left-5 w-0.25 h-full bg-stroke-1 pointer-events-none md:block lg:left-7.5 xl:left-10" />
-      <div className="hidden absolute top-0 right-5 w-0.25 h-full bg-stroke-1 pointer-events-none md:block lg:right-7.5 xl:right-10" />
-
-      {crosses && (
-        <>
-          <div
-            className={`hidden absolute top-0 left-7.5 right-7.5 h-0.25 bg-stroke-1 ${
-              crossesOffset && crossesOffset
-            } pointer-events-none lg:block xl:left-10 right-10`}
-          />
-          <SectionSvg crossesOffset={crossesOffset} />
-        </>
-      )}
-    </div>
+    <section id={id} className={`px-5 py-14 sm:py-20 ${className}`}>
+      <div className="mx-auto max-w-content">
+        {title && (
+          <h2 className="text-2xl sm:text-3xl mb-3">{title}</h2>
+        )}
+        {lead && (
+          <p className="text-muted text-base sm:text-lg max-w-prose mb-8 text-pretty">
+            {lead}
+          </p>
+        )}
+        {children}
+      </div>
+    </section>
   );
-};
-
-export default Section;
+}
