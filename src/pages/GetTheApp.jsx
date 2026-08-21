@@ -25,7 +25,7 @@ const ANDROID_STEPS = [
   },
   {
     title: "Open newFrequency",
-    body: "It'll be in your app drawer with everything else.",
+    body: "It'll be in your app drawer with everything else. This is the only time you have to install it by hand: from here the app updates itself.",
   },
 ];
 
@@ -64,7 +64,21 @@ export default function GetTheApp() {
               <Button href={DOWNLOAD.androidApkUrl} className="mb-3">
                 Download for Android (.apk)
               </Button>
-              <p className="mb-8 text-sm text-faint">Version {APP.version}</p>
+              <p className="mb-3 text-sm text-faint">Version {APP.version}</p>
+              {/*
+                Said next to the button, where somebody deciding whether to
+                bother is actually looking. Installing an .apk by hand is the
+                friction in this whole flow, and "you only do this once" is the
+                answer to it. Worded as what the app does, not as a promise
+                about what will be in the updates.
+              */}
+              <p className="mb-8 max-w-prose text-sm text-muted text-pretty">
+                You only install it by hand once. After that newFrequency updates
+                itself: fixes and improvements arrive on their own the next time
+                you open it, with nothing to download and nothing to tap. A big
+                enough change still needs a fresh file, and we will say so here
+                when one does.
+              </p>
             </>
           ) : (
             /*
