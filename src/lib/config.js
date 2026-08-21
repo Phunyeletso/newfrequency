@@ -3,7 +3,7 @@ export const APP = {
   name: "newFrequency",
   // Shown on /get-the-app under the download button. Keep in step with the
   // app's app.json version, or the site advertises a build nobody can get.
-  version: "1.0.2",
+  version: "1.0.3",
   androidPackage: "com.breakthrough_sa.newFrequency",
   // The app's deep link scheme, from the app repo's app.json. Used by the
   // email confirmation page to offer "Open newFrequency". Must match, or the
