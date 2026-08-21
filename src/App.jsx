@@ -6,6 +6,7 @@ import ForArtists from "./pages/ForArtists";
 import GetTheApp from "./pages/GetTheApp";
 import Feedback from "./pages/Feedback";
 import Contact from "./pages/Contact";
+import EmailConfirmed from "./pages/EmailConfirmed";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
@@ -30,6 +31,9 @@ export default function App() {
           <Route path="/get-the-app" element={<GetTheApp />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/contact" element={<Contact />} />
+          {/* Where a signup confirmation email lands. Not linked from
+              anywhere on purpose: the only way here is the email. */}
+          <Route path="/auth/confirmed" element={<EmailConfirmed />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />

@@ -20,7 +20,7 @@ export default function InviteForm() {
       setError(
         err instanceof SubmitError
           ? err.message
-          : "Something went wrong. Your email is still here — try again.",
+          : "Something went wrong. Your email is still here, so try again.",
       );
       setState("error");
     }

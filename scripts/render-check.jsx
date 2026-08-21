@@ -2,7 +2,7 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import App from "../src/App";
 
-const ROUTES = ["/", "/for-artists", "/get-the-app", "/feedback", "/contact", "/privacy", "/terms", "/nonsense"];
+const ROUTES = ["/", "/for-artists", "/get-the-app", "/feedback", "/contact", "/privacy", "/terms", "/auth/confirmed", "/nonsense"];
 
 let failed = 0;
 for (const r of ROUTES) {

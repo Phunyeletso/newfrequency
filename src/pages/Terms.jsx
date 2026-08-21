@@ -18,7 +18,7 @@ export default function Terms() {
         <p className="mt-3 text-sm text-faint">Last updated {UPDATED}</p>
 
         <p className="mt-6 text-lg text-muted text-pretty">
-          These terms cover this website — the pages here, the feedback form, and
+          These terms cover this website: the pages here, the feedback form, and
           downloading the test build. Using the newFrequency app itself is
           governed by the terms you accept inside the app.
         </p>
@@ -51,8 +51,8 @@ export default function Terms() {
             </Notice>
             <p className="mb-3 text-muted text-pretty">
               That means, plainly: it will have bugs. It may crash, lose things,
-              or behave in ways it shouldn't. Data — including posts and account
-              details — may be reset while we test. Features may change or be
+              or behave in ways it shouldn't. Data, including posts and account
+              details, may be reset while we test. Features may change or be
               removed. Availability isn't guaranteed and the test can end at any
               time.
             </p>
@@ -83,7 +83,7 @@ export default function Terms() {
           <section>
             <h2 className="mb-3 text-xl">Sending feedback</h2>
             <p className="mb-3 text-muted text-pretty">
-              Send what you actually think — critical feedback is what we're
+              Send what you actually think. Critical feedback is what we're
               asking for. What you shouldn't send is anything unlawful, anyone
               else's personal information, or confidential material that isn't
               yours to share.

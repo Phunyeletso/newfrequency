@@ -136,7 +136,7 @@ export default function Privacy() {
                 </dd>
               </div>
               <div>
-                <dt className="font-medium">Your device details — optional</dt>
+                <dt className="font-medium">Your device details (optional)</dt>
                 <dd className="text-muted text-pretty">
                   Only if you type them in. Used to reproduce bugs on the phone
                   they happened on. This is free text you write yourself; we don't
@@ -155,7 +155,7 @@ export default function Privacy() {
                 <dt className="font-medium">Your email</dt>
                 <dd className="text-muted text-pretty">
                   Required on the contact form, because a reply is the point of
-                  it. Optional everywhere else — on feedback it's only used to
+                  it. Optional everywhere else: on feedback it's only used to
                   reply, and on the iOS form only to send a TestFlight invitation.
                   We don't add you to a mailing list and we don't market to you.
                 </dd>
@@ -175,11 +175,11 @@ export default function Privacy() {
             <h2 className="mb-3 text-xl">On what basis</h2>
             <p className="mb-3 text-muted text-pretty">
               For the app, most of it is because we can't provide the service
-              without it — you can't have an account without account details, or
+              without it. You can't have an account without account details, or
               buy a licence without a record of the purchase.
             </p>
             <p className="text-muted text-pretty">
-              For anything optional — your email, your device details, feedback —
+              For anything optional (your email, your device details, feedback)
               you choose to give it, and you can withdraw that by asking us to
               delete it. Nothing stops working if you do.
             </p>
@@ -217,9 +217,9 @@ export default function Privacy() {
               changed hands. Your wallet balance is not.
             </p>
             <p className="text-muted text-pretty">
-              We will never publish your feedback, your name or your email —
-              including as a quote or testimonial — unless we ask you first and you
-              say yes.
+              We will never publish your feedback, your name or your email,
+              including as a quote or testimonial, unless we ask you first and
+              you say yes.
             </p>
           </section>
 
@@ -228,7 +228,7 @@ export default function Privacy() {
             <p className="text-muted text-pretty">
               Information travels over an encrypted connection and is stored with
               access limited to the people who need it. No system is perfect, and
-              this is an early build — if something goes wrong that puts your
+              this is an early build. If something goes wrong that puts your
               information at risk, we'll tell you and the Information Regulator, as
               POPIA requires.
             </p>
@@ -259,7 +259,7 @@ export default function Privacy() {
             </p>
             <p className="text-muted text-pretty">
               If you're unhappy with how we've handled your information, you can
-              complain to the Information Regulator of South Africa —{" "}
+              complain to the Information Regulator of South Africa at{" "}
               <a
                 href="https://inforegulator.org.za"
                 className="link-underline text-ink"

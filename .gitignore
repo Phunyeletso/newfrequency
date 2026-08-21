@@ -31,3 +31,6 @@ dist-smoke
 # local env — never commit real credentials
 .env
 .env.local
+
+# Local credentials handed over for setup. Never commit.
+.secrets.local

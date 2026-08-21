@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import Notice from "../components/Notice";
 import ChoiceGroup from "../components/ChoiceGroup";
 import useDocumentTitle from "../lib/useDocumentTitle";
-import { submitFeedback, SubmitError } from "../lib/feedback";
+import { submitFeedback, SubmitError, isConfigured } from "../lib/feedback";
 
 const EMPTY = {
   liked: "",
@@ -81,7 +81,7 @@ export default function Feedback() {
       setFailure(
         err instanceof SubmitError
           ? err.message
-          : "Something went wrong sending that. Your answers are still here — try again.",
+          : "Something went wrong sending that. Your answers are still here, so try again.",
       );
       setState("error");
       requestAnimationFrame(() => errorRef.current?.focus());
@@ -95,13 +95,13 @@ export default function Feedback() {
         <div className="mx-auto max-w-prose">
           <h1 className="mb-4 text-3xl">Thanks, that's logged.</h1>
           <p className="mb-4 text-lg text-muted text-pretty">
-            We read every one of these — including, especially, the part where you
-            told us what didn't work.
+            We read every one of these, including, especially, the part where
+            you told us what didn't work.
           </p>
           <p className="mb-8 text-muted text-pretty">
             {email
               ? `If we need to ask you something about it, we'll write to ${email}.`
-              : "You didn't leave an email, so we won't be replying — but it still counts."}
+              : "You didn't leave an email, so we won't be replying, but it still counts."}
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button to="/">Back to the start</Button>
@@ -126,8 +126,25 @@ export default function Feedback() {
       <div className="mx-auto max-w-prose">
         <h1 className="text-3xl leading-[1.15] sm:text-4xl">What did you think?</h1>
         <p className="mt-4 text-lg text-muted text-pretty">
-          Be blunt — negative feedback is more useful to us than praise.
+          Be blunt. Negative feedback is more useful to us than praise.
         </p>
+
+        {/*
+          The backend is not wired up. Without this, the only sign is a failure
+          message AFTER somebody has filled in the whole form and pressed send,
+          which wastes their time and loses their words. Say it before they
+          start typing. Renders nothing at all once the env vars are set, which
+          is the normal case.
+        */}
+        {!isConfigured() && (
+          <Notice className="mt-6 border-snaps/40 bg-snaps/5">
+            <strong className="font-medium text-ink">
+              This form is not connected yet.
+            </strong>{" "}
+            Nothing you type here will reach us until it is. Sorry about that,
+            it is being set up.
+          </Notice>
+        )}
 
         <Notice className="mt-6">
           We use this to fix and improve the app, and for nothing else. We won't
@@ -217,7 +234,7 @@ export default function Feedback() {
           <div className="mb-7">
             <label htmlFor="device" className="mb-1.5 block text-base font-medium">
               Phone and Android/iOS version{" "}
-              <span className="font-normal text-faint">— optional</span>
+              <span className="font-normal text-faint">(optional)</span>
             </label>
             <p id="device-hint" className="mb-2 text-sm text-faint text-pretty">
               Helps us reproduce bugs. Something like "Samsung A14, Android 14".
@@ -238,7 +255,7 @@ export default function Feedback() {
             <label htmlFor="email" className="mb-1.5 block text-base font-medium">
               Email{" "}
               <span className="font-normal text-faint">
-                — optional, only if you want a reply
+                (optional, only if you want a reply)
               </span>
             </label>
             <input

@@ -7,11 +7,11 @@ import useDocumentTitle from "../lib/useDocumentTitle";
 const LEAD_POINTS = [
   {
     title: "Scarcity is real",
-    body: "An artist publishes a specific song once, with the number of licences they choose. There's no second run — when they're gone, they're gone, which is what makes holding one worth something, and what gives resale a floor.",
+    body: "An artist publishes a specific song once, with the number of licences they choose. There's no second run. When they're gone, they're gone, which is what makes holding one worth something, and what gives resale a floor.",
   },
   {
     title: "Musicians get paid directly by their supporters",
-    body: "A licence is sold by the artist directly to the supporter, at a price the artist sets. It's the right to use the song, not ownership of it — and not a share of a royalty pool or a fraction of a stream.",
+    body: "A licence is sold by the artist directly to the supporter, at a price the artist sets. It's the right to use the song, not ownership of it, and not a share of a royalty pool or a fraction of a stream.",
   },
   {
     title: "Proof you can scout talent",
@@ -35,7 +35,7 @@ export default function Home() {
           </h1>
           <p className="mt-5 max-w-prose text-lg text-muted text-pretty sm:text-xl">
             An app for short videos, photos and music. Watching is free. To use a
-            song, buy a licence from the artist at their price — and you can
+            song, buy a licence from the artist at their price, and you can
             resell at your price.
           </p>
 
@@ -87,7 +87,7 @@ export default function Home() {
           <div className="rounded-xl border border-line bg-surface p-6">
             <h2 className="mb-2 text-xl">If you just want to watch and post</h2>
             <p className="mb-4 text-muted text-pretty">
-              Watching is free — all of it. Post photos, video and text as much
+              Watching is free, all of it. Post photos, video and text as much
               as you like. You only pay when you want to put someone else's song
               behind your post.
             </p>
@@ -97,7 +97,7 @@ export default function Home() {
             <h2 className="mb-2 text-xl">If you make music</h2>
             <p className="mb-4 text-muted text-pretty">
               Put a song up as a Tune, set your price, and decide how many
-              licences exist — you'll need to provide proof you own it. You're
+              licences exist. You'll need to provide proof you own it. You're
               paid when a supporter buys one, and you earn a royalty again each
               time that licence is resold.
             </p>
@@ -114,19 +114,19 @@ export default function Home() {
       >
         <ul className="grid gap-x-8 gap-y-3 text-muted sm:grid-cols-2">
           <li className="text-pretty">
-            <strong className="font-medium text-ink">Trust</strong> — a verified
+            <strong className="font-medium text-ink">Trust:</strong> a verified
             badge on content we can trust.
           </li>
           <li className="text-pretty">
-            <strong className="font-medium text-ink">Marketplace</strong> — sell
+            <strong className="font-medium text-ink">Marketplace:</strong> sell
             things you own to other people on the app.
           </li>
           <li className="text-pretty">
-            <strong className="font-medium text-ink">Monetisation</strong> —
+            <strong className="font-medium text-ink">Monetisation:</strong>{" "}
             qualifying creators are eligible to earn from their content.
           </li>
           <li className="text-pretty">
-            <strong className="font-medium text-ink">Wallet</strong> — holds what
+            <strong className="font-medium text-ink">Wallet:</strong> holds what
             you top up and what you earn, and pays for licences and tips.
           </li>
         </ul>

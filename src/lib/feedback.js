@@ -77,13 +77,13 @@ async function post(table, row) {
     });
   } catch {
     throw new SubmitError(
-      "Couldn't reach the server — check your connection and try again. Nothing you typed has been lost.",
+      "Couldn't reach the server. Check your connection and try again. Nothing you typed has been lost.",
     );
   }
 
   if (!res.ok) {
     throw new SubmitError(
-      `The server rejected that (error ${res.status}). Your answers are still here — try again in a moment.`,
+      `The server rejected that (error ${res.status}). Your answers are still here, so try again in a moment.`,
     );
   }
 

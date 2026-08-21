@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Section from "../components/Section";
 import Notice from "../components/Notice";
@@ -8,7 +9,7 @@ import { APP, DOWNLOAD } from "../lib/config";
 const ANDROID_STEPS = [
   {
     title: "Download the file",
-    body: "Tap the download button above. Your browser saves an .apk file — that's the app's installer.",
+    body: "Tap the download button above. Your browser saves an .apk file, which is the app's installer.",
   },
   {
     title: "Let your browser install it",
@@ -31,7 +32,7 @@ const ANDROID_STEPS = [
 export default function GetTheApp() {
   useDocumentTitle(
     "Get the app",
-    "Install the newFrequency test build on Android, or request a TestFlight invite for iOS. It's an early build — expect bugs.",
+    "Install the newFrequency test build on Android, or request a TestFlight invite for iOS. It's an early build, so expect bugs.",
   );
 
   return (
@@ -59,18 +60,38 @@ export default function GetTheApp() {
       <Section title="Android" className="border-t border-line">
         <div className="max-w-prose">
           {DOWNLOAD.androidApkUrl ? (
-            <Button href={DOWNLOAD.androidApkUrl} className="mb-3">
-              Download for Android (.apk)
-            </Button>
+            <>
+              <Button href={DOWNLOAD.androidApkUrl} className="mb-3">
+                Download for Android (.apk)
+              </Button>
+              <p className="mb-8 text-sm text-faint">Version {APP.version}</p>
+            </>
           ) : (
-            /* Placeholder until VITE_ANDROID_APK_URL is set — does nothing yet. */
-            <Button type="button" className="mb-3">
-              Download for Android (.apk)
-            </Button>
+            /*
+              VITE_ANDROID_APK_URL is not set, so there is no file to hand over.
+              This used to render the same button with no href, which looked
+              live and did nothing at all: a tester tapped it, nothing happened,
+              and there was no way for them to know whether the site was broken
+              or their phone was. Say it instead, and point them somewhere that
+              works.
+            */
+            <>
+              <Notice className="mb-6 max-w-prose">
+                <strong className="font-medium text-ink">
+                  The Android build is not up yet.
+                </strong>{" "}
+                There is no file to download at the moment. Leave your email on
+                the{" "}
+                <Link to="/contact" className="link-underline text-ink">
+                  contact page
+                </Link>{" "}
+                and we will tell you the day it goes live.
+              </Notice>
+              <p className="mb-8 text-sm text-faint">
+                The steps below are what installing it will look like.
+              </p>
+            </>
           )}
-          <p className="mb-8 text-sm text-faint">
-            Version {APP.version}
-          </p>
 
           <h3 className="mb-4 text-lg">Installing it</h3>
           <ol className="space-y-4">
@@ -108,9 +129,10 @@ export default function GetTheApp() {
           ) : (
             <>
               <p className="mb-4 text-muted text-pretty">
-                There's no file you can download and install on iPhone — Apple
-                doesn't allow it. iOS testing has to go through TestFlight, and
-                that needs a separate invitation for each tester.
+                There's no file you can download and install on iPhone, because
+                Apple doesn't allow it. iOS testing has to go through
+                TestFlight, and that needs a separate invitation for each
+                tester.
               </p>
               <p className="mb-6 text-muted text-pretty">
                 Leave your email and we'll send you one when a slot opens. We'll

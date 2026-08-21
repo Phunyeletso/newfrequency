@@ -2,7 +2,8 @@ import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import useDocumentTitle from "../lib/useDocumentTitle";
-import { submitEnquiry, SubmitError } from "../lib/feedback";
+import Notice from "../components/Notice";
+import { submitEnquiry, SubmitError, isConfigured } from "../lib/feedback";
 
 const EMPTY = { email: "", topic: "", message: "" };
 
@@ -13,7 +14,7 @@ const fieldClass =
 export default function Contact() {
   useDocumentTitle(
     "Contact",
-    "Ask us anything about newFrequency — general questions, licensing, problems with the app, or a request about your personal information.",
+    "Ask us anything about newFrequency: general questions, licensing, problems with the app, or a request about your personal information.",
   );
 
   const [values, setValues] = useState(EMPTY);
@@ -57,7 +58,7 @@ export default function Contact() {
       setFailure(
         err instanceof SubmitError
           ? err.message
-          : "Something went wrong sending that. Your message is still here — try again.",
+          : "Something went wrong sending that. Your message is still here, so try again.",
       );
       setState("error");
       requestAnimationFrame(() => errorRef.current?.focus());
@@ -100,6 +101,24 @@ export default function Contact() {
     <section className="px-5 pb-16 pt-12 sm:pt-16">
       <div className="mx-auto max-w-prose">
         <h1 className="text-3xl leading-[1.15] sm:text-4xl">Get in touch</h1>
+
+        {/*
+          The backend is not wired up. Without this, the only sign is a failure
+          message AFTER somebody has filled in the whole form and pressed send,
+          which wastes their time and loses their words. Say it before they
+          start typing. Renders nothing at all once the env vars are set, which
+          is the normal case.
+        */}
+        {!isConfigured() && (
+          <Notice className="mt-6 border-snaps/40 bg-snaps/5">
+            <strong className="font-medium text-ink">
+              This form is not connected yet.
+            </strong>{" "}
+            Nothing you type here will reach us until it is. Sorry about that,
+            it is being set up.
+          </Notice>
+        )}
+
         <form onSubmit={onSubmit} noValidate className="mt-8">
           {/* Email — required here, because a reply is the point */}
           <div className="mb-7">

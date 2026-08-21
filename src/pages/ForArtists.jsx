@@ -17,7 +17,7 @@ const STEPS = [
   {
     n: "3",
     title: "Decide how many licences exist",
-    body: "You set the number of copies. Once they're sold, no more exist — so the people who bought early hold something that can't be reprinted.",
+    body: "You set the number of copies. Once they're sold, no more exist, so the people who bought early hold something that can't be reprinted.",
   },
   {
     n: "4",
@@ -27,7 +27,7 @@ const STEPS = [
   {
     n: "5",
     title: "Earn again every time it's resold",
-    body: "Licences can be resold between users. Each time one of yours changes hands, a royalty goes back to you — for as long as that licence keeps moving.",
+    body: "Licences can be resold between users. Each time one of yours changes hands, a royalty goes back to you, for as long as that licence keeps moving.",
   },
 ];
 
@@ -77,7 +77,7 @@ export default function ForArtists() {
       <Section title="Why the resale market matters" className="border-t border-line">
         <div className="max-w-prose space-y-4 text-muted">
           <p className="text-pretty">
-            A licence isn't only a permission slip — it's something the buyer
+            A licence isn't only a permission slip. It's something the buyer
             owns and can sell on. If your song gets used and talked about, the
             licences for it become worth holding, and the people who bought them
             early have a reason to have taken the chance on you.
@@ -117,7 +117,7 @@ export default function ForArtists() {
           <div>
             <dt className="mb-1.5 font-medium">Can I take money out?</dt>
             <dd className="text-muted text-pretty">
-              Yes — money comes out to your bank account. One thing to know:
+              Yes. Money comes out to your bank account. One thing to know:
               deposits and withdrawals are both switched off during testing, and
               will open when we launch.
             </dd>
@@ -155,7 +155,7 @@ export default function ForArtists() {
 
         <Notice className="mt-8 max-w-prose">
           You'll be asked for proof of ownership before a Tune goes on sale. Only
-          upload music you actually have the rights to — if you don't own it, or
+          upload music you actually have the rights to. If you don't own it, or
           you don't have permission from everyone who does, don't list it.
         </Notice>
       </Section>

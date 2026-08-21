@@ -23,7 +23,7 @@ state.
 |---|---|---|---|
 | 1 | What is the live `.apk` download link? | The Android download button. Currently shows a "link isn't set yet" notice. | `VITE_ANDROID_APK_URL` |
 | 2 | Is TestFlight live for iOS yet? | Currently iOS shows "request an invite" and collects an email, per the brief. Flip it when TestFlight is real. | `VITE_IOS_TESTFLIGHT_LIVE`, `VITE_IOS_TESTFLIGHT_URL` |
-| 3 | Which backend should the feedback form write to, and what are its credentials? | The feedback form and the iOS invite form. Both currently show "not connected". **Must not be the app's project** — see §3. | `VITE_FEEDBACK_API_BASE`, `VITE_FEEDBACK_ANON_KEY` |
+| 3 | ~~Which backend should the feedback form write to?~~ **Answered: a second Supabase project, and it emails you.** | Run `supabase/setup.sql` in that project, deploy the edge function, then fill in the two env vars. Until they are set both forms still show "not connected". **Must not be the app's project** — see §3. | `VITE_FEEDBACK_API_BASE`, `VITE_FEEDBACK_ANON_KEY` |
 | 4 | What is the support email address? | Privacy policy and terms. Until it's set, both point people at the feedback form to make a POPIA request. Company name is set to "New Frequency"; no trading address is shown. | `VITE_SUPPORT_EMAIL` |
 | 5 | Which domain, and is the old site replaced or kept? | Deployment. See §5 — the old site is untouched on `main`. | — |
 | 6 | ~~Should fees appear publicly?~~ **Answered: yes.** | `/for-artists` publishes the 10% platform fee and the 10% resale royalty. See §8. | copy on `/for-artists` |
@@ -43,6 +43,7 @@ There is also a **security question** that came out of the old codebase — see 
 | Get the app | `/get-the-app` | Android sideload walkthrough, iOS invite request, test-build expectations |
 | Feedback | `/feedback` | The test-build feedback form |
 | Contact | `/contact` | General enquiries, including POPIA requests |
+| Email confirmed | `/auth/confirmed` | Where the app's sign up confirmation email lands. Not linked from anywhere: the only way here is that email. See §9. |
 | Privacy | `/privacy` | POPIA policy for the website |
 | Terms | `/terms` | Site and test-build terms |
 
@@ -88,8 +89,11 @@ components are deleted and no credential is hardcoded anywhere.
 
 ### The separate website database
 
-Create a **second** Supabase project (or any REST backend). Run this in its SQL
-editor:
+Create a **second** Supabase project. Everything below now lives in
+**`supabase/setup.sql`**, which is the file to actually run: it creates the
+tables, sets the write only policies, and wires the email notifications in §9.
+The SQL is repeated here so this document still reads on its own, but run the
+file, not this block.
 
 ```sql
 create table public.feedback (
@@ -262,3 +266,102 @@ Two things follow, neither blocking:
 2. **The fees are now a published commitment.** Changing 10% later means changing
    it here too, and artists who listed under the old number will have seen it.
    Keep this page in sync with whatever the app actually charges.
+
+---
+
+## 9. Messages reaching you, and the app's confirmation email
+
+Two things added on 2026-08-21, both about mail.
+
+### The forms now ring a doorbell
+
+A row in a table nobody opens is the same as no form at all. Somebody types out
+what they think of the test build, presses send, is told it went through, and it
+sits there for a month. So each of the three tables has a trigger that calls an
+edge function, and the function emails the message to you.
+
+```
+supabase/setup.sql                          tables, write only RLS, the triggers
+supabase/functions/notify-submission/       the function that sends the email
+```
+
+**Setting it up, in order.** The steps depend on each other, so do them this way
+round:
+
+1. Create the second Supabase project, if it does not exist. **Not the app's.**
+2. Run **sections 1 and 2** of `supabase/setup.sql` in its SQL editor. The forms
+   work from this point, as soon as step 5 is done; everything after is
+   notification.
+3. Make a [Resend](https://resend.com) account and an API key. The free tier is
+   3,000 emails a month, which is far more than a contact form will ever use.
+4. Deploy the function and give it its secrets:
+   ```
+   supabase link --project-ref <the website project ref>
+   supabase functions deploy notify-submission --no-verify-jwt
+   supabase secrets set RESEND_API_KEY=re_xxx \
+                        NOTIFY_TO=bookingbreakthrough@gmail.com \
+                        WEBHOOK_SECRET=<a long random string>
+   ```
+   `--no-verify-jwt` is required. The caller is Postgres, not a signed in user,
+   so there is no JWT to check. What holds the door shut instead is
+   `WEBHOOK_SECRET`, compared against the `x-webhook-secret` header. Without it
+   the function is an open endpoint that will email you anything anyone posts.
+5. Fill in `.env.local` (and the same two variables in Vercel's project
+   settings, or the deployed site stays unconnected while localhost works):
+   ```
+   VITE_FEEDBACK_API_BASE=https://<website project>.supabase.co/rest/v1
+   VITE_FEEDBACK_ANON_KEY=<that project's anon key>
+   ```
+6. Fill in the two placeholders at the top of **section 3** of `setup.sql` and
+   run it. The `WEBHOOK_SECRET` there must be the same string as in step 4.
+7. Send yourself a test message through `/feedback` on the live site.
+
+**If the email does not arrive**, the message is not lost. It is in the table,
+and every call the trigger made is logged:
+
+```sql
+select created, status_code, content from net._http_response
+ order by created desc limit 20;
+```
+
+`403` means the secret in the trigger and the secret in the function do not
+match. No rows at all means the trigger is not attached, so section 3 did not
+run. A 200 with `"sent": false` in the body means Resend refused it, and the
+reason is in `content`.
+
+**Why the table stays.** The email is the doorbell, not the record. Mail gets
+filtered, deleted and lost; `select * from feedback order by submitted_at desc`
+does not. The function is written so that a failure to send can never cost the
+message: the row is committed before it runs, and it returns 200 even when
+sending fails so the trigger log stays readable.
+
+**One escaping rule, worth knowing.** `notify-submission` escapes every value
+before putting it in the email. It is the only place in either project where
+text typed by a stranger ends up inside a document, and an unescaped message
+field is a link, a tracking image or a piece of markup rendered inside your own
+inbox. Do not remove `escapeHtml`.
+
+### Where the app's confirmation email lands
+
+`/auth/confirmed` is new and is not linked from the header, the footer or any
+page. The only way to it is the confirmation email the app sends when somebody
+signs up.
+
+A confirmation link is opened in a **browser**, never in the app, so the last
+hop of signing up is always a web page. Without one, Supabase sends the tester
+to the app project's Site URL, which on a fresh project is
+`http://localhost:3000` and shows a connection error on a phone. The account is
+confirmed either way, but the tester sees a failure and gives up.
+
+The page confirms nothing itself. Supabase has already verified the token by the
+time the browser arrives; this is only the receipt. It deliberately loads no
+Supabase client and holds no key. It reads `error` and `error_description` off
+the URL, because an expired or already used link redirects here too and deserves
+to be told the truth rather than shown a tick, and it strips the token out of
+the address bar afterwards so it does not sit in browser history.
+
+The rest of that setup lives in the **app** repo, at
+`supabase/email-templates/README.md`: the branded templates themselves, the
+`EXPO_PUBLIC_EMAIL_CONFIRM_URL` variable that points the link here, the redirect
+allow list step that is silently ignored if you miss it, and the SMTP rate limit
+that makes Supabase's default mailer drop emails after a handful per hour.

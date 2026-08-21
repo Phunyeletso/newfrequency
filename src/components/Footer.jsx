@@ -21,7 +21,7 @@ export default function Footer() {
         </p>
         <p className="mx-auto max-w-prose">
           © {new Date().getFullYear()} {COMPANY.legalName}. We handle personal
-          information under POPIA — see our{" "}
+          information under POPIA. See our{" "}
           <Link to="/privacy" className="link-underline">privacy policy</Link>.
         </p>
       </div>

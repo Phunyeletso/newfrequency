@@ -3,6 +3,10 @@ export const APP = {
   name: "newFrequency",
   version: "1.0.0",
   androidPackage: "com.breakthrough_sa.newFrequency",
+  // The app's deep link scheme, from the app repo's app.json. Used by the
+  // email confirmation page to offer "Open newFrequency". Must match, or the
+  // link silently does nothing on a phone that has the app.
+  scheme: "newfrequency",
 };
 
 // ---------------------------------------------------------------------------
