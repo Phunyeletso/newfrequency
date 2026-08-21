@@ -1,14 +1,33 @@
 -- ============================================================================
 -- newFrequency website — database setup
 --
--- Run this in the SQL editor of the WEBSITE's Supabase project.
+-- Run this in the SQL editor of the app's Supabase project (POV).
 --
--- ⚠ NOT THE APP'S PROJECT. The app's project holds accounts, wallets and a
---   money ledger. This one holds messages typed by strangers on a public page,
---   and its anon key is published in the website's JavaScript bundle where
---   anybody can read it. Those two things do not belong behind the same key.
---   If the URL you are about to paste this into is the one in the app's .env,
---   stop.
+-- ⚠ THIS SHARES THE APP'S DATABASE, AND THAT WAS A DELIBERATE CALL.
+--   Every earlier draft of this file said the opposite in capital letters, so
+--   here is the reasoning rather than a silent reversal (operator, 2026-08-21).
+--
+--   The original plan was a second Supabase project. The argument for it still
+--   holds and is worth stating: a mistake in one of the policies below now sits
+--   in the same database as `users.zar_balance` and the `transactions` ledger,
+--   where the blast radius of a bad policy is money rather than spam.
+--
+--   What changed is the price. The org is on the Pro plan, where a second
+--   project bills extra every month, and the free tier is not an option for
+--   this job: Supabase pauses a free project after about a week without
+--   requests, and these forms only touch the database when somebody submits.
+--   A contact form that stops working during a quiet week, silently, is worse
+--   than the risk above.
+--
+--   What makes it acceptable: the three tables below are reachable only by the
+--   `anon` role, they have an INSERT policy and nothing else, and every table
+--   that matters is `TO authenticated`, which `anon` is not. The website uses
+--   the app's publishable key, which was already public in the app bundle, so
+--   no new key is exposed by this.
+--
+--   THE RULE THAT KEEPS IT SAFE: nothing in this file may ever grant `anon`
+--   anything beyond INSERT on these three tables. If a future change needs
+--   `anon` to read something, that is the moment to buy the second project.
 --
 -- WHAT IT SETS UP
 --   1. Three tables: feedback, enquiries, invite_requests.
@@ -18,6 +37,8 @@
 --
 -- Sections 1 and 2 are safe to run on their own. Section 3 needs the edge
 -- function deployed first and two values filled in at the top of it.
+--
+-- None of it touches an existing table, policy or function. It only adds.
 --
 -- SAFE TO RE-RUN.
 -- ============================================================================
