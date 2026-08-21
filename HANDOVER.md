@@ -21,7 +21,7 @@ state.
 
 | # | Question | What's blocked | Where it's set |
 |---|---|---|---|
-| 1 | What is the live `.apk` download link? | The Android download button. Currently shows a "link isn't set yet" notice. | `VITE_ANDROID_APK_URL` |
+| 1 | What is the live `.apk` download link? | The Android download button. Set it from the EAS build page after every production build: the .apk url changes each time, and `APP.version` in `src/lib/config.js` has to be moved to match, or the site names a build the button does not hand over. | `VITE_ANDROID_APK_URL` |
 | 2 | Is TestFlight live for iOS yet? | Currently iOS shows "request an invite" and collects an email, per the brief. Flip it when TestFlight is real. | `VITE_IOS_TESTFLIGHT_LIVE`, `VITE_IOS_TESTFLIGHT_URL` |
 | 3 | ~~Which backend should the feedback form write to?~~ **Answered: a second Supabase project, and it emails you.** | Run `supabase/setup.sql` in that project, deploy the edge function, then fill in the two env vars. Until they are set both forms still show "not connected". **Must not be the app's project** — see §3. | `VITE_FEEDBACK_API_BASE`, `VITE_FEEDBACK_ANON_KEY` |
 | 4 | What is the support email address? | Privacy policy and terms. Until it's set, both point people at the feedback form to make a POPIA request. Company name is set to "New Frequency"; no trading address is shown. | `VITE_SUPPORT_EMAIL` |
@@ -188,16 +188,13 @@ hand. No figure appears anywhere.
 
 ## 5. Deployment and the old site
 
-Work is on the branch **`newfrequency-site`**. The old site is untouched on
-`main`, so nothing is lost and nothing is live-changed until you choose.
+**This shipped.** The rebuild was merged to `main` and is what is live; the
+`newfrequency-site` branch it was written on is kept only as history. The
+paragraph that used to be here said the opposite and was true for about a day.
 
 ```bash
-git log --oneline main      # the old site, exactly as it was
-git diff main --stat        # what changed
+git log --oneline newfrequency-site   # where it was written
 ```
-
-Nothing has been committed or pushed — review it first, then commit when you're
-happy.
 
 Vercel: `vercel.json` keeps the SPA rewrite so deep links like `/for-artists`
 resolve. Set the environment variables in the Vercel project settings, not in a
