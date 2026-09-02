@@ -17,8 +17,9 @@ export const APP = {
 // broken link. Do not invent values here.
 // ---------------------------------------------------------------------------
 export const DOWNLOAD = {
-  // Direct .apk link from Expo Application Services internal distribution.
-  androidApkUrl: import.meta.env.VITE_ANDROID_APK_URL || null,
+  // Current production APK. Keep this alongside APP.version because the
+  // hosting environment may retain an older Vercel variable.
+  androidApkUrl: "https://expo.dev/artifacts/eas/czK-1ai_YzUwwoiNwbhu8kD2pFdN1KM3vudZQUd5750.apk",
   // TestFlight is invite-per-tester. Leave false until confirmed live.
   iosTestFlightLive: import.meta.env.VITE_IOS_TESTFLIGHT_LIVE === "true",
   iosTestFlightUrl: import.meta.env.VITE_IOS_TESTFLIGHT_URL || null,
