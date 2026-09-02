@@ -5,6 +5,10 @@ import { COMPANY } from "../lib/config";
 
 const UPDATED = "18 August 2026";
 
+// LEGAL REVIEW REQUIRED: the historical transaction and ownership-record
+// language below may have compliance implications. Do not silently remove or
+// rewrite it as the monetisation model changes.
+
 /** Renders the support email when we have one, otherwise points at the form. */
 function ContactRoute() {
   if (COMPANY.supportEmail) {
@@ -68,7 +72,7 @@ export default function Privacy() {
           <section>
             <h2 className="mb-3 text-xl">What the app collects</h2>
             <p className="mb-4 text-muted text-pretty">
-              To run an account and let you buy and sell licences, the app holds:
+              To run an account and let creators receive support, the app holds:
             </p>
             <dl className="space-y-4">
               <div>
@@ -91,15 +95,15 @@ export default function Privacy() {
                 <dd className="text-muted text-pretty">
                   The balance in your wallet, and a record of what you bought,
                   sold and tipped. We need this so the wallet adds up and so you
-                  and the artist can both see what a licence sold for.
+                  and the creator can see how support was recorded.
                 </dd>
               </div>
               <div>
-                <dt className="font-medium">The licences you hold</dt>
+                <dt className="font-medium">Historical music ownership records</dt>
                 <dd className="text-muted text-pretty">
-                  Which licences you own and who you bought each one from. This is
-                  what proves the licence is yours, and it follows the licence when
-                  you resell it.
+                  Historical records of music ownership and related transactions
+                  from earlier versions of the service. These records are retained
+                  for accounting and dispute handling.
                 </dd>
               </div>
               <div>
@@ -175,8 +179,8 @@ export default function Privacy() {
             <h2 className="mb-3 text-xl">On what basis</h2>
             <p className="mb-3 text-muted text-pretty">
               For the app, most of it is because we can't provide the service
-              without it. You can't have an account without account details, or
-              buy a licence without a record of the purchase.
+              without it.               You can't have an account without account details, or receive
+              creator support without records needed to operate the service.
             </p>
             <p className="text-muted text-pretty">
               For anything optional (your email, your device details, feedback)
@@ -213,8 +217,8 @@ export default function Privacy() {
             </p>
             <p className="mb-3 text-muted text-pretty">
               Some things you do in the app are visible to other people by design:
-              your profile, your posts, your comments, and the fact that a licence
-              changed hands. Your wallet balance is not.
+              your profile, your posts and your comments. Financial balances and
+              transaction records are not public.
             </p>
             <p className="text-muted text-pretty">
               We will never publish your feedback, your name or your email,

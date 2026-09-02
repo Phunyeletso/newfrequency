@@ -14,7 +14,7 @@ const fieldClass =
 export default function Contact() {
   useDocumentTitle(
     "Contact",
-    "Ask us anything about newFrequency: general questions, licensing, problems with the app, or a request about your personal information.",
+    "Ask us anything about newFrequency: general questions, creator monetisation, problems with the app, or a request about your personal information.",
   );
 
   const [values, setValues] = useState(EMPTY);

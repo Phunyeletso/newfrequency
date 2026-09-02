@@ -7,34 +7,34 @@ const STEPS = [
   {
     n: "1",
     title: "Put your song up as a Tune",
-    body: "A Tune is a song you're offering for sale. You upload it yourself, and you'll need to provide proof you own it before it goes on sale. It stays your song, and you decide whether it's listed at all.",
+    body: "Upload a song you created and post it as a Tune. There is no purchase requirement. The song remains yours, and you choose whether to share it.",
   },
   {
     n: "2",
-    title: "Set your price",
-    body: "You choose what a licence for your song costs. Not us, and not an algorithm. A platform fee is taken off the sale, and it's shown to you in the app before you list.",
+    title: "Let other creators use it freely",
+    body: "Other people can use your Tune across the app without buying permission. Your music can travel further without a paywall in front of every post.",
   },
   {
     n: "3",
-    title: "Decide how many licences exist",
-    body: "You set the number of copies. Once they're sold, no more exist, so the people who bought early hold something that can't be reprinted.",
+    title: "Start earning automatically",
+    body: "You do not need an application or approval to start earning. Gifts, pay-per-scroll support and ad revenue share can all contribute when your content is supported.",
   },
   {
     n: "4",
-    title: "Get paid when a creator buys one",
-    body: "The money comes from the person who wants to use your track, and it lands in your wallet when the sale goes through. It isn't split out of a pool at the end of the month.",
+    title: "Earn when your music is used",
+    body: "When your Tune is used in posts across New Frequency, it helps people discover your work and can earn through gifts, pay-per-scroll support and ad revenue share.",
   },
   {
     n: "5",
-    title: "Earn again every time it's resold",
-    body: "Licences can be resold between users. Each time one of yours changes hands, a royalty goes back to you, for as long as that licence keeps moving.",
+    title: "Go live and receive gifts",
+    body: "Live streams give supporters a direct way to send gifts in real time. The exact gift catalogue and creator share will be published before the feature is offered commercially.",
   },
 ];
 
 export default function ForArtists() {
   useDocumentTitle(
     "For artists",
-    "Sell usage licences for your own songs at a price you set, cap how many exist, and earn a royalty again each time a licence is resold.",
+    "Post your music freely, let it travel across the app, and earn automatically through gifts, pay-per-scroll support and ad revenue share.",
   );
 
   return (
@@ -42,11 +42,12 @@ export default function ForArtists() {
       <section className="px-5 pb-10 pt-12 sm:pt-16">
         <div className="mx-auto max-w-content">
           <h1 className="max-w-[20ch] text-3xl leading-[1.15] sm:text-4xl">
-            You set the price. You decide how many exist.
+            Your music travels. Your content earns.
           </h1>
           <p className="mt-5 max-w-prose text-lg text-muted text-pretty">
-            On newFrequency, a creator who wants your song behind their post has
-            to own your music licence. That's the whole model.
+            On New Frequency, every creator can start earning without an
+            application or approval. Post a Tune, let other creators use it
+            freely, and build support around your work.
           </p>
         </div>
       </section>
@@ -74,89 +75,87 @@ export default function ForArtists() {
         </ol>
       </Section>
 
-      <Section title="Why the resale market matters" className="border-t border-line">
+      <Section title="Why automatic monetisation matters" className="border-t border-line">
         <div className="max-w-prose space-y-4 text-muted">
           <p className="text-pretty">
-            A licence isn't only a permission slip. It's something the buyer
-            owns and can sell on. If your song gets used and talked about, the
-            licences for it become worth holding, and the people who bought them
-            early have a reason to have taken the chance on you.
+            New Frequency puts earning into the normal experience of sharing.
+            You do not have to wait for an invitation or meet a follower
+            threshold before your work can be supported.
           </p>
           <p className="text-pretty">
-            You don't lose out when that happens. Every resale sends a royalty
-            back to you, so a track that keeps circulating keeps paying you long
-            after the first sale.
+            Supporters can send gifts directly on posts and livestreams. Viewers
+            can also choose pay-per-scroll support, and qualifying
+            content may receive a share of advertising revenue.
           </p>
           <p className="text-pretty">
-            There's no follower threshold anywhere in this. You don't need ten
-            thousand followers, a manager, or an invitation to list a song. If
-            you've made something, you can sell licences for it from your first
-            day on the app.
+            Music can be used freely across the app. When your Tune travels into
+            other creators' posts, it can bring new listeners and contribute to
+            gifts, pay-per-scroll support and ad revenue share.
           </p>
         </div>
       </Section>
 
-      <Section title="Straight answers about money" className="border-t border-line">
+      <Section title="Straight answers about earning" className="border-t border-line">
         <dl className="max-w-prose space-y-6">
           <div>
-            <dt className="mb-1.5 font-medium">What does it cost to list a song?</dt>
+            <dt className="mb-1.5 font-medium">Do I need approval to start earning?</dt>
             <dd className="text-muted text-pretty">
-              Listing is free. A platform fee comes off each sale, and the
-              amount is shown to you in the app before you confirm anything. You
-              will never be charged something you weren't shown first.
+              No application or approval is needed to start earning. Post your
+              content and it can receive support through the available earning
+              mechanisms.
             </dd>
           </div>
           <div>
-            <dt className="mb-1.5 font-medium">What is the wallet for?</dt>
+            <dt className="mb-1.5 font-medium">How can supporters support me?</dt>
             <dd className="text-muted text-pretty">
-              It holds your balance inside the app. Money arrives in it two
-              ways: what you top up yourself, and what you earn when someone
-              buys one of your licences or resells one.
-            </dd>
-          </div>
-          <div>
-            <dt className="mb-1.5 font-medium">Can I take money out?</dt>
-            <dd className="text-muted text-pretty">
-              Yes. Money comes out to your bank account. One thing to know:
-              deposits and withdrawals are both switched off during testing, and
-              will open when we launch.
+              Supporters can send gifts on posts and livestreams. Viewers can
+              optionally choose pay-per-scroll support, and qualifying content
+              can earn a share of advertising revenue.
             </dd>
           </div>
           <div>
             <dt className="mb-1.5 font-medium">How much will I make?</dt>
             <dd className="text-muted text-pretty">
-              It depends entirely on what you charge, how many licences you made,
-              and how many people buy.
+              It depends on the support your content receives and whether it
+              qualifies for a share of advertising revenue. Gift values, ad eligibility
+              requirements and creator revenue shares are not yet published.
             </dd>
           </div>
           <div>
-            <dt className="mb-1.5 font-medium">How does royalty work?</dt>
+            <dt className="mb-1.5 font-medium">Can people use my music?</dt>
             <dd className="text-muted text-pretty">
-              Every time someone resells your song, you get a 10% royalty on what
-              it sells for. You keep earning from a licence long after you first
-              sold it, for as long as it keeps changing hands.
+              Yes. Other creators can use your Tune freely across the app without
+              paying for permission.
             </dd>
           </div>
           <div>
-            <dt className="mb-1.5 font-medium">How much is the platform fee?</dt>
+            <dt className="mb-1.5 font-medium">Can I take money out?</dt>
             <dd className="text-muted text-pretty">
-              10% per transaction. It comes off the sale price, so on a licence
-              sold at R10 you keep R9.
+              Withdrawal details are still being finalised for the new
+              monetisation model. We will publish the available methods,
+              timing and requirements before withdrawals open.
+            </dd>
+          </div>
+          <div>
+            <dt className="mb-1.5 font-medium">What are the ad requirements?</dt>
+            <dd className="text-muted text-pretty">
+              The eligibility rules and revenue share have not been specified
+              yet. We will publish them before advertising revenue share is offered.
             </dd>
           </div>
           <div>
             <dt className="mb-1.5 font-medium">Do I keep the rights to my music?</dt>
             <dd className="text-muted text-pretty">
-              Yes. You're selling a licence to use the track on the app. The song
-              stays yours, and you decide whether it's listed.
+              Yes. The song stays yours. Posting it as a Tune lets other creators
+              use it freely on New Frequency.
             </dd>
           </div>
         </dl>
 
         <Notice className="mt-8 max-w-prose">
-          You'll be asked for proof of ownership before a Tune goes on sale. Only
-          upload music you actually have the rights to. If you don't own it, or
-          you don't have permission from everyone who does, don't list it.
+          Only upload music you created or have permission to share. The exact
+          rights and takedown process still apply, even though New Frequency does
+          not sell access to music.
         </Notice>
       </Section>
 

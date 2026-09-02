@@ -3,7 +3,7 @@ export const APP = {
   name: "newFrequency",
   // Shown on /get-the-app under the download button. Keep in step with the
   // app's app.json version, or the site advertises a build nobody can get.
-  version: "1.0.3",
+  version: "1.0.4",
   androidPackage: "com.breakthrough_sa.newFrequency",
   // The app's deep link scheme, from the app repo's app.json. Used by the
   // email confirmation page to offer "Open newFrequency". Must match, or the
@@ -37,8 +37,9 @@ export const FEEDBACK_API_BASE = import.meta.env.VITE_FEEDBACK_API_BASE || null;
 export const FEEDBACK_KEY = import.meta.env.VITE_FEEDBACK_ANON_KEY || null;
 
 export const CONTENT_TYPES = [
-  { name: "Reels", color: "reels", desc: "Short video, shot in the app or uploaded. Can play over a licensed track." },
-  { name: "Tunes", color: "tunes", desc: "A song put up for sale by the artist, with a set number of licences." },
-  { name: "Snaps", color: "snaps", desc: "A photo, shot in the app or uploaded. Can view over a licensed track." },
-  { name: "Chat", color: "chats", desc: "A text post. Can view over a licensed track." },
+  { name: "Reels", color: "reels", desc: "Short video, shot in the app or uploaded. Any track can play over it, and the creator can earn through gifts, optional pay-per-scroll support and ad revenue share." },
+  { name: "Tunes", color: "tunes", desc: "A song posted by the artist. Anyone can use it freely, while the artist can earn through gifts, optional pay-per-scroll support and ad revenue share." },
+  { name: "Snaps", color: "snaps", desc: "A photo, shot in the app or uploaded. Any track can play over it, with the same creator monetisation." },
+  { name: "Chat", color: "chats", desc: "A text post. Any track can play over it, with the same creator monetisation." },
+  { name: "Live", color: "reels", desc: "A live stream where viewers can support the creator with gifts in real time." },
 ];

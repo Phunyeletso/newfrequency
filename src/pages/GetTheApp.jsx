@@ -46,7 +46,27 @@ export default function GetTheApp() {
             what those are.
           </p>
 
+          {/*
+            First, and above everything else on the page, because it is the one
+            failure that looks like the site is broken. TikTok, Instagram and
+            Facebook open links in their own built in browser, and those cannot
+            hand an .apk to Android: the download either does nothing or fails
+            with no reason given. People who hit it conclude the file is broken,
+            because nothing on screen suggests otherwise. This is what stopped a
+            round of testers installing on 2026-08-21.
+          */}
           <Notice className="mt-6 max-w-prose">
+            <strong className="font-medium text-ink">
+              Opening this from inside another app?
+            </strong>{" "}
+            TikTok, Instagram and Facebook open links in their own browser, and
+            that browser cannot install an app. Tap the three dots in the corner
+            and choose Open in browser (or Open in Chrome), then come back to
+            this page. If the download does nothing when you tap it, this is
+            almost always why.
+          </Notice>
+
+          <Notice className="mt-4 max-w-prose">
             <strong className="font-medium text-ink">Before you start:</strong>{" "}
             This is an early test build. You may encounter bugs, glitches, or
             incomplete features during testing, and some features may change or

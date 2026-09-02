@@ -6,23 +6,23 @@ import useDocumentTitle from "../lib/useDocumentTitle";
 
 const LEAD_POINTS = [
   {
-    title: "Scarcity is real",
-    body: "An artist publishes a specific song once, with the number of licences they choose. There's no second run. When they're gone, they're gone, which is what makes holding one worth something, and what gives resale a floor.",
+    title: "Every creator earns automatically",
+    body: "There is no application or approval process before you can start earning. Post your work and your content can earn through gifts, optional pay-per-scroll support and ad revenue share.",
   },
   {
-    title: "Musicians get paid directly by their supporters",
-    body: "A licence is sold by the artist directly to the supporter, at a price the artist sets. It's the right to use the song, not ownership of it, and not a share of a royalty pool or a fraction of a stream.",
+    title: "Viewers choose how to support creators",
+    body: "Viewers can send a gift, choose pay-per-scroll support, or watch an available ad while supporting the creator.",
   },
   {
-    title: "Proof you can scout talent",
-    body: "Owning a licence is proof you backed an artist early. It's a record of your ability to scout talent before anyone else did.",
+    title: "Artists earn when music travels",
+    body: "Post a Tune and let other creators use your music freely across the app. Your music can keep earning through gifts, optional pay-per-scroll support and ad revenue share wherever it is used.",
   },
 ];
 
 export default function Home() {
   useDocumentTitle(
     null,
-    "An app for short videos, photos and music. Watching is free. Buy a song licence from the artist at their price, and you can resell at your price.",
+    "New Frequency is a social media platform where all creators are automatically monetized through gifts, pay-per-scroll support and ad revenue share.",
   );
 
   return (
@@ -31,12 +31,12 @@ export default function Home() {
       <section className="px-5 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-content">
           <h1 className="max-w-[24ch] text-3xl leading-[1.15] sm:text-5xl">
-            Buy a music licence to use in your content.
+            A social media platform where all creators are automatically monetized.
           </h1>
           <p className="mt-5 max-w-prose text-lg text-muted text-pretty sm:text-xl">
-            An app for short videos, photos and music. Watching is free. To use a
-            song, buy a licence from the artist at their price, and you can
-            resell at your price.
+            New Frequency gives every creator a way to earn from the content they
+            share. Supporters can send gifts, choose pay-per-scroll support, or
+            watch available ads.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -74,7 +74,7 @@ export default function Home() {
 
       {/* Post types */}
       <Section
-        title="Four kinds of post"
+        title="Five ways to share"
         lead="Everything on newFrequency is one of these."
         className="border-t border-line"
       >
@@ -87,21 +87,20 @@ export default function Home() {
           <div className="rounded-xl border border-line bg-surface p-6">
             <h2 className="mb-2 text-xl">If you just want to watch and post</h2>
             <p className="mb-4 text-muted text-pretty">
-              Watching is free, all of it. Post photos, video and text as much
-              as you like. You only pay when you want to put someone else's song
-              behind your post.
+              Post photos, video and text as much as you like. Choose whether to
+              support creators with gifts, pay-per-scroll support, or available
+              ads.
             </p>
             <Button to="/get-the-app" variant="secondary">Get the app</Button>
           </div>
           <div className="rounded-xl border border-line bg-surface p-6">
             <h2 className="mb-2 text-xl">If you make music</h2>
             <p className="mb-4 text-muted text-pretty">
-              Put a song up as a Tune, set your price, and decide how many
-              licences exist. You'll need to provide proof you own it. You're
-              paid when a supporter buys one, and you earn a royalty again each
-              time that licence is resold.
+              Put a song up as a Tune and let other creators use it freely across
+              the app. You can earn through gifts, pay-per-scroll support and ad
+              revenue share whenever your music is used.
             </p>
-            <Button to="/for-artists" variant="secondary">How licensing works</Button>
+            <Button to="/for-artists" variant="secondary">How artists earn</Button>
           </div>
         </div>
       </Section>
@@ -123,11 +122,12 @@ export default function Home() {
           </li>
           <li className="text-pretty">
             <strong className="font-medium text-ink">Monetisation:</strong>{" "}
-            qualifying creators are eligible to earn from their content.
+            every creator can earn automatically through gifts, optional
+            pay-per-scroll support and ad revenue share.
           </li>
           <li className="text-pretty">
-            <strong className="font-medium text-ink">Wallet:</strong> holds what
-            you top up and what you earn, and pays for licences and tips.
+            <strong className="font-medium text-ink">Support:</strong> viewers
+            choose gifts, pay-per-scroll support or ads.
           </li>
         </ul>
       </Section>
