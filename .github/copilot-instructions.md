@@ -2,6 +2,12 @@
 
 This is a React + Vite marketing and tester-recruitment site for the newFrequency app. Six public pages, no app logic, no connection to the app's database.
 
+## CRITICAL CHANGE-SAFETY WARNING
+
+**ALWAYS READ THIS FILE AND THE RELEVANT EXISTING CODE BEFORE MAKING ANY CHANGE. ALWAYS MAKE SURE BEFORE YOU MAKE ANY CHANGES TO THE CURRENT CODE THAT IT WILL NOT BREAK OTHER FUNCTIONS. ALWAYS CREATE TESTS IF POSSIBLE TO MAKE SURE WE NEVER BREAK SOMETHING THAT WAS WORKING, AND ALWAYS RUN THOSE TESTS.**
+
+When a requested behavior is not implemented in this repository, do not guess or patch unrelated code. Identify the correct application repository or source file first.
+
 ## Build, Test & Lint
 
 ```bash

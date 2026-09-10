@@ -10,6 +10,7 @@ import EmailConfirmed from "./pages/EmailConfirmed";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
+import BusinessPortal, { BusinessCreate, BusinessMissions } from "./pages/BusinessPortal";
 
 /** Reset scroll and move focus to the top of each new page. */
 function RouteChange() {
@@ -36,6 +37,9 @@ export default function App() {
           <Route path="/auth/confirmed" element={<EmailConfirmed />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/business" element={<BusinessPortal />} />
+          <Route path="/business/create" element={<BusinessCreate />} />
+          <Route path="/business/missions" element={<BusinessMissions />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

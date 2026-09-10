@@ -9,6 +9,7 @@ const NAV = [
   { to: "/get-the-app", label: "Get the app" },
   { to: "/feedback", label: "Feedback" },
   { to: "/contact", label: "Contact" },
+  { to: "/business", label: "For business" },
 ];
 
 function navClass({ isActive }) {
