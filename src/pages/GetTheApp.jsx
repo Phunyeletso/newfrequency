@@ -1,193 +1,119 @@
-import { Link } from "react-router-dom";
-import Button from "../components/Button";
-import Section from "../components/Section";
-import Notice from "../components/Notice";
+import { useCallback, useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import InviteForm from "../components/InviteForm";
 import useDocumentTitle from "../lib/useDocumentTitle";
-import { APP, DOWNLOAD } from "../lib/config";
+import { DOWNLOAD } from "../lib/config";
 
-const ANDROID_STEPS = [
-  {
-    title: "Download the file",
-    body: "Tap the download button above. Your browser saves an .apk file, which is the app's installer.",
-  },
-  {
-    title: "Let your browser install it",
-    body: "Android only installs apps from the Play Store unless you say otherwise. When it asks, allow your browser to install apps. You can also set this yourself: Settings › Apps › your browser › Install unknown apps › Allow.",
-  },
-  {
-    title: "Open the file and tap Install",
-    body: "Find it in your notifications or your Downloads folder, tap it, then tap Install.",
-  },
-  {
-    title: "If Play Protect warns you",
-    body: "You may see “unsafe app blocked” or “app not recognised”. That appears for any app Google hasn't scanned through the Play Store, which includes every test build like this one. Tap More details, then Install anyway.",
-  },
-  {
-    title: "Open newFrequency",
-    body: "It'll be in your app drawer with everything else. This is the only time you have to install it by hand: from here the app updates itself.",
-  },
-];
+function detectDevice() {
+  if (typeof navigator === "undefined") return { platform: "desktop", inApp: false };
+  const ua = navigator.userAgent || "";
+  const android = /Android/i.test(ua);
+  const ios = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const inApp = /Instagram|FBAN|FBAV|FB_IAB|TikTok|musical_ly|BytedanceWebview|Line\/|LinkedInApp/i.test(ua);
+  return { platform: android ? "android" : ios ? "ios" : "desktop", inApp };
+}
 
 export default function GetTheApp() {
-  useDocumentTitle(
-    "Get the app",
-    "Install the newFrequency test build on Android, or request a TestFlight invite for iOS. It's an early build, so expect bugs.",
-  );
+  useDocumentTitle("Get the app", "Check current newFrequency test-build availability for Android and iPhone.");
+  const [searchParams] = useSearchParams();
+  const [detected, setDetected] = useState({ platform: "desktop", inApp: false });
+  const [android, setAndroid] = useState("checking");
+  const [version, setVersion] = useState(null);
+  const [retrying, setRetrying] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const checkAndroid = useCallback(async () => {
+    setRetrying(true);
+    try {
+      const response = await fetch(`${DOWNLOAD.androidDownloadPath}?status=1`, { cache: "no-store", headers: { Accept: "application/json" } });
+      const result = await response.json();
+      setAndroid(result.available ? "available" : "unavailable");
+      setVersion(result.version || null);
+    } catch {
+      setAndroid("unavailable");
+      setVersion(null);
+    } finally {
+      setRetrying(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    setDetected(detectDevice());
+    checkAndroid();
+  }, [checkAndroid]);
+
+  const unavailableReturn = searchParams.get("download") === "unavailable";
+  const chromeIntent = typeof window !== "undefined"
+    ? `intent://${window.location.host}/get-the-app#Intent;scheme=https;package=com.android.chrome;end`
+    : undefined;
+
+  async function copyLink() {
+    try {
+      await navigator.clipboard.writeText(`${window.location.origin}/get-the-app`);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2200);
+    } catch { setCopied(false); }
+  }
 
   return (
     <>
-      <section className="px-5 pb-10 pt-12 sm:pt-16">
-        <div className="mx-auto max-w-content">
-          <h1 className="text-3xl leading-[1.15] sm:text-4xl">Get the app</h1>
-          <p className="mt-5 max-w-prose text-lg text-muted text-pretty">
-            newFrequency is in testing. It isn't on the App Store or Google Play,
-            so installing it takes a couple more steps than usual. Here's exactly
-            what those are.
-          </p>
+      <section className="download-hero">
+        <div className="page-container">
+          <p className="eyebrow"><span className="signal-dot" /> Early access</p>
+          <h1 className="display-title">Get<br /><em>newFrequency.</em></h1>
+          <p className="lead-copy">The app is in testing. Choose your device to see the current install path.</p>
+          {detected.platform !== "desktop" && <p className="status-inline" style={{ marginTop: 17 }}><span className="signal-dot" /> Showing options for {detected.platform === "android" ? "Android" : "iPhone or iPad"}</p>}
 
-          {/*
-            First, and above everything else on the page, because it is the one
-            failure that looks like the site is broken. TikTok, Instagram and
-            Facebook open links in their own built in browser, and those cannot
-            hand an .apk to Android: the download either does nothing or fails
-            with no reason given. People who hit it conclude the file is broken,
-            because nothing on screen suggests otherwise. This is what stopped a
-            round of testers installing on 2026-08-21.
-          */}
-          <Notice className="mt-6 max-w-prose">
-            <strong className="font-medium text-ink">
-              Opening this from inside another app?
-            </strong>{" "}
-            TikTok, Instagram and Facebook open links in their own browser, and
-            that browser cannot install an app. Tap the three dots in the corner
-            and choose Open in browser (or Open in Chrome), then come back to
-            this page. If the download does nothing when you tap it, this is
-            almost always why.
-          </Notice>
+          {detected.inApp && detected.platform === "android" && <div className="browser-note" role="status">
+            Open this page in Chrome or Samsung Internet before downloading. Some Instagram, TikTok and Facebook in-app browsers do not hand Android installers to the system. <a href={chromeIntent}>Open in Chrome</a>.
+          </div>}
+          {unavailableReturn && <div className="browser-note" role="alert">The Android installer could not be verified. Please try again later.</div>}
 
-          <Notice className="mt-4 max-w-prose">
-            <strong className="font-medium text-ink">Before you start:</strong>{" "}
-            This is an early test build. You may encounter bugs, glitches, or
-            incomplete features during testing, and some features may change or
-            behave differently over time. Please install the app with the
-            understanding that this is a work in progress.
-          </Notice>
+          <div className="download-grid">
+            <article className="download-option">
+              <span className="platform-mark" aria-hidden="true">◉</span>
+              <h2>Android</h2>
+              {android === "checking" ? <p role="status">Checking the current installer…</p> : android === "available" ? (
+                <>
+                  <p>{version ? `Test build ${version} is available as a direct download.` : "A current Android test build is available as a direct download."} This is not a Play Store install.</p>
+                  {detected.inApp
+                    ? <a className="button-secondary" href={chromeIntent}>Open in Chrome <span className="button-arrow" aria-hidden="true">↗</span></a>
+                    : <a className="button-primary" href={DOWNLOAD.androidDownloadPath}>Download for Android <span className="button-arrow" aria-hidden="true">↓</span></a>}
+                  <p className="fine-print" style={{ marginTop: 12 }}>Android may ask you to allow your browser to install this test build.</p>
+                  {detected.platform === "desktop" && <button type="button" className="text-link" style={{ marginTop: 12, border: 0, background: "none", padding: 0, cursor: "pointer" }} onClick={copyLink}>{copied ? "Link copied" : "Copy this page link for your phone"}</button>}
+                </>
+              ) : (
+                <>
+                  <p>The current Android installer is unavailable or could not be verified. We will show the download here when a valid test build is ready.</p>
+                  <button type="button" className="button-secondary" onClick={checkAndroid} disabled={retrying}>{retrying ? "Checking…" : "Check again"}</button>
+                  <Link className="text-link" style={{ marginTop: 14 }} to="/contact">Ask about test access <span aria-hidden="true">→</span></Link>
+                </>
+              )}
+            </article>
+
+            <article className="download-option">
+              <span className="platform-mark" aria-hidden="true">⌁</span>
+              <h2>iPhone and iPad</h2>
+              {DOWNLOAD.iosTestFlightLive && DOWNLOAD.iosTestFlightUrl ? (
+                <><p>iOS testing is available through Apple TestFlight.</p><a className="button-primary" href={DOWNLOAD.iosTestFlightUrl} target="_blank" rel="noopener noreferrer">Open TestFlight <span className="button-arrow" aria-hidden="true">↗</span></a></>
+              ) : (
+                <><p>iOS access is invite-only while testing continues. Leave your email to request an invitation.</p><InviteForm /></>
+              )}
+            </article>
+          </div>
+          <p className="fine-print" style={{ marginTop: 18 }}>The app is not listed on Google Play or the Apple App Store at this time.</p>
         </div>
       </section>
 
-      {/* Android */}
-      <Section title="Android" className="border-t border-line">
-        <div className="max-w-prose">
-          {DOWNLOAD.androidApkUrl ? (
-            <>
-              <Button href={DOWNLOAD.androidApkUrl} className="mb-3">
-                Download for Android (.apk)
-              </Button>
-              <p className="mb-3 text-sm text-faint">Version {APP.version}</p>
-              {/*
-                Said next to the button, where somebody deciding whether to
-                bother is actually looking. Installing an .apk by hand is the
-                friction in this whole flow, and "you only do this once" is the
-                answer to it. Worded as what the app does, not as a promise
-                about what will be in the updates.
-              */}
-              <p className="mb-8 max-w-prose text-sm text-muted text-pretty">
-                You only install it by hand once. After that newFrequency updates
-                itself: fixes and improvements arrive on their own the next time
-                you open it, with nothing to download and nothing to tap. A big
-                enough change still needs a fresh file, and we will say so here
-                when one does.
-              </p>
-            </>
-          ) : (
-            /*
-              VITE_ANDROID_APK_URL is not set, so there is no file to hand over.
-              This used to render the same button with no href, which looked
-              live and did nothing at all: a tester tapped it, nothing happened,
-              and there was no way for them to know whether the site was broken
-              or their phone was. Say it instead, and point them somewhere that
-              works.
-            */
-            <>
-              <Notice className="mb-6 max-w-prose">
-                <strong className="font-medium text-ink">
-                  The Android build is not up yet.
-                </strong>{" "}
-                There is no file to download at the moment. Leave your email on
-                the{" "}
-                <Link to="/contact" className="link-underline text-ink">
-                  contact page
-                </Link>{" "}
-                and we will tell you the day it goes live.
-              </Notice>
-              <p className="mb-8 text-sm text-faint">
-                The steps below are what installing it will look like.
-              </p>
-            </>
-          )}
-
-          <h3 className="mb-4 text-lg">Installing it</h3>
-          <ol className="space-y-4">
-            {ANDROID_STEPS.map((s, i) => (
-              <li key={s.title} className="flex gap-4">
-                <span
-                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full
-                    bg-raised text-sm font-semibold text-muted"
-                  aria-hidden="true"
-                >
-                  {i + 1}
-                </span>
-                <div>
-                  <h4 className="mb-1 font-medium">{s.title}</h4>
-                  <p className="text-sm text-muted text-pretty">{s.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-
+      <section className="section">
+        <div className="page-container">
+          <details className="rights-note">
+            <summary style={{ cursor: "pointer", color: "var(--ink)", fontWeight: 650 }}>Android install help</summary>
+            <p style={{ marginBottom: 0 }}>After download, open the APK from your browser’s download notification or Downloads folder and follow Android’s install prompt. Only continue if you intended to install the newFrequency test build.</p>
+          </details>
+          <div className="button-row"><Link className="text-link" to="/feedback">Already testing? Send feedback <span aria-hidden="true">→</span></Link></div>
         </div>
-      </Section>
-
-      {/* iOS */}
-      <Section title="iPhone and iPad" className="border-t border-line">
-        <div className="max-w-prose">
-          {DOWNLOAD.iosTestFlightLive && DOWNLOAD.iosTestFlightUrl ? (
-            <>
-              <p className="mb-6 text-muted text-pretty">
-                iOS testing runs through TestFlight, Apple's official app for
-                test builds. Install TestFlight first, then open our invite link.
-              </p>
-              <Button href={DOWNLOAD.iosTestFlightUrl}>Open in TestFlight</Button>
-            </>
-          ) : (
-            <>
-              <p className="mb-4 text-muted text-pretty">
-                There's no file you can download and install on iPhone, because
-                Apple doesn't allow it. iOS testing has to go through
-                TestFlight, and that needs a separate invitation for each
-                tester.
-              </p>
-              <p className="mb-6 text-muted text-pretty">
-                Leave your email and we'll send you one when a slot opens. We'll
-                use it for the invite and nothing else.
-              </p>
-              <InviteForm />
-            </>
-          )}
-        </div>
-      </Section>
-
-      <Section className="border-t border-line">
-        <div className="rounded-xl border border-line bg-surface p-6 sm:p-8">
-          <h2 className="mb-2 text-2xl">Once you've used it</h2>
-          <p className="mb-6 max-w-prose text-muted text-pretty">
-            Tell us what broke, what confused you, and what you'd change. No
-            account needed and it takes about thirty seconds.
-          </p>
-          <Button to="/feedback">Send feedback</Button>
-        </div>
-      </Section>
+      </section>
     </>
   );
 }

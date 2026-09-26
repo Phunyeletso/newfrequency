@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /business/create
+Disallow: /business/missions
+Disallow: /invest/dashboard
+Disallow: /auth/confirmed
+
+Sitemap: https://www.newfrequency.co.za/sitemap.xml

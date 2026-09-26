@@ -1,89 +1,74 @@
-import { useState } from "react";
-import { NavLink, Link, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../assets/newFrequencyTransparentLogo.png";
 
 const NAV = [
-  { to: "/", label: "Home", end: true },
-  { to: "/for-artists", label: "For artists" },
-  { to: "/get-the-app", label: "Get the app" },
-  { to: "/feedback", label: "Feedback" },
-  { to: "/contact", label: "Contact" },
-  { to: "/business", label: "For business" },
+  { to: "/", label: "Product", end: true },
+  { to: "/creators", label: "Creators" },
+  { to: "/for-artists", label: "Music" },
+  { to: "/business", label: "Business" },
+  { to: "/invest", label: "Invest" },
+  { to: "/company", label: "Company" },
 ];
 
 function navClass({ isActive }) {
-  return [
-    "block rounded-md px-3 py-3 text-base transition-colors sm:py-2 sm:text-sm",
-    isActive ? "text-accent font-medium" : "text-muted hover:text-ink",
-  ].join(" ");
+  return isActive ? "active" : undefined;
 }
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
 
-  // Close the mobile menu whenever the route changes.
   useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    if (!open) return undefined;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-ground/95 backdrop-blur">
-      <div className="mx-auto flex max-w-content items-center justify-between px-5 py-3">
-        <Link to="/" className="flex items-center gap-2.5 rounded-md">
-          <img
-            src={logo}
-            alt=""
-            width="32"
-            height="32"
-            className="h-8 w-8"
-            decoding="async"
-          />
-          <span className="text-lg font-semibold tracking-tight">
-            new<span className="text-accent">Frequency</span>
-          </span>
+    <header className="site-header">
+      <div className="header-inner">
+        <Link to="/" className="wordmark" aria-label="newFrequency home">
+          <img src={logo} alt="" width="34" height="34" decoding="async" />
+          <span>new<b>Frequency</b></span>
         </Link>
 
-        <nav aria-label="Main" className="hidden sm:block">
-          <ul className="flex items-center gap-1">
-            {NAV.map((item) => (
-              <li key={item.to}>
-                <NavLink to={item.to} end={item.end} className={navClass}>
-                  {item.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+        <nav className="desktop-nav" aria-label="Main navigation">
+          {NAV.map((item) => (
+            <NavLink key={item.to} to={item.to} end={item.end} className={navClass}>
+              {item.label}
+            </NavLink>
+          ))}
         </nav>
 
+        <Link className="header-cta" to="/get-the-app">Get the app <span aria-hidden="true">↗</span></Link>
         <button
           type="button"
-          onClick={() => setOpen((v) => !v)}
+          className="menu-toggle"
+          onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          className="-mr-2 rounded-md p-2 text-muted hover:text-ink sm:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
         >
-          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            {open ? (
-              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            ) : (
-              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            )}
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            {open
+              ? <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              : <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />}
           </svg>
         </button>
       </div>
-
       {open && (
-        <nav id="mobile-nav" aria-label="Main" className="border-t border-line sm:hidden">
-          <ul className="mx-auto max-w-content px-3 py-2">
-            {NAV.map((item) => (
-              <li key={item.to}>
-                <NavLink to={item.to} end={item.end} className={navClass}>
-                  {item.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+        <nav id="mobile-nav" className="mobile-nav" aria-label="Main navigation">
+          {NAV.map((item) => (
+            <NavLink key={item.to} to={item.to} end={item.end} className={navClass}>
+              {item.label}
+            </NavLink>
+          ))}
+          <NavLink to="/get-the-app" className={navClass}>Get the app</NavLink>
         </nav>
       )}
     </header>

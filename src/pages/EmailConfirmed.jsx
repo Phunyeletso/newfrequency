@@ -8,7 +8,7 @@ import { APP } from "../lib/config";
  *
  * A confirmation link is opened in a BROWSER, never in the app, so the last hop
  * of signing up is always a web page. Without one, Supabase sends the tester to
- * the project's Site URL, which on a fresh project is http://localhost:3000 and
+* the project's Site URL, which is https://www.newfrequency.co.za and
  * shows a connection error on a phone. The account is confirmed either way, but
  * the tester sees a failure and gives up. This page is the fix.
  *

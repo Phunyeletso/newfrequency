@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import Notice from "../components/Notice";
 import useDocumentTitle from "../lib/useDocumentTitle";
-import { APP, COMPANY } from "../lib/config";
+import { COMPANY } from "../lib/config";
 
-const UPDATED = "18 August 2026";
+const UPDATED = "26 September 2026";
 
 export default function Terms() {
   useDocumentTitle(
     "Terms of use",
-    "The terms that apply to using the newFrequency website, the feedback form and the test build download.",
+    "The terms that apply to the newFrequency website, test-build access and private Business Mission drafts.",
   );
 
   return (
@@ -18,9 +18,10 @@ export default function Terms() {
         <p className="mt-3 text-sm text-faint">Last updated {UPDATED}</p>
 
         <p className="mt-6 text-lg text-muted text-pretty">
-          These terms cover this website: the pages here, the feedback form, and
-          downloading the test build. Using the newFrequency app itself is
-          governed by the terms you accept inside the app.
+          These terms cover the public pages, feedback and contact forms, test-
+          build access, and the private Business Mission draft workspace. Using
+          the newFrequency app itself is governed by the terms you accept inside
+          the app.
         </p>
 
         <div className="mt-10 space-y-10">
@@ -46,8 +47,8 @@ export default function Terms() {
           <section>
             <h2 className="mb-3 text-xl">This is a test build</h2>
             <Notice className="mb-4">
-              newFrequency version {APP.version} is pre-release software provided
-              for testing. It is not a finished product.
+              newFrequency is pre-release software provided for testing. It is
+              not a finished product.
             </Notice>
             <p className="mb-3 text-muted text-pretty">
               That means, plainly: it will have bugs. It may crash, lose things,
@@ -67,16 +68,30 @@ export default function Terms() {
           <section>
             <h2 className="mb-3 text-xl">Downloading the app</h2>
             <p className="mb-3 text-muted text-pretty">
-              The Android build is distributed as a file from this site rather
-              than through Google Play, and iOS testing runs through Apple's
-              TestFlight. Install it on a device you own or are allowed to install
-              software on.
+              If a current Android test build is available, this site verifies its
+              artifact before sending you to the file. It is not a Google Play
+              install. iOS testing is invite-only unless the page says TestFlight
+              is live. Install software only on a device you own or are allowed
+              to use.
             </p>
             <p className="text-muted text-pretty">
               Don't redistribute the file, host copies of it elsewhere, or pass
               TestFlight invitations on to other people. We need to know who's
               testing, and a copy circulating outside this site is one we can't
               update or withdraw if there's a problem with it.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 text-xl">Business Mission drafts</h2>
+            <p className="text-muted text-pretty">
+              The Business workspace uses your existing newFrequency account.
+              Draft information is saved to the app database under its access
+              rules. A saved draft is not a submitted, approved, funded or
+              published campaign. The current website does not take Mission
+              payments or guarantee a campaign launch or creator reward.
+              Separate campaign terms will apply before those steps become
+              available.
             </p>
           </section>
 

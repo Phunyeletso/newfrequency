@@ -26,6 +26,7 @@ dist-ssr
 
 # build + check artefacts
 .checks
+.prerender
 dist-smoke
 
 # local env — never commit real credentials

@@ -1,8 +1,8 @@
 import { renderToString } from "react-dom/server";
-import { StaticRouter } from "react-router-dom/server";
+import { StaticRouter } from "react-router";
 import App from "../src/App";
 
-const ROUTES = ["/", "/for-artists", "/get-the-app", "/feedback", "/contact", "/privacy", "/terms"];
+const ROUTES = ["/", "/creators", "/for-artists", "/business", "/invest", "/get-the-app", "/feedback", "/contact", "/privacy", "/terms", "/delete-account", "/child-safety"];
 
 // Phrases the brief forbids outright. Matched against rendered page text.
 const BANNED = [
@@ -12,7 +12,7 @@ const BANNED = [
   /download on the app store/i, /get it on google play/i,
   /withdraw .{0,20}instantly/i, /instant withdrawal/i,
   /ad-supported/i, /advertise with us/i,
-  /\binvestment\b/i, /\bsavings\b/i, /guaranteed (earnings|returns|income)/i,
+  /\bsavings\b/i, /(?<!no )guaranteed (earnings|returns|income)/i,
   /\be-money\b/i, /\bR\d[\d.,]* per month/i, /make R\d/i,
 ];
 

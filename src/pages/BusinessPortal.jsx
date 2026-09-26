@@ -1,20 +1,65 @@
 import { Link } from "react-router-dom";
+import ScrollReveal from "../components/ScrollReveal";
+import useDocumentTitle from "../lib/useDocumentTitle";
 
-const STATES = ["Drafts", "Pending approval", "Scheduled", "Live", "Completed"];
+const CAMPAIGN_STEPS = [
+  ["01", "Brief", "Shape the idea and the creator task."],
+  ["02", "Review", "Keep submissions together and make decisions."],
+  ["03", "Fund", "Secure campaign funding before anything goes live."],
+];
 
 export default function BusinessPortal() {
-  return <div className="mx-auto max-w-content px-5 py-12 sm:py-20">
-    <p className="text-sm font-medium uppercase tracking-widest text-accent">New Frequency Business</p>
-    <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight sm:text-6xl">Creator campaigns, with the financial controls businesses need.</h1>
-    <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">Create, review and fund Missions on the Business portal. The consumer app remains focused on creators discovering opportunities and earning rewards.</p>
-    <div className="mt-10 flex flex-wrap gap-3"><Link className="rounded-md bg-accent px-5 py-3 font-medium text-ground" to="/business/create">Create a Mission</Link><Link className="rounded-md border border-line px-5 py-3 font-medium text-ink" to="/business/missions">Manage Missions</Link></div>
-    <section className="mt-16 grid gap-3 sm:grid-cols-5" aria-label="Mission status overview">{STATES.map(state => <div key={state} className="rounded-xl border border-line bg-surface p-4"><p className="text-sm text-muted">{state}</p><p className="mt-3 text-2xl font-semibold text-ink">—</p></div>)}</section>
-    <section className="mt-12 grid gap-5 md:grid-cols-3"><article className="rounded-xl border border-line bg-surface p-6"><h2 className="text-xl font-semibold">Real-money Mission Pools</h2><p className="mt-3 leading-7 text-muted">Fund creator rewards with card, EFT or a supported gateway. Brand payments never become consumer Coins.</p></article><article className="rounded-xl border border-line bg-surface p-6"><h2 className="text-xl font-semibold">Auditable by design</h2><p className="mt-3 leading-7 text-muted">Creator rewards, platform fees, tax and refunds remain separate ledger entries with server-side verification.</p></article><article className="rounded-xl border border-line bg-surface p-6"><h2 className="text-xl font-semibold">Shared with the app</h2><p className="mt-3 leading-7 text-muted">The portal and mobile app use the same Mission records. Creators see approved opportunities naturally in their feed.</p></article></section>
-  </div>;
-}
+  useDocumentTitle("For business", "Explore newFrequency Missions. Save a private campaign draft while verification, terms and funding are being prepared.");
 
-export function BusinessCreate() {
-  return <div className="mx-auto max-w-content px-5 py-12"><p className="text-sm font-medium uppercase tracking-widest text-accent">Mission builder</p><h1 className="mt-3 text-4xl font-semibold">Create a Mission</h1><p className="mt-4 max-w-2xl text-muted">This Business portal is the only place to configure campaign terms and funding. Save your draft, review the creator preview, then fund the Mission Pool.</p><ol className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{["Mission", "Creators", "Content", "Rewards", "Schedule", "Review", "Funding"].map((x,i)=><li key={x} className="rounded-xl border border-line bg-surface p-5"><span className="text-sm text-accent">0{i+1}</span><p className="mt-2 font-medium">{x}</p></li>)}</ol><div className="mt-10 rounded-xl border border-line bg-surface p-6"><h2 className="text-xl font-semibold">Secure funding is next</h2><p className="mt-3 leading-7 text-muted">Payment provider setup is required before a payment intent can be created. No client-side success state can fund or publish a Mission.</p><Link className="mt-6 inline-block rounded-md bg-accent px-5 py-3 font-medium text-ground" to="/business">Back to Business dashboard</Link></div></div>;
-}
+  return (
+    <>
+      <section className="story-hero business-hero">
+        <div className="page-container business-intro-grid">
+          <div>
+            <p className="eyebrow"><span className="signal-dot" /> newFrequency Business</p>
+            <h1 className="display-title">Give creators<br />a brief worth<br /><em>making.</em></h1>
+            <p className="lead-copy">Missions are being built for campaigns that start with a clear idea and leave room for creators to make it their own.</p>
+            <div className="button-row">
+              <Link className="button-primary" to="/business/create">Build a private draft <span className="button-arrow" aria-hidden="true">↗</span></Link>
+              <Link className="button-secondary" to="/business/missions">Open workspace</Link>
+            </div>
+          </div>
+          <ScrollReveal>
+            <ol className="campaign-sequence" aria-label="Campaign lifecycle">
+              {CAMPAIGN_STEPS.map(([n, title, description], index) => (
+                <li key={n}>
+                  <b>{n}</b><strong>{title}</strong><span>{index === 2 ? "Not enabled" : description}</span>
+                </li>
+              ))}
+            </ol>
+          </ScrollReveal>
+        </div>
+      </section>
 
-export function BusinessMissions() { return <div className="mx-auto max-w-content px-5 py-12"><p className="text-sm font-medium uppercase tracking-widest text-accent">Business workspace</p><h1 className="mt-3 text-4xl font-semibold">Mission management</h1><p className="mt-4 text-muted">Your shared Mission records, submissions, reviews, invoices and funding confirmations will appear here after Business authentication is connected.</p><div className="mt-10 rounded-xl border border-line bg-surface p-6"><p className="font-medium">Business authentication is not connected in this marketing build.</p><p className="mt-2 text-sm leading-6 text-muted">This honest state prevents a public site from writing to the app database or pretending that a payment succeeded.</p></div></div>; }
+      <section className="section">
+        <div className="page-container">
+          <ScrollReveal>
+            <p className="section-kicker">A real workspace, in stages</p>
+            <h2 className="section-title">Start with the brief.</h2>
+            <p className="section-lead">Sign in with your newFrequency account to save a private Mission draft and come back to it later. Drafts are stored with the app’s existing account and Mission data.</p>
+          </ScrollReveal>
+          <div className="story-rail" style={{ marginTop: 40 }}>
+            <article><span>01</span><h3>Use one account</h3><p>The Business workspace shares newFrequency sign-in. It does not create a second identity.</p></article>
+            <article><span>02</span><h3>Keep the draft private</h3><p>Only the owning account can read its draft through the app’s current authorization rules.</p></article>
+            <article><span>03</span><h3>Wait for the funding path</h3><p>Business verification, final campaign terms, payment checkout and launch approval are not enabled yet.</p></article>
+          </div>
+          <p className="rights-note" style={{ marginTop: 24 }}>Saving a draft does not submit a campaign, charge a payment method, publish a Mission or promise creator earnings. The website will show the real Mission state from the app database.</p>
+        </div>
+      </section>
+
+      <section className="closing-section">
+        <div className="page-container"><div className="closing-panel">
+          <p className="section-kicker">Campaign work starts here</p>
+          <h2>Keep the idea moving.</h2>
+          <p>Create a private draft now, or contact the team if you need to discuss a campaign before the full Mission flow opens.</p>
+          <div className="button-row"><Link className="button-primary" to="/business/create">Open Business workspace</Link><Link className="button-secondary" to="/contact">Contact the team</Link></div>
+        </div></div>
+      </section>
+    </>
+  );
+}
