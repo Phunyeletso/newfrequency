@@ -7,71 +7,74 @@ const CHAPTERS = [
     id: "reels",
     format: "Reels",
     scene: "reels",
-    kicker: "Make a Reel",
-    title: "A video can make the first move.",
-    copy: "Reels put a creator's short video into the full-screen feed, with the conversation and post actions close by.",
+    kicker: "Reels",
+    title: "Real talent, from the people who made it.",
+    copy: "Short video, with creator details and post actions in the feed.",
   },
   {
     id: "snaps",
     format: "Snaps",
     scene: "snaps",
-    kicker: "Share a Snap",
-    title: "A still can hold the whole moment.",
-    copy: "Photos have their own place in the feed, beside video, music and text.",
+    kicker: "Snaps",
+    title: "Post videos, pictures and quotes your way.",
+    copy: "Share a photo in the same creator feed.",
   },
   {
     id: "chats",
     format: "Chats",
     scene: "chats",
-    kicker: "Start with a thought",
-    title: "A post can give people something to answer.",
-    copy: "Chat posts make room for text-first thoughts and the conversation that follows.",
+    kicker: "Chats",
+    title: "Chats",
+    copy: "Text posts have a place in the feed.",
   },
   {
     id: "tunes",
     format: "Tunes",
     scene: "tunes",
-    kicker: "Let a Tune travel",
-    title: "One sound, heard through new ideas.",
-    copy: "Artists post Tunes; creators can select a Tune as audio for a new post. Reuse does not create a per-play royalty.",
-  },
-  {
-    id: "trails",
-    format: "Reels",
-    scene: "trails",
-    kicker: "Connect the source",
-    title: "A response can carry its context with it.",
-    copy: "Frequency Trails link a response, remix, sample or continuation to an earlier post. They show attribution; they do not grant rights or promise earnings.",
-    status: "Staging and release-device verification remain open.",
+    kicker: "Tunes",
+    title: "Choose a Tune as audio for a new post.",
+    copy: "Artists post Tunes for creators to select as audio.",
   },
   {
     id: "support",
     format: "Reels",
     scene: "support",
-    kicker: "Support the work",
-    title: "The feed connects attention to creator support.",
-    copy: "Tips, gifts and eligible paid views can use Frequency Coins. Purchased Coins stay separate from ZAR creator earnings; availability depends on release and eligibility checks.",
-    status: "Store purchase, database and release-device checks remain open.",
+    kicker: "Creator support",
+    title: "Creator support.",
+    copy: "Coin gifts and eligible paid views use Frequency Coins where enabled.",
+    status: "Eligibility and rollout apply.",
+  },
+  {
+    id: "missions",
+    format: "Reels",
+    scene: "missions",
+    kicker: "Business workspace",
+    title: "Create Mission.",
+    copy: "Save a private Mission draft. Public funding and launch remain gated.",
   },
 ];
 
 function StoryScene({ chapter }) {
+  if (chapter.scene === "missions") {
+    return <div className="story-mission-card"><span>BUSINESS WORKSPACE</span><b aria-hidden="true">✳</b><strong>Create Mission.</strong><small>Private draft</small></div>;
+  }
   if (chapter.scene === "chats") {
-    return <div className="story-chat-card"><span>CHAT POST</span><strong>A thought can start a conversation.</strong><i /><i /><i /></div>;
+    return <div className="story-chat-card"><span>CHATS</span><strong>Text post</strong><i /><i /><i /></div>;
   }
   if (chapter.scene === "tunes") {
-    return <div className="story-tune-card"><span>TUNE · ORIGINAL AUDIO</span><div className="story-wave" aria-hidden="true">{Array.from({ length: 27 }, (_, index) => <i key={index} />)}</div><strong>Choose a sound for your post.</strong></div>;
+    return <div className="story-tune-card"><span>TUNES</span><div className="story-wave" aria-hidden="true">{Array.from({ length: 27 }, (_, index) => <i key={index} />)}</div><strong>Choose a Tune as audio for a new post.</strong></div>;
   }
   if (chapter.scene === "trails") {
     return <div className="story-trail-card"><span>FREQUENCY TRAIL</span><div className="trail-branches"><i /><i /><i /><b /></div><strong>Source → response → next idea</strong></div>;
   }
   if (chapter.scene === "support") {
-    return <div className="story-wallet-card"><span>IN THE APP</span><strong>Support stays clear.</strong><div><i>Frequency Coins</i><b aria-hidden="true">↔</b><i>Creator earnings</i></div><small>Separate balances · eligibility applies</small></div>;
+    return <div className="story-wallet-card"><span>CREATOR SUPPORT</span><strong>Frequency Coins</strong><div><i>Coin gifts</i><b aria-hidden="true">+</b><i>Eligible paid views</i></div><small>Eligibility applies</small></div>;
   }
   return <div className={`story-media-art story-media-${chapter.scene}`}>
-    <span>{chapter.scene === "reels" ? "REEL · VIDEO" : "SNAP · PHOTO"}</span>
+    <img src="/media/feed-performance.webp" alt="" />
+    <span>{chapter.scene === "reels" ? "REELS" : "SNAPS"}</span>
     <i aria-hidden="true" />
-    {chapter.scene === "reels" && <b aria-hidden="true" />}
+    <b aria-hidden="true" />
   </div>;
 }
 
@@ -123,14 +126,14 @@ export default function AppScrollStory() {
         <div className="section-topline">
           <div>
             <p className="section-kicker">Inside the feed</p>
-            <h2 className="section-title">Make it. Share it. Carry it forward.</h2>
+            <h2 className="section-title">Post videos, pictures and quotes your way.</h2>
           </div>
-          <p className="section-lead">The app moves from a post to a conversation, a sound, a connection and creator support.</p>
+          <p className="section-lead">Reels · Tunes · Snaps · Chats</p>
         </div>
 
         <div className="app-story-layout">
           <div className="app-story-stage">
-            <p className="app-story-preview-label">A look inside the product</p>
+            <p className="app-story-preview-label">Feed preview</p>
             <div className="app-story-device" aria-hidden="true">
               <div className="app-story-screen">
                 <header className="app-story-topbar">
@@ -138,17 +141,18 @@ export default function AppScrollStory() {
                   <span className="app-story-signal" />
                 </header>
                 <div className="app-story-tabs">
+                  <span className="app-story-live">LIVE</span>
                   {FEED_TYPES.map((format) => <span key={format} className={active.format === format ? "active" : ""}>{format}</span>)}
                 </div>
                 <div className={`app-story-post app-story-post-${active.scene}`} key={active.id}>
                   <StoryScene chapter={active} />
-                  <div className="app-story-author"><b>nf</b><span>Creator post<br /><small>{active.kicker}</small></span></div>
-                  <div className="app-story-actions"><i>♡</i><i>▢</i><i>+</i></div>
+                  <div className="app-story-author"><b>nf</b><span>newFrequency<br /><small>{active.kicker}</small></span></div>
+                  <div className="app-story-actions"><i>♡</i><i>▢</i><i>↗</i><i>♧</i></div>
                 </div>
-                <div className="app-story-bottom"><i /><i /><b>+</b><i /><i /></div>
+                <div className="app-story-bottom"><span>Home</span><span>Explore</span><b>+</b><span>Inbox</span><span>Profile</span></div>
               </div>
             </div>
-            <p className="app-story-caption">Illustrative interface based on the app’s feed and navigation.</p>
+            <p className="app-story-caption">Illustrative app UI</p>
           </div>
 
           <div className="app-story-steps">

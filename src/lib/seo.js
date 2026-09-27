@@ -2,9 +2,9 @@ export const SITE_ORIGIN = "https://www.newfrequency.co.za";
 export const SOCIAL_IMAGE = `${SITE_ORIGIN}/og-newfrequency.svg`;
 
 export const SEO_BY_ROUTE = {
-  "/": { title: "Create. Connect. Earn.", description: "Reels, photos, text and music in one creator-led social app. Meet newFrequency, now in testing." },
-  "/creators": { title: "For creators", description: "Make Reels, Snaps, Chat posts and music on newFrequency. Learn how creator support works and what is still in testing." },
-  "/for-artists": { title: "For artists", description: "Share a Tune on newFrequency and let other creators use it as audio. See how music works in the app." },
+  "/": { title: "Social media that pays attention.", description: "Real talent, from the people who made it. Reels, Tunes, Snaps and Chats on newFrequency, now in testing." },
+  "/creators": { title: "For creators", description: "Post videos, pictures and quotes your way on newFrequency. Reels, Tunes, Snaps and Chats." },
+  "/for-artists": { title: "For artists", description: "Post a Tune on newFrequency. Creators can choose a Tune as audio for a new post." },
   "/business": { title: "For business", description: "Explore newFrequency Missions. Save a private campaign draft while verification, terms and funding are being prepared." },
   "/business/create": { title: "Create a Mission draft", description: "Sign in to newFrequency and save a private creator campaign draft.", noindex: true },
   "/business/missions": { title: "Business workspace", description: "Manage your newFrequency Mission drafts and submissions.", noindex: true },

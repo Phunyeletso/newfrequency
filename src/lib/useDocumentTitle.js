@@ -29,7 +29,7 @@ export default function useDocumentTitle(title, description) {
     upsertMeta('meta[property="og:description"]', { property: "og:description" }, pageDescription);
     upsertMeta('meta[property="og:url"]', { property: "og:url" }, canonical);
     upsertMeta('meta[property="og:image"]', { property: "og:image" }, SOCIAL_IMAGE);
-    upsertMeta('meta[property="og:image:alt"]', { property: "og:image:alt" }, "newFrequency — Create. Connect. Find your people.");
+    upsertMeta('meta[property="og:image:alt"]', { property: "og:image:alt" }, "newFrequency — Social media that pays attention.");
     upsertMeta('meta[name="twitter:card"]', { name: "twitter:card" }, "summary_large_image");
     upsertMeta('meta[name="twitter:title"]', { name: "twitter:title" }, pageTitle);
     upsertMeta('meta[name="twitter:description"]', { name: "twitter:description" }, pageDescription);

@@ -12,8 +12,8 @@ export default function ForArtists() {
         <div className="page-container story-grid">
           <div>
             <p className="eyebrow"><span className="signal-dot" /> For artists</p>
-            <h1 className="display-title">Put a sound out.<br /><em>See where it goes.</em></h1>
-            <p className="lead-copy">A Tune is a music post that another creator can select as audio for a Reel, Snap or Chat post. The next idea belongs to them.</p>
+            <h1 className="display-title">Tunes.</h1>
+            <p className="lead-copy">Choose a Tune as audio for a new post.</p>
             <div className="button-row">
               <Link className="button-primary" to="/get-the-app">Check app access <span className="button-arrow" aria-hidden="true">↗</span></Link>
               <Link className="button-secondary" to="/creators">For every creator</Link>
@@ -27,9 +27,9 @@ export default function ForArtists() {
         <div className="page-container music-grid">
           <ScrollReveal>
             <p className="section-kicker">One Tune, many interpretations</p>
-            <h2 className="section-title">Your music travels further than you do.</h2>
-            <p className="music-note">A creator picks a Tune and makes something new with it. Their post carries the sound into another corner of the feed.</p>
-            <p className="music-note">The current product does not create a per-use or streaming royalty for Tune reuse. Any creator earnings come from eligible support attached to content, under the app’s terms.</p>
+            <h2 className="section-title">Tunes.</h2>
+            <p className="music-note">Artists post Tunes. Creators can choose a Tune as audio for a new post.</p>
+            <p className="music-note">Tune reuse does not create a per-play royalty.</p>
           </ScrollReveal>
           <ScrollReveal delay={120}><TuneNetwork /></ScrollReveal>
         </div>
@@ -39,22 +39,22 @@ export default function ForArtists() {
         <div className="page-container">
           <ScrollReveal>
             <p className="section-kicker">How to put a Tune out</p>
-            <h2 className="section-title">Share with care.</h2>
-            <p className="section-lead">The app asks artists to upload music they created or have permission to share. A Tune is a post format, not a music-rights marketplace.</p>
+            <h2 className="section-title">Post a Tune.</h2>
+            <p className="section-lead">Upload music you created or are authorised to share.</p>
           </ScrollReveal>
           <div className="story-rail" style={{ marginTop: 40 }}>
-            <article><span>01</span><h3>Choose your track</h3><p>Share music you have the rights and necessary permissions to post.</p></article>
-            <article><span>02</span><h3>Post it as a Tune</h3><p>Your Tune appears as music other creators can select for their own posts.</p></article>
-            <article><span>03</span><h3>Keep the terms clear</h3><p>How a Tune may be shared is governed by the app’s terms. Reuse is not an earnings guarantee.</p></article>
+            <article><span>01</span><h3>Upload</h3><p>Share music you are authorised to post.</p></article>
+            <article><span>02</span><h3>Post</h3><p>Creators can select it as audio.</p></article>
+            <article><span>03</span><h3>Reuse</h3><p>App terms apply. Reuse does not promise earnings.</p></article>
           </div>
-          <p className="rights-note" style={{ marginTop: 25 }}>Only upload recordings you made or are authorised to share. Do not assume that a newFrequency Tune grants rights for use outside the app, in paid advertising, or in any way that the app’s current terms do not expressly cover.</p>
+          <p className="rights-note" style={{ marginTop: 25 }}>Only upload recordings you made or are authorised to share. A Tune does not grant rights outside the app.</p>
         </div>
       </section>
 
       <section className="closing-section">
         <div className="page-container"><div className="closing-panel">
           <p className="section-kicker">Made to be picked up</p>
-          <h2>Give your sound a place in the feed.</h2>
+          <h2>Tunes.</h2>
           <p>newFrequency is in testing. Check current access for your device, then tell us what an artist needs next.</p>
           <div className="button-row"><Link className="button-primary" to="/get-the-app">Check app access</Link><Link className="button-secondary" to="/contact">Contact the team</Link></div>
         </div></div>
