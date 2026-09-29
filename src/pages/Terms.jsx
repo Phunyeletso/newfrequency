@@ -3,12 +3,12 @@ import Notice from "../components/Notice";
 import useDocumentTitle from "../lib/useDocumentTitle";
 import { COMPANY } from "../lib/config";
 
-const UPDATED = "26 September 2026";
+const UPDATED = "28 September 2026";
 
 export default function Terms() {
   useDocumentTitle(
     "Terms of use",
-    "The terms that apply to the newFrequency website, test-build access and private Business Mission drafts.",
+    "The terms that apply to the newFrequency website, test-build access, Mission submissions and Paystack checkout when enabled.",
   );
 
   return (
@@ -83,15 +83,19 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl">Business Mission drafts</h2>
+            <h2 className="mb-3 text-xl">Business Missions and checkout</h2>
             <p className="text-muted text-pretty">
               The Business workspace uses your existing newFrequency account.
               Draft information is saved to the app database under its access
-              rules. A saved draft is not a submitted, approved, funded or
-              published campaign. The current website does not take Mission
-              payments or guarantee a campaign launch or creator reward.
-              Separate campaign terms will apply before those steps become
-              available.
+              rules. A submitted Mission may require business verification and
+              campaign review before it can proceed. When Mission checkout is
+              enabled, the app calculates the checkout amount and processes it
+              on Paystack’s hosted payment
+              page. A payment is credited only after server-side verification;
+              it does not itself approve or publish a campaign. Creator
+              percentages divide the creator reward pool, and platform fees are
+              calculated separately. No creator reward or campaign launch is
+              guaranteed.
             </p>
           </section>
 

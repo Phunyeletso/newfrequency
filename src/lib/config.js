@@ -34,10 +34,6 @@ export const DOWNLOAD = {
   iosTestFlightUrl: configuredTestFlightUrl(import.meta.env.VITE_IOS_TESTFLIGHT_URL),
 };
 
-// A public flag alone cannot make an offering safe. No verified offering or
-// investment ledger exists in this release; keep investor actions closed.
-export const INVESTMENTS_ENABLED = import.meta.env.VITE_INVESTMENTS_ENABLED === "true";
-
 export const COMPANY = {
   legalName: import.meta.env.VITE_COMPANY_LEGAL_NAME || "New Frequency",
   // No trading address yet — the policy simply omits it rather than showing a

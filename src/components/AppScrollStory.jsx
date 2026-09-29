@@ -4,75 +4,54 @@ const FEED_TYPES = ["Reels", "Tunes", "Snaps", "Chats"];
 
 const CHAPTERS = [
   {
-    id: "reels",
+    id: "discover",
     format: "Reels",
-    scene: "reels",
-    kicker: "Reels",
-    title: "Real talent, from the people who made it.",
-    copy: "Short video, with creator details and post actions in the feed.",
+    scene: "discover",
+    kicker: "Discover",
+    title: "Discover creators and communities.",
+    copy: "Find creators and communities through the feed.",
   },
   {
-    id: "snaps",
-    format: "Snaps",
-    scene: "snaps",
-    kicker: "Snaps",
-    title: "Post videos, pictures and quotes your way.",
-    copy: "Share a photo in the same creator feed.",
-  },
-  {
-    id: "chats",
-    format: "Chats",
-    scene: "chats",
-    kicker: "Chats",
-    title: "Chats",
-    copy: "Text posts have a place in the feed.",
-  },
-  {
-    id: "tunes",
-    format: "Tunes",
-    scene: "tunes",
-    kicker: "Tunes",
-    title: "Choose a Tune as audio for a new post.",
-    copy: "Artists post Tunes for creators to select as audio.",
-  },
-  {
-    id: "support",
-    format: "Reels",
-    scene: "support",
-    kicker: "Creator support",
-    title: "Creator support.",
-    copy: "Coin gifts and eligible paid views use Frequency Coins where enabled.",
-    status: "Eligibility and rollout apply.",
+    id: "live",
+    format: "LIVE",
+    scene: "live",
+    kicker: "Live",
+    title: "Go live and grow your audience.",
+    copy: "Connect with your community in real time.",
+    status: "Live is in pre-release.",
   },
   {
     id: "missions",
     format: "Reels",
     scene: "missions",
-    kicker: "Business workspace",
-    title: "Create Mission.",
-    copy: "Save a private Mission draft. Public funding and launch remain gated.",
+    kicker: "Creator Missions",
+    title: "Discover creator Mission opportunities.",
+    copy: "Turn your creativity into real brand rewards.",
+    status: "Creator Missions are in development.",
+  },
+  {
+    id: "monetization",
+    format: "Snaps",
+    scene: "monetization",
+    kicker: "Monetization",
+    title: "All creators are automatically eligible for monetization.",
+    copy: "No follower threshold. Eligible paid views and gifts.",
   },
 ];
 
 function StoryScene({ chapter }) {
+  if (chapter.scene === "live") {
+    return <div className="story-live-card"><img src="/media/feed-performance.webp" alt="" /><span>LIVE</span><strong>Go live</strong><small>PRE-RELEASE</small></div>;
+  }
   if (chapter.scene === "missions") {
-    return <div className="story-mission-card"><span>BUSINESS WORKSPACE</span><b aria-hidden="true">✳</b><strong>Create Mission.</strong><small>Private draft</small></div>;
+    return <div className="story-mission-card"><span>CREATOR MISSION</span><b aria-hidden="true">✳</b><strong>A brief. Your creative direction.</strong><small>In development</small></div>;
   }
-  if (chapter.scene === "chats") {
-    return <div className="story-chat-card"><span>CHATS</span><strong>Text post</strong><i /><i /><i /></div>;
-  }
-  if (chapter.scene === "tunes") {
-    return <div className="story-tune-card"><span>TUNES</span><div className="story-wave" aria-hidden="true">{Array.from({ length: 27 }, (_, index) => <i key={index} />)}</div><strong>Choose a Tune as audio for a new post.</strong></div>;
-  }
-  if (chapter.scene === "trails") {
-    return <div className="story-trail-card"><span>FREQUENCY TRAIL</span><div className="trail-branches"><i /><i /><i /><b /></div><strong>Source → response → next idea</strong></div>;
-  }
-  if (chapter.scene === "support") {
-    return <div className="story-wallet-card"><span>CREATOR SUPPORT</span><strong>Frequency Coins</strong><div><i>Coin gifts</i><b aria-hidden="true">+</b><i>Eligible paid views</i></div><small>Eligibility applies</small></div>;
+  if (chapter.scene === "monetization") {
+    return <div className="story-wallet-card"><span>CREATOR MONETIZATION</span><strong>No follower threshold</strong><div><i>Gifts</i><b aria-hidden="true">+</b><i>Eligible paid views</i></div></div>;
   }
   return <div className={`story-media-art story-media-${chapter.scene}`}>
     <img src="/media/feed-performance.webp" alt="" />
-    <span>{chapter.scene === "reels" ? "REELS" : "SNAPS"}</span>
+    <span>DISCOVER</span>
     <i aria-hidden="true" />
     <b aria-hidden="true" />
   </div>;
@@ -125,10 +104,9 @@ export default function AppScrollStory() {
       <div className="page-container">
         <div className="section-topline">
           <div>
-            <p className="section-kicker">Inside the feed</p>
-            <h2 className="section-title">Post videos, pictures and quotes your way.</h2>
+            <p className="section-kicker">Inside newFrequency</p>
+            <h2 className="section-title">Different vibes. Same frequency.</h2>
           </div>
-          <p className="section-lead">Reels · Tunes · Snaps · Chats</p>
         </div>
 
         <div className="app-story-layout">

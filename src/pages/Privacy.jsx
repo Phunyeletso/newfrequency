@@ -1,6 +1,6 @@
 import useDocumentTitle from "../lib/useDocumentTitle";
 
-const UPDATED = "26 September 2026";
+const UPDATED = "28 September 2026";
 
 const CONTACT_URL = "https://www.newfrequency.co.za/contact";
 const TERMS_URL = "https://www.newfrequency.co.za/terms";
@@ -65,12 +65,21 @@ export default function Privacy() {
               user identity.
             </p>
             <p className="mt-4">
-              A Mission draft can include its title, objective, creator brief,
-              task description, reward-pool estimate and planned dates. The
-              current website workspace does not collect business verification
-              documents or payment details, and it cannot fund or publish a
-              campaign. If the app backend is not configured, Business sign-in
-              is unavailable.
+              A Mission form can include campaign details, media, reward split
+              and schedule, plus legal and trading names, registration number,
+              business type and industry, business contact information and
+              representative name and role for verification. The database also
+              records verification status, the submitted Mission terms version,
+              declarations and campaign review state. Business sign-in is
+              unavailable if the app backend is not configured.
+            </p>
+            <p className="mt-4">
+              If you sign in and separately opt in to company updates, we store
+              your account ID, consent version and consent time in the app
+              database. This preference is used for future company progress and
+              funding-plan updates. It is not an investment application; we do
+              not collect an investment amount or payment. You can remove the
+              preference from the updates page.
             </p>
           </section>
 
@@ -130,6 +139,13 @@ export default function Privacy() {
                   app code does not collect or store your card number, CVV or
                   online-banking password. Paystack processes payment details on
                   its own payment pages and may retain them under its own policy.
+                  When Mission checkout is enabled, the app calculates the campaign total,
+                  starts a hosted Paystack transaction and stores the Mission,
+                  amount in minor currency units, provider reference, status and
+                  verification timestamps needed for the funding ledger. The app
+                  does not receive or store your full card number, CVV or
+                  online-banking password. The Mission is credited only after
+                  server-side Paystack verification.
                 </p>
               </div>
               <div>
@@ -267,7 +283,7 @@ export default function Privacy() {
             <h2 className="mb-3 text-xl text-ink">Service providers and international processing</h2>
             <ul className="list-disc space-y-2 pl-5">
               <li><strong className="font-medium text-ink">Supabase:</strong> authentication, database, Row Level Security, Edge Functions and file storage for the app. The Business workspace uses the same app account and database when configured. Website feedback forms use the endpoint configured by the site operator.</li>
-              <li><strong className="font-medium text-ink">Paystack:</strong> wallet checkout, payment verification and creator payout transfers.</li>
+              <li><strong className="font-medium text-ink">Paystack:</strong> hosted wallet checkout, Mission checkout when enabled, payment verification and creator payout transfers.</li>
               <li><strong className="font-medium text-ink">Cloudflare Stream:</strong> video upload, encoding, playback, thumbnails and downloads when enabled for the project.</li>
               <li><strong className="font-medium text-ink">Expo services:</strong> the app uses Expo/EAS update and push-registration infrastructure. Push delivery can involve the platform notification services required by Android or iOS.</li>
               <li><strong className="font-medium text-ink">Google Play and Apple:</strong> process Android Google Play Billing and iOS Apple In-App Purchase payments. New Frequency sends the product and purchase identifier to the relevant store for verification and receives the verification result and store transaction information needed to credit or reverse coins.</li>

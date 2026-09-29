@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const MODES = ["Reels", "Tunes", "Snaps", "Chats"];
 const MODE_COPY = {
-  Reels: { label: "REELS", title: "Real talent, from the people who made it.", detail: "Short video" },
+  Reels: { label: "REELS", title: "Different vibes. Same frequency.", detail: "Short video" },
   Tunes: { label: "TUNES", title: "Choose a Tune as audio for a new post.", detail: "Original audio" },
   Snaps: { label: "SNAPS", title: "Post videos, pictures and quotes your way.", detail: "Photo posts" },
   Chats: { label: "CHATS", title: "Post videos, pictures and quotes your way.", detail: "Text posts" },
