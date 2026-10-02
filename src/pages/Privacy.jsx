@@ -1,6 +1,6 @@
 import useDocumentTitle from "../lib/useDocumentTitle";
 
-const UPDATED = "28 September 2026";
+const UPDATED = "2 October 2026";
 
 const CONTACT_URL = "https://www.newfrequency.co.za/contact";
 const TERMS_URL = "https://www.newfrequency.co.za/terms";
@@ -57,29 +57,35 @@ export default function Privacy() {
             <h2 className="mb-3 text-xl text-ink">The app and website</h2>
             <p>
               The public feedback, invite-request and contact forms use the
-              website endpoint configured by the site operator. The Business
-              workspace is an exception: when enabled, it uses your existing
-              newFrequency account and the app’s Supabase authentication and
-              database to save private Mission drafts and manage submissions
-              your account is authorised to review. It does not create a second
-              user identity.
+              shared app database. When available, the Business and contribution
+              workspaces use your existing newFrequency account and the app’s
+              Supabase authentication and database. This does not create a
+              second user identity.
             </p>
             <p className="mt-4">
-              A Mission form can include campaign details, media, reward split
-              and schedule, plus legal and trading names, registration number,
+              If Mission campaigns are available, a form can include campaign
+              details, media, reward split and schedule, plus legal and trading
+              names, registration number,
               business type and industry, business contact information and
               representative name and role for verification. The database also
               records verification status, the submitted Mission terms version,
-              declarations and campaign review state. Business sign-in is
-              unavailable if the app backend is not configured.
+              declarations and campaign review state.
             </p>
             <p className="mt-4">
-              If you sign in and separately opt in to company updates, we store
-              your account ID, consent version and consent time in the app
-              database. This preference is used for future company progress and
-              funding-plan updates. It is not an investment application; we do
-              not collect an investment amount or payment. You can remove the
-              preference from the updates page.
+              Project contributions record your account ID, chosen project and amount,
+              payment reference, verified payment status, receipt and any refund
+              request or outcome. Paystack processes payment details on its hosted
+              checkout; this website does not collect your card number. The team can
+              review contribution and refund records to operate the service and
+              resolve disputes. Public project totals do not identify contributors.
+            </p>
+            <p className="mt-4">
+              An optional investment conversation records your name, organization,
+              contact preference, proposed amount, introduction, consent and review
+              history. Only your account and authorized reviewers can access it.
+              If you separately opt in to company updates, we record your account,
+              consent version and time. You can withdraw that preference in your
+              conversation workspace.
             </p>
           </section>
 
@@ -99,8 +105,8 @@ export default function Privacy() {
               <div>
                 <h3 className="mb-2 font-medium text-ink">Your activity and content</h3>
                 <p>
-                  Posts (Reels, Snaps, Tunes, Chat posts and live-stream
-                  information), captions, audio and music metadata, thumbnails,
+                  Posts (Reels, Snaps, Tunes and Chat posts), captions, audio
+                  and music metadata, thumbnails,
                   likes, follows, saves, shares, views, comments and replies. We
                   use this to publish and operate the feed, search and creator
                   features. Public profiles, posts, comments, likes, follows and
@@ -112,8 +118,8 @@ export default function Privacy() {
                 <h3 className="mb-2 font-medium text-ink">Search and messages</h3>
                 <p>
                   Search terms used to find users or content, direct-message
-                  conversations and messages, message replies/reactions, live-chat
-                  messages and related timestamps or participant IDs. We use these
+                  conversations and messages, message replies/reactions and
+                  related timestamps or participant IDs. We use these
                   to return results, deliver messages and keep conversations
                   working.
                 </p>
@@ -121,22 +127,23 @@ export default function Privacy() {
               <div>
                 <h3 className="mb-2 font-medium text-ink">Wallet, coins and transactions</h3>
                 <p>
-                  Wallet balances, coin balances, deposits, withdrawals, gifts,
-                  tips or legacy tip records, marketplace purchases/resales,
-                  creator earnings, fees, royalties, payment references and
-                  transaction timestamps. These records operate the ledger, show
-                  your history, pay creators and investigate disputes or refunds.
+                  ZAR earnings balances, coin balances, gifts, tips or legacy tip
+                  records, eligible paid-scroll activity, marketplace orders for
+                  goods and services, fees, payment references and transaction
+                  timestamps. These records operate the ledger, show your history,
+                  pay creators and investigate disputes or refunds. ZAR balances
+                  are for earnings; users cannot top them up with a deposit.
                 </p>
               </div>
               <div>
                 <h3 className="mb-2 font-medium text-ink">Payment and payout details</h3>
                 <p>
-                  For a wallet deposit, the app sends the amount and your
-                  account/payment reference into the Paystack checkout flow. For a
-                  withdrawal, the service receives the bank account number, bank
-                  code and optional account name needed to make a payout, and
-                  stores the payout status and provider references. New Frequency’s
-                  app code does not collect or store your card number, CVV or
+                  ZAR wallet withdrawals are currently disabled. If payout
+                  processing is enabled, the service may receive the bank account
+                  number, bank code and optional account name needed to make a
+                  payout, and store the payout status and provider references.
+                  New Frequency’s app code does not collect or store your card
+                  number, CVV or
                   online-banking password. Paystack processes payment details on
                   its own payment pages and may retain them under its own policy.
                   When Mission checkout is enabled, the app calculates the campaign total,
@@ -151,10 +158,11 @@ export default function Privacy() {
               <div>
                 <h3 className="mb-2 font-medium text-ink">Creator and seller verification</h3>
                 <p>
-                  Creator marketplace sellers can submit an ID document, a
+                  If marketplace selling is available, sellers can submit an ID document, a
                   face/document photograph, and a bank statement or certificate.
                   These files and the review status are used for identity, seller
-                  and payout checks. Brand or business mission features can also
+                  and payout checks. If brand or business Mission features are
+                  available, they can also
                   contain business profile, authorisation, verification documents,
                   campaign information, declarations, reward and usage-rights
                   information.
@@ -163,8 +171,9 @@ export default function Privacy() {
               <div>
                 <h3 className="mb-2 font-medium text-ink">Missions and brand interactions</h3>
                 <p>
-                  Published missions contain a brand, brief, requirements,
-                  eligibility, campaign media, deadline, prize pool, reward split,
+                  If a Mission campaign is available, its records may contain a
+                  brand, brief, requirements, eligibility, campaign media,
+                  deadline, prize pool, reward split,
                   usage rights and submission status. A creator’s selected post
                   can be linked to a mission submission; review decisions and
                   reward records are kept to run the campaign and pay approved
@@ -188,9 +197,8 @@ export default function Privacy() {
             <h2 className="mb-3 text-xl text-ink">Camera, microphone, photos and uploads</h2>
             <p>
               The app asks for camera access when you choose to take a Reel,
-              Snap, live-stream video or other camera content. It asks for
-              microphone access when you choose to record sound, a Reel or a live
-              stream. It asks for photo/media access when you choose existing
+              Snap or other camera content. It asks for microphone access
+              when you choose to record sound or a Reel. It asks for photo/media access when you choose existing
               photos or videos. It can also use the document picker for audio
               files, PDFs and other creator or seller documents. These permissions
               are optional, but the related capture or upload feature will not
@@ -228,22 +236,13 @@ export default function Privacy() {
           <section>
             <h2 className="mb-3 text-xl text-ink">Advertising and coin purchases</h2>
             <p>
-              New Frequency uses Google AdMob, through the Google Mobile Ads SDK,
-              to display and measure advertisements. The app’s ad service decides
-              when an eligible viewer may be shown an interstitial; users whose
-              account has an ad-free experience are excluded from ad requests.
-              Google may process device identifiers, the Advertising ID where
-              available, IP-derived approximate location, app interactions, ad
-              interactions, diagnostics and performance data, and related
-              measurement information as part of providing the advertising
-              service, subject to Google’s policies. New Frequency receives the
-              ad request/result needed to display the ad and operate the ad tier;
-              Google processes the advertising and measurement data described
-              above as the advertising service provider.
+              Advertising is not available in the current release. The app does
+              not currently show ads or offer an ad-free tier. If advertising is
+              introduced, this policy will be updated before it is enabled.
             </p>
             <p className="mt-4">
-              In the release version, users can buy coin packs through Google Play
-              Billing on Android and Apple In-App Purchase on iOS. Google and
+              Where coin purchases are available, Android uses Google Play
+              Billing and iOS uses Apple In-App Purchase. Google and
               Apple process the payment credentials and store payment records
               under their own terms. New Frequency does not receive your full
               card number, CVV, bank password or Apple/Google account password
@@ -254,8 +253,10 @@ export default function Privacy() {
               the coin-credit record needed to prevent duplicate crediting and to
               reconcile the coin balance. New Frequency verifies the purchase with
               the relevant store before crediting coins, and may reverse or record
-              a coin adjustment when the store reports a refund. Paystack remains
-              the provider for the separate wallet deposit and payout flows above.
+              a coin adjustment when the store reports a refund. Coins are for
+              in-app spending and cannot be withdrawn. The ZAR wallet is for
+              creator earnings; deposits are not available and withdrawals are
+              currently disabled.
             </p>
           </section>
 
@@ -283,11 +284,10 @@ export default function Privacy() {
             <h2 className="mb-3 text-xl text-ink">Service providers and international processing</h2>
             <ul className="list-disc space-y-2 pl-5">
               <li><strong className="font-medium text-ink">Supabase:</strong> authentication, database, Row Level Security, Edge Functions and file storage for the app. The Business workspace uses the same app account and database when configured. Website feedback forms use the endpoint configured by the site operator.</li>
-              <li><strong className="font-medium text-ink">Paystack:</strong> hosted wallet checkout, Mission checkout when enabled, payment verification and creator payout transfers.</li>
+              <li><strong className="font-medium text-ink">Paystack:</strong> Mission checkout where enabled, payment verification and payout processing where available.</li>
               <li><strong className="font-medium text-ink">Cloudflare Stream:</strong> video upload, encoding, playback, thumbnails and downloads when enabled for the project.</li>
               <li><strong className="font-medium text-ink">Expo services:</strong> the app uses Expo/EAS update and push-registration infrastructure. Push delivery can involve the platform notification services required by Android or iOS.</li>
-              <li><strong className="font-medium text-ink">Google Play and Apple:</strong> process Android Google Play Billing and iOS Apple In-App Purchase payments. New Frequency sends the product and purchase identifier to the relevant store for verification and receives the verification result and store transaction information needed to credit or reverse coins.</li>
-              <li><strong className="font-medium text-ink">Google Mobile Ads (AdMob):</strong> displays and measures advertisements. Google may process the device, advertising, app-interaction, ad-interaction, diagnostic, performance and measurement information described above under Google’s own policies.</li>
+              <li><strong className="font-medium text-ink">Google Play and Apple:</strong> process coin purchases where available. New Frequency sends the product and purchase identifier to the relevant store for verification and receives the verification result and store transaction information needed to credit or reverse coins.</li>
             </ul>
             <p className="mt-4">
               These providers may process information outside South Africa. We use

@@ -1,18 +1,16 @@
 // App identity — confirmed in the brief.
 export const APP = {
   name: "newFrequency",
-  androidPackage: "com.breakthrough_sa.newFrequency",
+  androidPackage: "za.co.newfrequency.app",
+  googlePlayUrl: "https://play.google.com/store/apps/details?id=za.co.newfrequency.app",
   // The app's deep link scheme, from the app repo's app.json. Used by the
   // email confirmation page to offer "Open newFrequency". Must match, or the
   // link silently does nothing on a phone that has the app.
   scheme: "newfrequency",
 };
 
-// ---------------------------------------------------------------------------
-// PLACEHOLDERS — must be confirmed before launch (see HANDOVER.md).
-// Anything null renders as an honest "not available yet" state rather than a
-// broken link. Do not invent values here.
-// ---------------------------------------------------------------------------
+// External release links are operator configuration; account and form data
+// use the same Supabase project as the app.
 function configuredTestFlightUrl(value) {
   if (!value) return null;
   try {
@@ -44,8 +42,8 @@ export const COMPANY = {
 // Feedback REST endpoint configured by the operator. supabase/setup.sql
 // currently places these write-only tables in the existing app project.
 // Base REST URL, e.g. https://<project>.supabase.co/rest/v1 (no trailing slash).
-export const FEEDBACK_API_BASE = import.meta.env.VITE_FEEDBACK_API_BASE || null;
-export const FEEDBACK_KEY = import.meta.env.VITE_FEEDBACK_ANON_KEY || null;
+export const FEEDBACK_API_BASE = import.meta.env.VITE_FEEDBACK_API_BASE || (import.meta.env.VITE_APP_SUPABASE_URL ? `${import.meta.env.VITE_APP_SUPABASE_URL.replace(/\/$/, "")}/rest/v1` : null);
+export const FEEDBACK_KEY = import.meta.env.VITE_FEEDBACK_ANON_KEY || import.meta.env.VITE_APP_SUPABASE_ANON_KEY || null;
 
 export const CONTENT_TYPES = [
   { name: "Reels", color: "reels", desc: "Short videos, recorded in the app or selected from your camera roll." },

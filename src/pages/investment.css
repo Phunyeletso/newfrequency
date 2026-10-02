@@ -1,0 +1,92 @@
+.invest-story-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(30px,5vw,90px); align-items:center; }
+.capital-orbit { position:relative; min-height:420px; display:grid; place-items:center; isolation:isolate; }
+.capital-orbit-ring { position:absolute; width:82%; aspect-ratio:1; border:1px solid var(--line); border-radius:50%; transform:rotate(-24deg) scaleY(.68); }
+.capital-orbit-ring.second { width:96%; transform:rotate(44deg) scaleY(.68); border-color:color-mix(in srgb,var(--accent) 30%,transparent); }
+.capital-orbit-core { display:flex; flex-direction:column; font-size:clamp(28px,4vw,52px); letter-spacing:-.07em; line-height:.95; transform:rotate(-7deg); }
+.capital-orbit-core > span { color:var(--muted); font-weight:500; }
+.capital-orbit-core strong > span { font-size:14px; vertical-align:top; margin-left:5px; }
+.capital-orbit-tag { position:absolute; padding:14px 23px; border:1px solid var(--line); border-radius:999px; background:var(--surface); font-size:14px; letter-spacing:.02em; box-shadow:0 18px 50px #0003; }
+.capital-orbit-tag.create { top:12%; left:12%; transform:rotate(-8deg); }
+.capital-orbit-tag.connect { right:1%; top:43%; transform:rotate(8deg); color:var(--accent); }
+.capital-orbit-tag.grow { bottom:13%; left:24%; transform:rotate(-4deg); }
+.capital-story-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+.capital-story-cards article { border-top:1px solid var(--line); padding:24px 0; }
+.capital-story-cards h3 { font-size:clamp(24px,2.7vw,36px); letter-spacing:-.045em; line-height:1.12; margin:30px 0 16px; }
+.capital-story-cards p { color:var(--muted); line-height:1.6; max-width:30ch; }
+.capital-chapter { font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); }
+.capital-disclosure { margin-top:28px; max-width:55ch; font-size:13px; line-height:1.65; color:var(--muted); }
+.capital-disclosure details { border-block:1px solid var(--line); padding:14px 0; margin:18px 0; }
+.capital-disclosure summary { cursor:pointer; color:var(--ink); min-height:28px; }
+.capital-workspace-nav { justify-content:space-between; margin:0 0 30px; }
+.capital-workspace-layout { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(240px,1fr); gap:28px; align-items:start; }
+.capital-editor,.capital-history,.capital-review { background:var(--surface); border:1px solid var(--line); padding:clamp(22px,3vw,40px); border-radius:20px; min-width:0; }
+.capital-status { display:flex; align-items:center; justify-content:space-between; gap:15px; flex-wrap:wrap; margin-bottom:20px; }
+.capital-editor .section-lead { font-size:16px; }
+.capital-steps { padding:0; list-style:none; display:flex; gap:20px; border-bottom:1px solid var(--line); margin:28px 0; padding-bottom:24px; }
+.capital-steps li { display:flex; align-items:center; gap:8px; color:var(--muted); font-size:13px; }
+.capital-steps li > span { display:grid; place-items:center; width:24px; height:24px; border:1px solid var(--line); border-radius:50%; }
+.capital-steps li[aria-current] { color:var(--ink); }
+.capital-steps li[aria-current] > span { color:var(--ground); background:var(--accent); border-color:var(--accent); }
+.capital-form-step { border:0; padding:0; margin:0; min-width:0; }
+.capital-step-title { display:block; padding:0; margin-bottom:25px; font-size:28px; line-height:1.12; letter-spacing:-.035em; font-weight:700; }
+.capital-form-step .form-grid { margin-top:0; }
+.capital-amount-fields { display:grid; grid-template-columns:minmax(0,1fr) 110px; gap:15px; }
+.capital-form-step .form-field input,.capital-form-step .form-field select,.capital-form-step .form-field textarea { width:100%; }
+.capital-field-error { color:#fca5a5; font-size:13px; line-height:1.5; }
+.capital-form-actions { margin-top:28px; justify-content:flex-end; }
+.capital-summary h3 { font-size:25px; letter-spacing:-.03em; margin:0 0 8px; overflow-wrap:anywhere; }
+.capital-summary > p { color:var(--muted); }
+.capital-summary dl { display:grid; gap:14px; padding:22px 0; margin:20px 0; border-block:1px solid var(--line); }
+.capital-summary dl > div { display:flex; gap:20px; justify-content:space-between; }
+.capital-summary dt { color:var(--muted); font-size:13px; }
+.capital-summary dd { margin:0; font-size:14px; text-align:right; overflow-wrap:anywhere; max-width:65%; }
+.capital-thesis { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.7; }
+.capital-form-step .consent-check { margin-top:20px; }
+.capital-withdraw { margin-top:28px; padding-top:22px; border-top:1px solid var(--line); font-size:14px; }
+.capital-history h2 { font-size:26px; letter-spacing:-.035em; margin:10px 0 28px; }
+.capital-history > p { font-size:14px; line-height:1.65; color:var(--muted); }
+.capital-history ol { list-style:none; margin:0 0 30px; padding:0; }
+.capital-history li { display:flex; gap:17px; position:relative; padding-bottom:27px; }
+.capital-history li:not(:last-child)::before { content:""; position:absolute; left:4px; top:9px; bottom:0; width:1px; background:var(--line); }
+.capital-history-marker { flex:0 0 9px; height:9px; border-radius:50%; background:var(--accent); margin-top:6px; }
+.capital-history strong { font-size:14px; }
+.capital-history time { display:block; color:var(--muted); font-size:12px; margin:7px 0; }
+.capital-history li p { color:var(--muted); font-size:14px; line-height:1.55; white-space:pre-wrap; overflow-wrap:anywhere; margin:10px 0 0; }
+.capital-review { margin-top:35px; }
+.capital-review h2 { font-size:28px; letter-spacing:-.035em; }
+.capital-review-layout { display:grid; grid-template-columns:minmax(220px,1fr) minmax(0,1.7fr); gap:30px; margin-top:25px; }
+.capital-review-list { display:flex; flex-direction:column; gap:10px; }
+.capital-review-item { text-align:left; display:grid; gap:9px; border:1px solid var(--line); background:var(--surface-raised); color:var(--ink); border-radius:12px; padding:18px; cursor:pointer; }
+.capital-review-item[aria-pressed=true] { border-color:var(--accent); }
+.capital-review-item span { color:var(--muted); font-size:13px; }
+.capital-review .form-grid { margin-top:28px; }
+.funding-catalog { display:grid; gap:20px; min-width:0; }
+.funding-project-card,.funding-receipt-card { padding:clamp(24px,3vw,38px); border:1px solid var(--line); background:var(--surface); border-radius:20px; min-width:0; }
+.funding-project-card .workspace-actions { justify-content:space-between; }
+.funding-project-card h3 { margin:25px 0 18px; font-size:clamp(27px,3vw,38px); line-height:1.1; letter-spacing:-.045em; }
+.funding-project-card p { color:var(--muted); line-height:1.65; }
+.funding-progress { display:flex; flex-wrap:wrap; align-items:baseline; gap:10px; margin:30px 0; }
+.funding-progress strong { font-size:30px; letter-spacing:-.04em; }
+.funding-progress span { color:var(--muted); font-size:13px; }
+.funding-progress progress { flex:1 0 100%; height:6px; accent-color:var(--accent); border:0; border-radius:6px; }
+.funding-tabs { margin-bottom:30px; flex-wrap:wrap; }
+.funding-workspace .capital-editor h2 { font-size:30px; letter-spacing:-.04em; margin-top:12px; }
+.funding-presets { display:flex; flex-wrap:wrap; gap:10px; }
+.funding-presets [aria-pressed=true] { border-color:var(--accent); color:var(--accent); }
+.funding-history h2 { font-size:32px; letter-spacing:-.04em; margin:12px 0 30px; }
+.funding-receipt-card { margin-bottom:18px; }
+.funding-receipt-heading { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; }
+.funding-receipt-heading h3 { font-size:24px; letter-spacing:-.035em; margin:10px 0; }
+.funding-receipt-heading > div:last-child { display:grid; gap:10px; justify-items:end; }
+.funding-receipt-heading strong { font-size:27px; letter-spacing:-.03em; }
+.funding-reference { font-size:12px; color:var(--muted); overflow-wrap:anywhere; margin:18px 0 23px; }
+.funding-refund-form { border-top:1px solid var(--line); padding-top:24px; margin-top:24px; }
+.funding-admin h2 { font-size:32px; letter-spacing:-.035em; margin-top:10px; }
+.funding-admin h3 { font-size:25px; letter-spacing:-.03em; }
+.funding-admin-amounts { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:15px; }
+.funding-admin-refunds { margin-top:45px; }
+.funding-admin-refunds h4 { font-size:20px; margin:0; }
+.funding-admin-refunds .workspace-actions { margin-top:20px; }
+@media(max-width:800px) { .invest-story-grid { grid-template-columns:1fr; gap:12px; } .capital-orbit { min-height:310px; max-width:480px; width:100%; margin-inline:auto; } .capital-workspace-layout { grid-template-columns:1fr; } .capital-story-cards { gap:18px; } .capital-review-layout { grid-template-columns:1fr; } }
+@media(max-width:540px) { .capital-story-cards { grid-template-columns:1fr; margin-top:30px; } .capital-story-cards h3 { margin-top:18px; } .capital-story-cards p { max-width:100%; } .capital-steps { gap:14px; } .capital-steps li { font-size:12px; gap:6px; } .capital-form-actions { gap:10px; } .capital-form-actions .button-primary { flex-grow:1; } .capital-status { gap:10px; } }
+@media(max-width:540px) { .funding-receipt-heading { flex-direction:column; } .funding-receipt-heading > div:last-child { justify-items:start; } .funding-admin-amounts { grid-template-columns:1fr; } .funding-project-card .button-primary { width:100%; } }

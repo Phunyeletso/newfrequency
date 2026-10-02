@@ -26,3 +26,4 @@ for (const r of ROUTES) {
   }
 }
 console.log(hits ? `\n${hits} violation(s)` : "\nNo forbidden claims found across " + ROUTES.length + " pages");
+if (hits) process.exitCode = 1;

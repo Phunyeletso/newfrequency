@@ -8,10 +8,11 @@
     "build": "vite build && vite build --ssr scripts/prerender.jsx --outDir .prerender --logLevel error && node scripts/prerender.mjs",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "node scripts/preview.mjs",
-    "check:render": "vite build --ssr scripts/render-check.jsx --outDir .checks --logLevel error && node .checks/render-check.js",
-    "check:claims": "vite build --ssr scripts/claims-check.jsx --outDir .checks --logLevel error && node .checks/claims-check.js",
+    "check:render": "vite build --ssr scripts/render-check.jsx --outDir .checks/render --logLevel error && node .checks/render/render-check.js",
+    "check:claims": "vite build --ssr scripts/claims-check.jsx --outDir .checks/claims --logLevel error && node .checks/claims/claims-check.js",
     "check:download": "node --test scripts/android-download.test.js",
-    "check": "npm run lint && npm run check:render && npm run check:claims && npm run check:download"
+    "check:workspaces": "node --test scripts/business-chat.test.js scripts/business-missions.test.js scripts/investment-workspace.test.js scripts/project-funding.test.js",
+    "check": "npm run lint && npm run check:render && npm run check:claims && npm run check:download && npm run check:workspaces"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",

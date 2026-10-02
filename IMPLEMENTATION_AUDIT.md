@@ -1,5 +1,17 @@
 # newFrequency website implementation audit
 
+> **30 September 2026 update:** The report below is the historical 26 September
+> baseline, not the current feature state. Missions now have the full local
+> lifecycle, server-priced checkout, review, launch, judging, reward release,
+> cancellation and refunds. Project contributions now have a published catalog,
+> shared-account checkout, verified ledger, receipts, refund requests and operator
+> controls. Shared account settings/deletion and a protected team inbox are also
+> implemented. The homepage now uses shorter animated story chapters. Current
+> configuration, validation and hosted-deployment limitations are documented in
+> [HANDOVER.md](HANDOVER.md) and [PROJECT_CONTRIBUTIONS.md](PROJECT_CONTRIBUTIONS.md).
+> Hosted migrations and payment activation remain pending: the authenticated
+> Supabase deployment connection failed with a transport error during this work.
+
 **Reviewed:** 2026-09-26  
 **Scope:** website source and configuration in this repository, plus a read-only source audit of the adjacent `newFrequency` app repository. This document describes source-level findings; deployed Supabase policies, production secrets, provider dashboards, and device release behavior were not independently inspected unless stated below.
 

@@ -480,7 +480,7 @@ fieldset.form-field legend { margin-bottom: 7px; color: #dfe4dc; font-size: 12px
 .closed-state p { max-width: 54ch; color: var(--muted); font-size: 14px; line-height: 1.7; }
 
 /* Download / company / close */
-.download-hero { padding-block: clamp(74px, 10vw, 125px) 72px; }
+.download-hero { padding-block: clamp(40px, 5vw, 72px) 56px; }
 .download-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; margin-top: 44px; }
 .download-option { min-height: 230px; padding: clamp(21px, 4vw, 34px); border: 1px solid #333a34; border-radius: 19px; background: linear-gradient(145deg, #151916, #0c0f0d); display: flex; flex-direction: column; align-items: flex-start; }
 .download-option h2 { margin: 18px 0 0; font-size: 24px; letter-spacing: -.05em; }
@@ -502,15 +502,15 @@ fieldset.form-field legend { margin-bottom: 7px; color: #dfe4dc; font-size: 12px
 .footer-main { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; }
 .footer-brand { max-width: 280px; }
 .footer-brand p { margin: 13px 0 0; font-size: 12px; line-height: 1.6; }
-.footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px 22px; max-width: 570px; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px 22px; max-width: 720px; }
 .footer-links a { color: #aeb5ad; font-size: 12px; text-decoration: none; }
 .footer-links a:hover { color: var(--accent); }
-.footer-legal { display: flex; justify-content: space-between; gap: 20px; margin-top: 35px; padding-top: 15px; border-top: 1px solid rgb(255 255 255 / 8%); font-size: 10px; }
+.footer-legal { display: flex; justify-content: flex-start; gap: 20px; margin-top: 35px; padding-top: 15px; border-top: 1px solid rgb(255 255 255 / 8%); font-size: 10px; }
 
 @media (max-width: 1199px) {
   .desktop-nav { display: none; }
   .menu-toggle { display: inline-flex; }
-  .header-cta { margin-left: auto; }
+  .header-account { display: none; }
   .mobile-nav { display: grid; gap: 2px; padding: 8px 24px 18px; border-top: 1px solid rgb(255 255 255 / 8%); background: #0b0d0c; }
   .mobile-nav a { min-height: 45px; display: flex; align-items: center; padding-inline: 9px; font-size: 14px; }
   .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(320px, .9fr); gap: 22px; }
@@ -692,4 +692,212 @@ fieldset.form-field legend { margin-bottom: 7px; color: #dfe4dc; font-size: 12px
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .scroll-reveal:not(.is-visible) { opacity: 1; transform: none; }
+}
+
+/* Shared account and task surfaces. */
+.header-actions { display: flex; align-items: center; gap: 16px; }
+.header-account { display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: var(--muted); font-size: 13px; text-decoration: none; flex-shrink: 0; }
+.header-account:hover { color: var(--accent); border-color: var(--accent); }
+.account-section { min-height: 65vh; padding-top: clamp(36px, 5vw, 64px); }
+.workspace-heading { display: flex; justify-content: space-between; gap: 28px; align-items: flex-start; margin-bottom: 36px; }
+.workspace-heading h1 { font-size: clamp(2.5rem, 5.5vw, 4.5rem); max-width: 18ch; }
+.workspace-heading .section-lead { max-width: 45ch; }
+.account-identity { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; margin-bottom: 24px; }
+.account-auth { margin-left: 0; }
+.auth-card .auth-tabs { margin-top: 24px; }
+.auth-card .workspace-actions { margin-top: 20px; }
+.auth-card > .small-button, .auth-card > .text-link { margin-top: 16px; }
+.auth-tabs button, .small-button { min-height: 44px; }
+.text-link { cursor: pointer; }
+.campaign-account-section { min-height: calc(100vh - 76px); padding: 16px 0 26px; }
+.campaign-account-section .workspace-heading { justify-content: flex-end; margin: 0 0 12px; }
+.campaign-chat-workspace { display: grid; grid-template-columns: 286px minmax(0, 1fr); min-height: min(780px, calc(100vh - 155px)); overflow: hidden; border: 1px solid #303832; border-radius: 19px; background: #0b0e0c; }
+.campaign-chat-sidebar { display: flex; flex-direction: column; min-width: 0; padding: 19px 12px 13px; border-right: 1px solid #303832; background: #0e120f; }
+.campaign-chat-sidebar-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 6px 17px; border-bottom: 1px solid #252c27; }
+.campaign-chat-sidebar-head span, .campaign-chat-header > div > span { color: var(--faint); font-size: 10px; letter-spacing: .11em; text-transform: uppercase; }
+.campaign-chat-sidebar-head h2 { margin: 3px 0 0; font-size: 19px; }
+.campaign-new-chat { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid #3b453d; border-radius: 50%; background: #151b16; color: var(--ink); font-size: 23px; cursor: pointer; }
+.campaign-new-chat:hover { border-color: var(--accent); color: var(--accent); }
+.campaign-new-chat:disabled { opacity: .55; cursor: wait; }
+.campaign-chat-list { display: grid; align-content: start; gap: 5px; flex: 1; min-height: 0; overflow-y: auto; padding-top: 12px; }
+.campaign-chat-item { display: flex; align-items: center; gap: 11px; min-width: 0; min-height: 62px; padding: 8px; border: 1px solid transparent; border-radius: 11px; color: var(--ink); text-decoration: none; }
+.campaign-chat-item:hover { background: #151b16; }
+.campaign-chat-item.active { border-color: #324235; background: #18211a; }
+.campaign-chat-item-icon { width: 38px; height: 38px; display: grid; flex: 0 0 auto; place-items: center; border-radius: 50%; background: #12351e; color: var(--accent); font-size: 14px; font-weight: 700; }
+.campaign-chat-item-copy { display: grid; min-width: 0; gap: 4px; }
+.campaign-chat-item-copy strong { overflow: hidden; font-size: 12px; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.campaign-chat-item-copy small { overflow: hidden; color: var(--faint); font-size: 10px; text-overflow: ellipsis; white-space: nowrap; text-transform: capitalize; }
+.campaign-chat-empty { margin: 10px 7px; color: var(--faint); font-size: 12px; line-height: 1.5; }
+.campaign-chat-group-label { margin: 17px 7px 4px; color: var(--faint); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.campaign-chat-sidebar-foot { display: flex; justify-content: space-between; align-items: center; min-height: 43px; padding: 8px; border-top: 1px solid #252c27; color: var(--muted); font-size: 11px; text-decoration: none; }
+.campaign-chat-sidebar-foot:hover { color: var(--accent); }
+.campaign-chat-main { display: flex; flex-direction: column; min-width: 0; min-height: 0; padding: 22px clamp(18px, 3vw, 42px) 28px; overflow-y: auto; }
+.campaign-chat-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 17px; border-bottom: 1px solid #252c27; }
+.campaign-chat-header h1 { margin: 4px 0 0; font-size: clamp(19px, 2.4vw, 26px); letter-spacing: -.04em; }
+.campaign-chat-status { display: inline-flex; align-items: center; gap: 7px; flex: 0 0 auto; padding: 7px 10px; border: 1px solid #344137; border-radius: 999px; color: #c9d3ca; font-size: 10px; text-transform: capitalize; }
+.campaign-chat-status i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.campaign-chat-thread { display: grid; gap: 12px; width: min(100%, 850px); margin: 22px auto 18px; }
+.campaign-assistant-message { display: flex; align-items: flex-start; gap: 11px; max-width: 720px; padding: 14px 16px; border: 1px solid #2c342e; border-radius: 14px 14px 14px 5px; background: #131814; }
+.campaign-assistant-avatar { width: 31px; height: 31px; display: grid; flex: 0 0 auto; place-items: center; border-radius: 50%; background: #0b4325; color: #9cf1b4; font-size: 10px; font-weight: 750; text-transform: uppercase; }
+.campaign-assistant-message > div { min-width: 0; }
+.campaign-assistant-message strong { color: #dbe4dc; font-size: 11px; }
+.campaign-assistant-message p { margin: 4px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.campaign-current-prompt { background: #172019; }
+.campaign-step-nav { display: flex; gap: 6px; width: min(100%, 850px); margin: 0 auto 16px; padding: 0 0 8px; overflow-x: auto; border-bottom: 1px solid #252c27; }
+.campaign-step-nav button { min-width: max-content; min-height: 37px; padding: 0 10px; border: 1px solid transparent; border-radius: 999px; font-size: 10px; }
+.campaign-step-nav button.active { border-color: #35443a; background: #172019; color: var(--ink); }
+.campaign-step-nav i { width: 20px; height: 20px; }
+.campaign-response-card { width: min(100%, 850px); max-width: none; margin: 0 auto; padding: clamp(17px, 2.4vw, 28px); border: 1px solid #2d362f; border-radius: 15px; background: #101411; }
+.campaign-response-card > .section-kicker { margin: 0 0 8px; }
+.campaign-response-card > h2 { font-size: 22px; }
+.campaign-response-card > p { margin: 6px 0 19px; }
+.campaign-optional-details { padding: 13px 0 0; border-top: 1px solid #252c27; }
+.campaign-optional-details summary { min-height: 36px; display: flex; align-items: center; color: #c5d0c6; font-size: 12px; font-weight: 600; cursor: pointer; }
+.campaign-optional-details[open] .form-grid { margin-top: 14px; }
+.campaign-empty-chat { display: grid; align-content: center; justify-items: start; flex: 1; width: min(100%, 650px); margin: 0 auto; }
+.campaign-empty-chat h2 { margin: 17px 0 0; font-size: clamp(24px, 4vw, 38px); letter-spacing: -.05em; }
+.campaign-empty-chat p { max-width: 48ch; margin: 9px 0 20px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+button.text-link { background: transparent; border: 0; padding: 10px 0; min-height: 44px; text-align: left; }
+.workspace-message.is-error { border-color: #713939; color: #ffd1ca; }
+.form-field .consent-check { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 400; min-height: 32px; }
+.form-field .consent-check input { width: 18px; height: 18px; min-height: 18px; padding: 0; }
+.account-destinations { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.account-destinations > a { position: relative; padding: clamp(24px, 4vw, 42px); border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(140deg, #17251c, #101311 70%); text-decoration: none; color: var(--ink); transition: border-color .25s, transform .25s; }
+.account-destinations > a:hover { transform: translateY(-4px); border-color: var(--accent); }
+.account-destinations span { color: var(--accent); font-size: 11px; letter-spacing: .12em; }
+.account-destinations h2 { margin: 32px 0 12px; font-size: clamp(1.6rem, 3vw, 2.6rem); letter-spacing: -.05em; }
+.account-destinations p { color: var(--muted); margin: 0; }
+.account-destinations b { position: absolute; right: 24px; bottom: 26px; font-size: 25px; color: var(--accent); }
+.account-settings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-block: 24px; }
+.account-settings .auth-card { margin: 0; width: 100%; }
+.campaign-path { padding: 34px; border: 1px solid var(--line); border-radius: 24px; background: radial-gradient(ellipse at top right, #21472d, #101311 65%); }
+.campaign-path > div { display: flex; align-items: center; gap: 18px; min-height: 92px; position: relative; }
+.campaign-path > div + div::before { content: ""; position: absolute; left: 24px; top: -14px; height: 28px; width: 1px; background: var(--accent); }
+.campaign-path b { display: grid; place-items: center; width: 50px; height: 50px; flex-shrink: 0; border-radius: 50%; border: 1px solid #22c55e60; color: var(--accent); font-size: 14px; }
+.campaign-path strong { font-size: clamp(22px, 3vw, 34px); letter-spacing: -.05em; }
+.campaign-path p { color: var(--muted); margin: 5px 0 0; font-size: 14px; }
+.team-inbox { display: grid; gap: 16px; }
+.team-inbox article { border: 1px solid var(--line); border-radius: 16px; padding: 24px; background: var(--surface); }
+.team-inbox h2 { font-size: 20px; overflow-wrap: anywhere; }
+.team-inbox p { color: var(--muted); white-space: pre-wrap; overflow-wrap: anywhere; }
+.team-inbox .workspace-actions { align-items: center; margin-top: 20px; }
+.mission-manager, .mission-reward-panel, .review-queue { margin-top: 28px; padding: clamp(18px, 3vw, 28px); border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
+.mission-manager > h2, .mission-reward-panel > h2, .review-queue h2 { font-size: 24px; letter-spacing: -.04em; }
+.mission-manager p, .mission-reward-panel p, .review-queue p { color: var(--muted); line-height: 1.6; }
+.review-queue > article { padding: 20px 0; border-bottom: 1px solid var(--line); }
+.review-queue > article:last-child { border-bottom: 0; }
+@media (max-width: 900px) {
+  .campaign-chat-workspace { grid-template-columns: 1fr; min-height: auto; }
+  .campaign-chat-sidebar { max-height: 245px; border-right: 0; border-bottom: 1px solid #303832; }
+  .campaign-chat-list { display: flex; flex: 1 1 auto; gap: 7px; min-height: 68px; overflow-x: auto; overflow-y: hidden; }
+  .campaign-chat-item { width: 220px; flex: 0 0 220px; }
+  .campaign-chat-sidebar-foot { display: none; }
+  .campaign-chat-main { min-height: 570px; }
+}
+@media (max-width: 700px) {
+  .workspace-heading { flex-direction: column; }
+  .account-settings, .account-destinations { grid-template-columns: 1fr; }
+  .account-destinations h2 { margin-top: 24px; }
+  .campaign-account-section { padding-top: 12px; }
+  .campaign-account-section .workspace-heading { align-items: flex-end; }
+  .campaign-chat-sidebar { padding: 13px 10px 8px; }
+  .campaign-chat-main { min-height: 560px; padding: 17px 13px 20px; }
+  .campaign-chat-status { font-size: 9px; }
+  .campaign-assistant-message { padding: 11px; }
+  .campaign-response-card { padding: 15px 12px; }
+}
+@media (max-width: 420px) { .header-account { display: none; } }
+
+/* Sales conversations use the existing dark/green Business workspace. */
+.business-chat-layout { height: 100dvh; min-height: 0; overflow: hidden; }
+.business-chat-layout > .site-header { flex-shrink: 0; }
+.business-chat-page { min-height: 0; overflow: auto; }
+.sales-account-section { height: 100%; min-height: 0; padding: 0; }
+.sales-account-section > .page-container-wide { display: flex; flex-direction: column; width: 100%; height: 100%; min-height: 0; margin: 0; }
+.sales-chat-workspace { flex: 1; height: 100%; min-height: 0; border: 0; border-radius: 0; }
+.sales-sidebar-title { padding: 4px 10px 14px; }
+.sales-sidebar-title .section-kicker { font-size: 11px; }
+.sales-sidebar-title h2 { margin: 8px 0 0; font-size: 21px; letter-spacing: -.03em; }
+.sales-new-chat { display: flex; align-items: center; gap: 12px; min-height: 46px; margin: 0 6px 8px; padding: 10px 14px; border: 1px solid #3b453d; border-radius: 12px; background: #18211a; color: var(--ink); font-size: 14px; font-weight: 600; cursor: pointer; }
+.sales-new-chat:hover { border-color: var(--accent); }
+.sales-new-chat > span { color: var(--accent); font-size: 22px; line-height: 1; }
+.sales-chat-workspace .campaign-chat-item-copy strong { font-size: 14px; }
+.sales-chat-workspace .campaign-chat-item-copy small, .sales-chat-workspace .campaign-chat-empty { color: var(--muted); font-size: 12px; }
+.sales-sidebar-links { display: grid; gap: 4px; padding-top: 10px; border-top: 1px solid var(--line); }
+.sales-sidebar-links a { display: flex; justify-content: space-between; align-items: center; min-height: 44px; padding: 8px 10px; color: var(--muted); font-size: 13px; }
+.sales-sidebar-links a:hover { color: var(--accent); }
+.sales-chat-main { min-height: 0; padding: 16px clamp(16px, 3vw, 42px) 12px; overflow: hidden; }
+.sales-chat-main .campaign-chat-header { flex-shrink: 0; }
+.sales-chat-main .campaign-chat-header h1 { overflow-wrap: anywhere; font-size: clamp(18px, 2.1vw, 26px); }
+.sales-message-log { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 24px 4px; scrollbar-gutter: stable; }
+.sales-message { width: fit-content; max-width: min(84%, 700px); margin: 0 0 20px; padding: 14px 18px; border: 1px solid #303c33; border-radius: 16px 16px 16px 4px; background: #141b16; }
+.sales-message.from-business { margin-left: auto; background: #153621; border-color: #275438; border-radius: 16px 16px 4px 16px; }
+.sales-message-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; color: var(--muted); font-size: 12px; }
+.sales-message-meta strong { color: var(--ink); font-size: 13px; }
+.sales-message p { margin: 8px 0 0; color: var(--ink); font-size: 15px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+.sales-message a { color: #a3efb9; text-decoration: underline; text-underline-offset: 3px; }
+.sales-welcome { max-width: 620px; margin: 12px auto 26px; }
+.sales-welcome h2 { margin: 14px 0 8px; font-size: 25px; letter-spacing: -.03em; }
+.sales-welcome p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+.sales-guide { max-width: 700px; margin: 20px auto 0; padding: 17px 20px; border: 1px solid #303c33; border-radius: 14px; background: #111812; }
+.sales-guide > strong { font-size: 14px; }
+.sales-guide > strong span { color: var(--muted); font-size: 12px; font-weight: 400; }
+.sales-guide p { margin: 9px 0 14px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.sales-prompt-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.sales-prompt-buttons button { min-height: 44px; padding: 8px 12px; border: 1px solid #344137; border-radius: 9px; color: var(--muted); font-size: 12px; background: #161f18; cursor: pointer; }
+.sales-prompt-buttons button[aria-pressed="true"] { border-color: var(--accent); color: var(--ink); }
+.sales-composer { flex-shrink: 0; padding-top: 10px; border-top: 1px solid #303832; }
+.sales-composer label { margin: 0; }
+.sales-composer-row { display: flex; align-items: flex-end; gap: 8px; }
+.sales-composer textarea { display: block; flex: 1; min-width: 0; width: 100%; min-height: 44px; max-height: 100px; padding: 10px 13px; resize: none; overflow-y: auto; border: 1px solid #3b453d; border-radius: 13px; color: var(--ink); background: #101611; font: inherit; font-size: 15px; line-height: 22px; }
+.sales-composer textarea::placeholder { color: var(--muted); }
+.sales-composer-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px; }
+.sales-composer-actions > span { font-size: 12px; color: var(--muted); }
+.sales-composer-actions > div { display: flex; gap: 10px; margin-left: auto; }
+.sales-composer-actions .button-primary { min-height: 44px; padding: 10px 22px; gap: 12px; }
+.sales-save-state { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.sales-save-state:empty { display: none; }
+.sales-icon-button { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 44px; width: 44px; height: 44px; padding: 0; border: 1px solid #3b453d; border-radius: 12px; background: #151d17; color: var(--muted); cursor: pointer; }
+.sales-icon-button:hover { border-color: var(--accent); color: var(--ink); }
+.sales-send-button { background: var(--accent); color: #07150b; border-color: var(--accent); }
+.sales-send-button:hover { color: #07150b; }
+.sales-sidebar-bottom { display: flex; align-items: center; gap: 8px; padding: 10px 6px 0; margin-top: auto; border-top: 1px solid var(--line); }
+.sales-settings { position: relative; }
+.sales-settings-panel { position: absolute; bottom: calc(100% + 8px); left: 0; z-index: 5; display: grid; min-width: 200px; padding: 6px; border: 1px solid #3b453d; border-radius: 12px; background: #151d17; box-shadow: 0 8px 30px #0008; }
+.sales-settings-panel :is(a, button) { display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 7px; color: var(--ink); background: transparent; text-align: left; font-size: 14px; cursor: pointer; }
+.sales-settings-panel :is(a, button):hover { background: #213026; }
+.sales-chat-error { flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 12px; margin-top: 10px; border: 1px solid #713939; border-radius: 12px; color: #ffd1ca; }
+.sales-chat-error p { margin: 0; font-size: 13px; line-height: 1.5; }
+.sales-chat-error button { flex-shrink: 0; }
+.sales-chat-workspace :is(button, textarea, a):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.sales-chat-workspace button:disabled { opacity: .6; cursor: default; }
+@media (max-width: 900px) {
+  .sales-chat-workspace { grid-template-columns: 235px minmax(0, 1fr); height: 100%; }
+  .sales-chat-workspace .campaign-chat-sidebar { max-height: none; border-right: 1px solid #303832; border-bottom: 0; }
+  .sales-chat-workspace .campaign-chat-list { display: grid; overflow-y: auto; overflow-x: hidden; }
+  .sales-chat-workspace .campaign-chat-item { width: auto; }
+  .sales-chat-main { min-height: 0; }
+}
+@media (max-width: 640px) {
+  .sales-chat-workspace { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); height: 100%; }
+  .sales-chat-workspace .campaign-chat-sidebar { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto minmax(0, 1fr) auto; gap: 5px; max-height: 188px; padding: 8px 10px; border-right: 0; border-bottom: 1px solid #303832; }
+  .sales-sidebar-title { grid-column: 1; padding: 8px 4px; }
+  .sales-sidebar-title .section-kicker { display: none; }
+  .sales-sidebar-title h2 { font-size: 16px; margin: 0; }
+  .sales-new-chat { grid-column: 2; margin: 0; padding: 8px 12px; font-size: 13px; }
+  .sales-chat-workspace .campaign-chat-list { grid-column: 1 / -1; display: flex; min-height: 62px; overflow-x: auto; overflow-y: hidden; padding-top: 0; }
+  .sales-chat-workspace .campaign-chat-item { flex: 0 0 210px; }
+  .sales-sidebar-links { display: flex; flex-wrap: wrap; padding-top: 2px; }
+  .sales-sidebar-links a { font-size: 12px; gap: 10px; }
+  .sales-sidebar-bottom { grid-column: 1 / -1; padding: 5px 0 0; }
+  .sales-chat-main { height: 100%; min-height: 0; padding: 10px 12px; }
+  .sales-chat-main .campaign-chat-header { padding-bottom: 10px; }
+  .sales-chat-main .campaign-chat-header h1 { font-size: 18px; }
+  .sales-message-log { padding-block: 14px; }
+  .sales-composer-row { gap: 5px; }
+  .sales-composer textarea { font-size: 16px; }
+  .sales-message { max-width: 94%; padding: 12px 14px; }
+  .sales-guide { padding: 14px; }
+  .sales-composer-actions > span { font-size: 11px; }
+  .sales-chat-error { align-items: flex-start; }
 }

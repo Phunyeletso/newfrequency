@@ -5,9 +5,9 @@ import logo from "../assets/newFrequencyTransparentLogo.png";
 const LINKS = [
   ["Product", "/"],
   ["Creators", "/creators"],
-  ["Artists", "/for-artists"],
   ["Business", "/business"],
-  ["Invest", "/invest"],
+  ["SOS", "/sos"],
+  ["Your account", "/account"],
   ["Get the app", "/get-the-app"],
   ["Company", "/company"],
   ["Feedback", "/feedback"],
@@ -28,7 +28,7 @@ export default function Footer() {
               <img src={logo} alt="" width="30" height="30" loading="lazy" />
               <span>new<b>Frequency</b></span>
             </Link>
-            <p>A creator-social app in testing. Built around video, photos, conversation and music.</p>
+            <p>Social media that pays attention.</p>
           </div>
           <nav className="footer-links" aria-label="Footer navigation">
             {LINKS.map(([label, to]) => <Link key={to} to={to}>{label}</Link>)}
@@ -36,8 +36,6 @@ export default function Footer() {
         </div>
         <div className="footer-legal">
           <span>© {new Date().getFullYear()} {COMPANY.legalName} · South Africa</span>
-          <span>Account · privacy · safety · feedback</span>
-          <Link to="/privacy">Privacy policy</Link>
         </div>
       </div>
       <span className="sr-only">{APP.name}</span>

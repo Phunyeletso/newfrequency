@@ -1,6 +1,6 @@
 import { renderRoute } from "./renderRoute";
 
-const ROUTES = ["/", "/creators", "/for-artists", "/business", "/business/create", "/business/missions", "/invest", "/invest/dashboard", "/company", "/get-the-app", "/feedback", "/contact", "/privacy", "/terms", "/delete-account", "/child-safety", "/auth/confirmed", "/nonsense"];
+const ROUTES = ["/", "/creators", "/for-artists", "/business", "/business/create", "/business/missions", "/business/campaigns", "/business/sales", "/business/review", "/invest", "/invest/dashboard", "/invest/conversation", "/account", "/account/settings", "/team", "/company", "/get-the-app", "/feedback", "/contact", "/privacy", "/terms", "/delete-account", "/child-safety", "/auth/confirmed", "/nonsense"];
 
 let failed = 0;
 async function main() {

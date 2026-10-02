@@ -1,66 +1,123 @@
 # newFrequency website handover
 
-**Current as of 2026-09-26.** Read [IMPLEMENTATION_AUDIT.md](IMPLEMENTATION_AUDIT.md) for the source audit, feature-status table, security boundaries, and verification record. This file is the operator checklist.
+**3 October 2026 Business update:** logged-in Business now opens campaign sales
+conversations. See [BUSINESS_CHAT.md](BUSINESS_CHAT.md) for the confirmed hosted
+RPC error, new routes, private chat migration, team reply workflow and deployment
+limitation. The previous Mission manager remains at `/business/campaigns`.
 
-## Product-story update
+Current as of **30 September 2026**. The website and app use one Supabase project,
+one account identity and the app's existing creator balance. These changes are
+implemented and tested locally; hosted migration and payment activation are not
+confirmed. The authenticated Supabase management connection currently fails with
+a transport error, so no hosted migration or Edge Function deployment was made.
 
-- The homepage now follows the real feed story through Reels, Snaps, Chats, Tunes, Frequency Trails and creator support. Its compact app view is explicitly labeled illustrative, and the scene follows the chapter at the viewport center without taking over browser scrolling.
-- Website palette and surfaces follow the app's `#0A0A0B` / `#141416` / `#1C1C1F` / `#22C55E` identity. Motion respects reduced-motion preferences and remains CSS/React only; there is no animation runtime dependency.
-- Live streaming, Marketplace and Frequency SOS are described with their current release gates. Coins and eligible creator earnings are shown as separate balances; purchased Coins are not described as cash.
-- UI/UX Pro Max guidance is documented in `design-system/newfrequency/MASTER.md`. 21st.dev was reviewed; no catalog component was installed, so the site has no external component dependency.
+## Website journeys
 
-## Architecture
+- `/` follows Discover → Create → Missions → Grow, with animated chapters,
+  an interactive format picker, mobile layouts and reduced-motion support.
+- `/account` supports shared sign-in, signup confirmation, password recovery,
+  profile name and password changes. `/delete-account` requests or cancels the
+  app's existing deletion process.
+- `/business/create` saves private Mission drafts, submits validated campaign
+  terms, opens server-priced Paystack funding, verifies the return, and manages
+  launch, closing, judging, cancellation and refunds.
+- `/business/missions` lists the account's campaigns and submission inbox.
+  `/business/review` gives app moderators business-verification and campaign
+  review controls. Reward release credits the existing app balance atomically.
+- `/invest` shows published projects. `/invest/dashboard` handles direct project
+  contributions, payment verification, history, text receipts, refund requests,
+  and protected project/refund controls. Contributions do not create equity,
+  wallet credit or a promised return. `/invest/conversation` retains optional
+  non-binding introductions.
+- `/contact`, `/feedback` and platform access requests submit to the same app
+  database. `/team` gives moderators a private inbox with resolve/reopen actions.
+- `/get-the-app` checks a server-configured Android artifact. The old artifact
+  returned 404; until a current tested APK is supplied, the real access-request
+  form and retry action are available. No replacement release was invented.
 
-- React 18, React Router 7, Vite 6, Tailwind CSS 3, Supabase JS v2.
-- Public routes are pre-rendered as route `.html` files with page-specific metadata. Vercel `cleanUrls` serves them without extensions; the custom `404.html` handles missing routes.
-- `api/android-download.js` is a Vercel serverless function. Do not add a catch-all rewrite that shadows `/api/`.
-- `npm run preview` starts a local production-style server for route HTML and the Android function. `npm run dev` is the Vite development server.
-- Business pages reuse the app Supabase project and existing account/RLS/RPC boundaries. No second identity, wallet, payment service, or website database was introduced.
+## Configuration and deployment
 
-## Routes and current state
+Copy `.env.example` to ignored `.env.local`. Set `VITE_APP_SUPABASE_URL` and
+`VITE_APP_SUPABASE_ANON_KEY` to the existing app project's public URL/key, as done
+for this local workspace. Forms default to those values. No service-role key or
+Paystack secret belongs in a `VITE_` variable.
 
-- Public story: `/`, `/creators`, `/for-artists`, `/business`, `/company`, `/invest`.
-- App access and contact: `/get-the-app`, `/feedback`, `/contact`, `/auth/confirmed`.
-- Business workspace: `/business/create`, `/business/missions`. With app Supabase configured, users can sign in using the existing app account, create/save private Mission drafts, and review submissions through existing RPCs. The workspace shows an honest unavailable state when the backend is not configured.
-- Legal and safety: `/privacy`, `/terms`, `/delete-account`, `/child-safety`.
-- `/invest/dashboard` is intentionally closed. There is no investment offering, payment flow, investor account, KYC, protected ledger, receipt system, or admin workflow.
+Apply the app's ordered migration history, including these new migrations:
 
-## Configuration
+| Migration | Purpose |
+|---|---|
+| v94 | Full Mission lifecycle, campaign review, frozen pricing and atomic reward release |
+| v95 | Private optional capital introductions and explicit operator access |
+| v96 | Anonymous insert-only website forms and authenticated moderator inbox |
+| v97 | Published funding projects, contribution settlement, receipts and refund ledger |
+| v98 | Paystack-compatible Mission references, preserving older reference handling |
+| v99 | Remove introduction contact data when the existing app purge marks a user deleted |
+| v100 | Reuse Mission checkout identity after abandonment and verify late payments without duplicate funding |
 
-Copy `.env.example` to `.env.local` for local work. Keep secrets in ignored local files or the hosting provider; never commit `.env.local`.
+v92 and v93 are prerequisites for the website draft and Mission checkout model.
+Do not run disposable test fixtures against the hosted database. v99 preserves
+contribution/refund financial records; deleting an account does not refund a payment.
 
-- `VITE_APP_SUPABASE_URL` and `VITE_APP_SUPABASE_ANON_KEY`: existing app Supabase project. Verify deployed migrations, RPC grants, RLS, and Auth redirect allowlist before enabling Business access. Never use a service-role key in a browser variable.
-- `VITE_FEEDBACK_API_BASE` and `VITE_FEEDBACK_ANON_KEY`: existing app project's REST endpoint and public key. `supabase/setup.sql` specifies anonymous insert-only policies; verify deployed RLS before launch.
-- `ANDROID_APK_URL` and `ANDROID_APP_VERSION`: server-side hosting variables only. Set these after a current APK is built and tested. The known EAS artifact returned 404; the app currently reports unavailable.
-- `VITE_IOS_TESTFLIGHT_LIVE` and `VITE_IOS_TESTFLIGHT_URL`: leave disabled unless the invite is confirmed active.
-- `VITE_INVESTMENTS_ENABLED`: keep `false`. A frontend flag does not provide legal approval, payment verification, server authorization, or a ledger.
-- `VITE_COMPANY_LEGAL_NAME` and `VITE_SUPPORT_EMAIL`: confirm against current company details before publishing legal pages.
+Deploy the app Edge Functions `mission-payment-init`, `mission-payment-verify`,
+`mission-payment-refund`, `contribution-payment-init`,
+`contribution-payment-verify`, `contribution-payment-refund`, and the updated
+`paystack-webhook`. Keep JWT verification enabled on the six account functions.
+The webhook uses `--no-verify-jwt` and validates the provider signature itself.
 
-## Deployment checklist
+Configure server secrets/flags in the existing Supabase project:
 
-1. Configure the environment values above in the correct Vercel scope. Do not put the Android APK URL in a `VITE_` variable.
-2. Confirm the app Supabase migrations/RPCs, RLS policies, feedback tables, and Auth callback URL are deployed in the existing app project.
-3. Build and verify with `npm run check`, `npm run build`, and `npm audit`.
-4. Deploy to a preview URL. Verify clean URLs, the custom 404, `/api/android-download`, legal links, and configured form/auth flows.
-5. Set an Android artifact only after a current APK passes device installation and handoff checks. No replacement artifact or Play Store listing is currently verified.
-6. Keep Mission funding/launch and all investor actions closed until the required backend, payment, legal, identity, ledger, receipt, refund/reversal, and admin controls are implemented and reviewed.
-7. Have the current privacy policy, terms, support contact, and deletion instructions reviewed against actual company operations before public release.
-
-## Commands and verification
-
-```bash
-npm run dev
-npm run check
-npm run build
-npm run preview
-npm audit
+```text
+SERVICE_ROLE_KEY=<existing server-only key>
+PAYSTACK_SECRET_KEY=<provider key for the intended environment>
+MISSION_PAYMENTS_ENABLED=true
+MISSION_PAYMENT_RETURN_URL=https://www.newfrequency.co.za/business/create
+PROJECT_CONTRIBUTIONS_ENABLED=true
+PROJECT_CONTRIBUTION_RETURN_URL=https://www.newfrequency.co.za/invest/dashboard
 ```
 
-The current verification record is in `IMPLEMENTATION_AUDIT.md`. Browser checks covered 320, 360, 390, 412, 768, 1024, 1366, and 1920 px; automated checks cover route rendering, unsupported claims, lint, and Android endpoint behavior. Production deployment, real device installation, production Supabase state, Core Web Vitals, legal review, and external security testing remain unverified.
+Register the updated `paystack-webhook` URL with the same provider environment.
+Use test credentials first and verify hosted checkout, return, duplicate webhook
+delivery and refund reconciliation before accepting live payments. The server
+verifies reference, amount and currency before ledger changes. Interrupted refund
+responses can be reconciled with the existing provider refund ID; no second
+refund is created to resolve an uncertain response.
 
-## Product and security guardrails
+App moderators receive Mission review, team inbox and project management access.
+Additional capital operators can be provisioned through the protected
+`capital_interest_reviewers` table using a trusted admin connection. Users cannot
+grant themselves operator permissions. Configure the Mission platform-fee policy
+for actual operations; the existing policy defaults to zero. Publish actual
+project descriptions and limits through the dashboard; the seed is only the
+known direct-support project, **Contribute to newFrequency**, without an invented goal.
 
-- Describe Reels, Snaps, Chat and Tunes as product formats. Tunes do not currently imply music licensing or creator royalties for reuse.
-- Do not promise earnings, availability, investor returns, licensing rights, Play Store listing, or general availability for gated features.
-- Client filters do not replace server-side RLS/RPC authorization. Do not expose service-role credentials or trust client-supplied payment values.
-- Do not add web payments, investment records, new Supabase tables, or migrations without a verified product and security design. No database migrations were made for this site rebuild.
+Allow production and intended preview Auth redirect URLs for `/account`,
+`/account?recovery=1`, `/business/create`, `/business/missions`,
+`/invest/dashboard`, `/invest/conversation`, `/delete-account` and `/auth/confirmed`.
+Existing app confirmation redirects must continue to work.
+
+For website hosting, run `npm run build` and retain Vercel `cleanUrls` plus the
+`/api/android-download` function. Server-only `ANDROID_APK_URL` and
+`ANDROID_APP_VERSION` need a current tested release artifact. iOS access uses a
+validated TestFlight join URL when enabled, otherwise an access request.
+
+## Verification
+
+`npm run check` covers lint, 22 route renders, unsupported-claim checks, four
+Android endpoint tests and fourteen workspace service tests. `npm run build`
+creates the production bundle and pre-rendered pages.
+
+Additional app checks cover the contribution Edge handlers, existing payment
+webhook/CORS behavior, Mission initialization/recovery and Mission services. Real disposable PostgreSQL checks
+cover Mission ownership, full lifecycle, reward accounting and concurrent winner
+selection; website inbox authorization; capital introductions; contribution
+settlement/refunds; and deletion cleanup. See
+[PROJECT_CONTRIBUTIONS.md](PROJECT_CONTRIBUTIONS.md) for the contribution test setup.
+
+The local PostgreSQL verification used scoped app prerequisites and minimal
+capital fixtures. The entire app migration history could not run on this Windows
+PostgreSQL installation because v72 requires unavailable PostGIS. Hosted state,
+real provider payments, email delivery, release APK installation and production
+performance remain unverified. No live charge or refund was made.
+
+The prior 26 September audit is retained as history in
+[IMPLEMENTATION_AUDIT.md](IMPLEMENTATION_AUDIT.md), beneath the current status note.

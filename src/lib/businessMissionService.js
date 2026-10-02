@@ -1,7 +1,5 @@
 import { isAppBackendConfigured, supabase } from "./supabaseClient";
 
-const FIELDS = "id,brand_id,title,campaign_media_url,brief,requirements,eligibility,usage_rights,mission_type,primary_objective,prize_pool_zar,winner_count,prize_split,deadline,scheduled_start_at,reward_pool_minor,platform_fee_minor,tax_minor,total_funding_minor,state,payment_state,version,created_at,updated_at";
-
 function unavailable() {
   return { ok: false, code: "not_configured", message: "Business accounts are temporarily unavailable." };
 }
@@ -35,9 +33,23 @@ async function invoke(name, body) {
 
 // Campaign amounts are set and settled by database RPCs and authenticated
 // Edge Functions. The browser never supplies a Paystack amount or credits funds.
+async function ownedMissions(id = null) {
+  const result = await query(() => supabase.rpc("owned_business_missions", { p_mission_id: id }));
+  if (!["PGRST202", "42883"].includes(result.code)) return result;
+  // Older hosted schemas still support the app's ownership-protected table read.
+  // Keep listing available while the v94 lifecycle RPC migration is pending.
+  return query(async () => {
+    const { data, error } = await supabase.auth.getSession();
+    if (error || !data.session) return { error: error || { code: "authentication_required" } };
+    let request = supabase.from("missions").select("*").eq("brand_id", data.session.user.id).order("created_at", { ascending: false }).limit(100);
+    if (id !== null) request = request.eq("id", id);
+    return request;
+  });
+}
+
 export const businessMissionService = {
-  list: (userId) => query(() => supabase.from("missions").select(FIELDS).eq("brand_id", userId).order("updated_at", { ascending: false }).limit(50)),
-  get: (id) => query(() => supabase.from("missions").select(FIELDS).eq("id", id).single()),
+  list: () => ownedMissions(),
+  get: (id) => ownedMissions(id),
   getDraft: (id) => query(() => supabase.from("mission_wizard_drafts").select("mission_id,configuration,completed_steps,last_step,last_saved_at").eq("mission_id", id).single()),
   createDraft: () => query(() => supabase.rpc("create_brand_mission_draft")),
   saveDraft: ({ id, step, configuration, completedSteps }) => query(() => supabase.rpc("save_mission_wizard_draft", {
@@ -54,7 +66,7 @@ export const businessMissionService = {
     p_documents: [],
     p_authorised: true,
   })),
-  submitForFunding: (missionId) => query(() => supabase.rpc("submit_mission_for_funding", {
+  submitForFunding: (missionId) => query(() => supabase.rpc("submit_website_mission_for_funding", {
     p_mission_id: missionId,
     p_terms_version: "mission-funding-v1",
     p_declarations: {
@@ -92,4 +104,14 @@ export const businessMissionService = {
   },
   submissions: (id) => query(() => supabase.rpc("mission_submission_inbox_details", { p_mission_id: id })),
   review: (id, state) => query(() => supabase.rpc("review_mission_submission", { p_submission_id: id, p_state: state })),
+  submitReview: (id) => query(() => supabase.rpc("submit_funded_mission_for_review", { p_mission_id: id })),
+  launch: (id) => query(() => supabase.rpc("publish_mission", { p_mission_id: id })),
+  close: (id) => query(() => supabase.rpc("close_brand_mission", { p_mission_id: id })),
+  settle: (id, winnerIds) => query(() => supabase.rpc("settle_brand_mission_rewards", { p_mission_id: id, p_winner_ids: winnerIds })),
+  cancel: (id) => query(() => supabase.rpc("cancel_unfunded_brand_mission", { p_mission_id: id })),
+  refund: (id, checkOnly = false) => invoke("mission-payment-refund", { mission_id: id, check_only: checkOnly }),
+  isOperator: () => query(() => supabase.rpc("is_moderator")),
+  operatorQueue: () => query(() => supabase.rpc("mission_operator_queue")),
+  reviewBrand: (id, approved, note) => query(() => supabase.rpc("review_brand_verification", { p_profile_id: id, p_approved: approved, p_note: note })),
+  reviewCampaign: (id, approved, note) => query(() => supabase.rpc("review_brand_mission", { p_mission_id: id, p_approved: approved, p_note: note })),
 };

@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Notice from "../components/Notice";
 import ChoiceGroup from "../components/ChoiceGroup";
@@ -36,7 +35,7 @@ const fieldClass =
 export default function Feedback() {
   useDocumentTitle(
     "Feedback",
-    "Tell us what you thought of the newFrequency test build. No account needed, takes about thirty seconds.",
+    "Tell us what you think of newFrequency. No account needed; it takes about thirty seconds.",
   );
 
   const [values, setValues] = useState(EMPTY);
@@ -139,22 +138,11 @@ export default function Feedback() {
         {!isConfigured() && (
           <Notice className="mt-6 border-snaps/40 bg-snaps/5">
             <strong className="font-medium text-ink">
-              This form is not connected yet.
+              We couldn’t connect to the feedback service.
             </strong>{" "}
-            Nothing you type here will reach us until it is. Sorry about that,
-            it is being set up.
+            Please retry once the connection is restored.
           </Notice>
         )}
-
-        <Notice className="mt-6">
-          We use this to fix and improve the app, and for nothing else. We won't
-          publish what you write, or use it as a testimonial, without asking you
-          first. See the{" "}
-          <Link to="/privacy" className="link-underline text-ink">
-            privacy policy
-          </Link>
-          .
-        </Notice>
 
         <form onSubmit={onSubmit} noValidate className="mt-10">
           {/* Liked */}
@@ -255,7 +243,7 @@ export default function Feedback() {
             <label htmlFor="email" className="mb-1.5 block text-base font-medium">
               Email{" "}
               <span className="font-normal text-faint">
-                (optional, only if you want a reply)
+                (optional)
               </span>
             </label>
             <input

@@ -26,6 +26,7 @@ dist-ssr
 
 # build + check artefacts
 .checks
+.checks-story
 .prerender
 dist-smoke
 

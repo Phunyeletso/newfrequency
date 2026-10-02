@@ -3,10 +3,8 @@ import { FEEDBACK_API_BASE, FEEDBACK_KEY } from "./config";
 /**
  * Feedback + invite submission.
  *
- * HARD RULE: this must point at a database that is SEPARATE from the app's
- * Supabase project. The endpoint is supplied by env var and is write-only —
- * the browser may INSERT a row and must never be able to read one back.
- * See HANDOVER.md for the table definition and row-level security policy.
+ * Uses the shared app Supabase project. These inbox tables are write-only
+ * for visitors; their rows are read by the authorized team workflow.
  *
  * VITE_FEEDBACK_API_BASE is a base REST url, e.g.
  *   https://<project>.supabase.co/rest/v1
@@ -26,7 +24,7 @@ export class SubmitError extends Error {
 }
 
 export function isConfigured() {
-  return Boolean(FEEDBACK_API_BASE);
+  return Boolean(FEEDBACK_API_BASE && FEEDBACK_KEY);
 }
 
 /** Client-side cooldown. Real rate limiting must also exist server-side. */
@@ -57,7 +55,7 @@ function markSubmitted() {
 async function post(table, row) {
   if (!FEEDBACK_API_BASE) {
     throw new SubmitError(
-      "The form isn't connected to a database yet, so this wasn't sent.",
+      "We couldn't connect this form. Please contact support or try again later.",
       { retryable: false },
     );
   }
@@ -111,13 +109,13 @@ export async function submitFeedback(values, honeypot) {
   });
 }
 
-export async function submitInviteRequest(email, honeypot) {
+export async function submitInviteRequest(email, honeypot, platform = "ios") {
   if (honeypot) return;
   checkCooldown();
 
   await post("invite_requests", {
     email: email.trim(),
-    platform: "ios",
+    platform: platform === "android" ? "android" : "ios",
     submitted_at: new Date().toISOString(),
     referring_page: document.referrer || null,
   });

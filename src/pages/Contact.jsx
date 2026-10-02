@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import useDocumentTitle from "../lib/useDocumentTitle";
 import Notice from "../components/Notice";
@@ -112,10 +111,9 @@ export default function Contact() {
         {!isConfigured() && (
           <Notice className="mt-6 border-snaps/40 bg-snaps/5">
             <strong className="font-medium text-ink">
-              This form is not connected yet.
+              We couldn’t connect to the contact service.
             </strong>{" "}
-            Nothing you type here will reach us until it is. Sorry about that,
-            it is being set up.
+            Please retry once the connection is restored.
           </Notice>
         )}
 
@@ -125,9 +123,6 @@ export default function Contact() {
             <label htmlFor="email" className="mb-1.5 block text-base font-medium">
               Your email
             </label>
-            <p id="email-hint" className="mb-2 text-sm text-faint text-pretty">
-              So we can reply. We won't use it for anything else.
-            </p>
             <input
               id="email"
               type="email"
@@ -137,7 +132,7 @@ export default function Contact() {
               value={values.email}
               onChange={(e) => set("email")(e.target.value)}
               aria-invalid={Boolean(errors.email) || undefined}
-              aria-describedby={errors.email ? "email-hint email-error" : "email-hint"}
+              aria-describedby={errors.email ? "email-error" : undefined}
               className={fieldClass}
               placeholder="you@example.com"
             />
@@ -223,13 +218,6 @@ export default function Contact() {
           </Button>
         </form>
 
-        <p className="mt-8 text-sm text-faint text-pretty">
-          What we do with what you send is set out in the{" "}
-          <Link to="/privacy" className="link-underline">
-            privacy policy
-          </Link>
-          .
-        </p>
       </div>
     </section>
   );

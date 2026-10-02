@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import Notice from "../components/Notice";
 import useDocumentTitle from "../lib/useDocumentTitle";
 import { COMPANY } from "../lib/config";
 
-const UPDATED = "28 September 2026";
+const UPDATED = "2 October 2026";
 
 export default function Terms() {
   useDocumentTitle(
     "Terms of use",
-    "The terms that apply to the newFrequency website, test-build access, Mission submissions and Paystack checkout when enabled.",
+    "The terms that apply to the newFrequency website, Google Play app, Mission submissions and project contributions.",
   );
 
   return (
@@ -18,8 +17,8 @@ export default function Terms() {
         <p className="mt-3 text-sm text-faint">Last updated {UPDATED}</p>
 
         <p className="mt-6 text-lg text-muted text-pretty">
-          These terms cover the public pages, feedback and contact forms, test-
-          build access, and the private Business Mission draft workspace. Using
+          These terms cover the public pages, feedback and contact forms, the
+          Google Play app, Business Missions and project contributions. Using
           the newFrequency app itself is governed by the terms you accept inside
           the app.
         </p>
@@ -45,22 +44,15 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl">This is a test build</h2>
-            <Notice className="mb-4">
-              newFrequency is pre-release software provided for testing. It is
-              not a finished product.
-            </Notice>
+            <h2 className="mb-3 text-xl">Using the app</h2>
             <p className="mb-3 text-muted text-pretty">
-              That means, plainly: it will have bugs. It may crash, lose things,
-              or behave in ways it shouldn't. Data, including posts and account
-              details, may be reset while we test. Features may change or be
-              removed. Availability isn't guaranteed and the test can end at any
-              time.
+              Download newFrequency for Android from Google Play. Features may
+              change as the service develops, and availability may vary.
             </p>
             <p className="text-muted text-pretty">
-              The build is provided as-is, without warranty. To the extent the law
+              The app is provided as-is, without warranty. To the extent the law
               allows, we aren't liable for loss or damage arising from using
-              pre-release software. Nothing here limits any right you have under
+              the app. Nothing here limits any right you have under
               South African consumer law that can't be excluded.
             </p>
           </section>
@@ -68,17 +60,13 @@ export default function Terms() {
           <section>
             <h2 className="mb-3 text-xl">Downloading the app</h2>
             <p className="mb-3 text-muted text-pretty">
-              If a current Android test build is available, this site verifies its
-              artifact before sending you to the file. It is not a Google Play
-              install. iOS testing is invite-only unless the page says TestFlight
-              is live. Install software only on a device you own or are allowed
-              to use.
+              The Android app is distributed through Google Play. iOS access is
+              by invitation or TestFlight where available. Install software only
+              on a device you own or are allowed to use.
             </p>
             <p className="text-muted text-pretty">
-              Don't redistribute the file, host copies of it elsewhere, or pass
-              TestFlight invitations on to other people. We need to know who's
-              testing, and a copy circulating outside this site is one we can't
-              update or withdraw if there's a problem with it.
+              Don't redistribute the app or pass TestFlight invitations on to
+              other people.
             </p>
           </section>
 
@@ -97,6 +85,12 @@ export default function Terms() {
               calculated separately. No creator reward or campaign launch is
               guaranteed.
             </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 text-xl">Project contributions</h2>
+            <p className="text-muted text-pretty">A project contribution voluntarily supports the project described at checkout. It does not buy company shares, ownership, a product entitlement or a financial return. Choose your amount before opening Paystack’s hosted checkout. The website records payment only after the server verifies the amount, currency and status with Paystack.</p>
+            <p className="mt-4 text-muted text-pretty">Your dashboard shows payment receipts and lets you request a refund for team review. A request is separate from a completed refund; the dashboard confirms completion after Paystack processes it. Contact the team about payment disputes. These terms do not exclude any applicable consumer rights.</p>
           </section>
 
           <section>
@@ -126,7 +120,8 @@ export default function Terms() {
             <h2 className="mb-3 text-xl">Age</h2>
             <p className="text-muted text-pretty">
               If you're under 18, POPIA requires a parent or guardian to agree
-              before you send us personal information or take part in the test.
+              before you send us personal information or use the service, where
+              consent is required by law.
             </p>
           </section>
 

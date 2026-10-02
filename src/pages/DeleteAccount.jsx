@@ -1,6 +1,48 @@
 import useDocumentTitle from "../lib/useDocumentTitle";
+import { useEffect, useState } from "react";
+import AccountGate from "../components/AccountGate";
+import { supabase } from "../lib/supabaseClient";
 
 const CONTACT_URL = "https://www.newfrequency.co.za/contact";
+
+function DeletionControls() {
+  const [requestedAt, setRequestedAt] = useState(null);
+  const [confirmation, setConfirmation] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  useEffect(() => {
+    let active = true;
+    supabase.rpc("get_own_account").then(({ data, error: failure }) => {
+      if (!active) return;
+      if (failure) setError("Could not check your deletion request. Refresh to retry.");
+      else setRequestedAt(data?.deletion_requested_at || null);
+      setLoading(false);
+    }).catch(() => { if (active) { setError("Could not reach your account. Refresh to retry."); setLoading(false); } });
+    return () => { active = false; };
+  }, []);
+  async function change(event) {
+    event.preventDefault(); setBusy(true); setError(""); setMessage("");
+    try {
+      const { error: failure } = await supabase.rpc(requestedAt ? "cancel_account_deletion" : "request_account_deletion");
+      if (failure) throw failure;
+      const { data, error: readFailure } = await supabase.rpc("get_own_account");
+      if (readFailure) throw readFailure;
+      setRequestedAt(data?.deletion_requested_at || null); setConfirmation("");
+      setMessage(requestedAt ? "Deletion cancelled. Your account remains active." : "Your deletion request is saved. You can cancel during the 14-day grace period.");
+    } catch (failure) { setError(failure.message || "Could not save your request. Try again."); }
+    finally { setBusy(false); }
+  }
+  if (loading) return <p role="status">Checking your account…</p>;
+  const deadline = requestedAt ? new Date(new Date(requestedAt).getTime() + 14 * 86400000) : null;
+  return <form className="auth-card form-grid" onSubmit={change}>
+    <h2>{requestedAt ? "Deletion scheduled" : "Request deletion"}</h2>
+    {deadline ? <p>Grace period ends {deadline.toLocaleDateString("en-ZA", { timeZone: "Africa/Johannesburg", day: "numeric", month: "long", year: "numeric" })}. Cancel to keep your account.</p> : <><p>This applies to your account in the app and on the website. Type DELETE to start the 14-day grace period.</p><div className="form-field"><label htmlFor="deletion-confirmation">Type DELETE</label><input id="deletion-confirmation" autoComplete="off" required pattern="DELETE" value={confirmation} onChange={event => setConfirmation(event.target.value)} /></div></>}
+    {error && <p className="workspace-message is-error" role="alert">{error}</p>}{message && <p className="workspace-message" role="status">{message}</p>}
+    <button className="button-secondary" type="submit" disabled={busy || (!requestedAt && confirmation !== "DELETE")}>{busy ? "Saving…" : requestedAt ? "Cancel deletion" : "Request account deletion"}</button>
+  </form>;
+}
 
 export default function DeleteAccount() {
   useDocumentTitle(
@@ -9,6 +51,8 @@ export default function DeleteAccount() {
   );
 
   return (
+    <>
+    <AccountGate title="Your account. Your choice." description="Manage deletion from here." redirectPath="/delete-account">{() => <DeletionControls />}</AccountGate>
     <section className="px-5 pb-16 pt-12 sm:pt-16">
       <div className="mx-auto max-w-prose">
         <h1 className="text-3xl leading-[1.15] sm:text-4xl">Delete your New Frequency account</h1>
@@ -83,5 +127,6 @@ export default function DeleteAccount() {
         </div>
       </div>
     </section>
+    </>
   );
 }

@@ -4,8 +4,13 @@ import { createServer } from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import androidDownload from "../api/android-download.js";
+import { loadEnv } from "vite";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const localEnvironment = loadEnv("production", projectRoot, "");
+for (const key of ["ANDROID_APK_URL", "ANDROID_APP_VERSION"]) {
+  if (!process.env[key] && localEnvironment[key]) process.env[key] = localEnvironment[key];
+}
 const dist = path.join(projectRoot, "dist");
 const host = "127.0.0.1";
 const port = Number(process.env.PORT || 4173);

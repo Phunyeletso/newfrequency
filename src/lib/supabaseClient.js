@@ -1,11 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 
-const url = import.meta.env.VITE_APP_SUPABASE_URL?.trim();
-const anonKey = import.meta.env.VITE_APP_SUPABASE_ANON_KEY?.trim();
+export const appBackendUrl = import.meta.env.VITE_APP_SUPABASE_URL?.trim();
+export const appPublicKey = import.meta.env.VITE_APP_SUPABASE_ANON_KEY?.trim();
 
-export const isAppBackendConfigured = Boolean(url && anonKey);
+export const isAppBackendConfigured = Boolean(appBackendUrl && appPublicKey);
 export const supabase = isAppBackendConfigured
-  ? createClient(url, anonKey, {
+  ? createClient(appBackendUrl, appPublicKey, {
       auth: {
         autoRefreshToken: true,
         persistSession: true,
