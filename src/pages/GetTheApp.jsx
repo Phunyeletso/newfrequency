@@ -23,7 +23,7 @@ export default function GetTheApp() {
           </article>
           <article className="download-option">
             <span className="platform-mark" aria-hidden="true"><img src={appleIcon} alt="" width="24" height="24" /></span>
-            <h2>iPhone and iPad</h2>
+            <h2>IOS</h2>
             <p>Leave your email to request an iOS invite.</p>
             {DOWNLOAD.iosTestFlightLive && DOWNLOAD.iosTestFlightUrl && (
               <a className="button-secondary ios-direct-link" href={DOWNLOAD.iosTestFlightUrl} target="_blank" rel="noopener noreferrer">

@@ -13,7 +13,7 @@ const LINKS = [
   ["Contact", "/contact"],
   ["Privacy", "/privacy"],
   ["Terms", "/terms"],
-  ["Delete account", "/delete-account"],
+  ["Account", "/delete-account"],
   ["Child safety", "/child-safety"],
 ];
 

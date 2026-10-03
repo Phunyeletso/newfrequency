@@ -228,7 +228,7 @@ export function Conversations({ user, team = false, service = businessChatServic
       </div>
     </aside>
     <section className="campaign-chat-main sales-chat-main" aria-label="Active campaign conversation">
-      <header className="campaign-chat-header"><div><span>{team ? "Sales team" : "newFrequency sales"}</span><h1>{selected?.title || (team ? "Campaign conversations" : "Let’s plan your campaign")}</h1></div><button className="sales-icon-button" type="button" onClick={refresh} disabled={loading || busy} aria-label="Refresh conversation" title="Refresh conversation"><ChatIcon name="refresh" /></button></header>
+      <h1 className="sr-only">{selected?.title || "Campaign conversations"}</h1>
       {error && <div className="sales-chat-error" role="alert"><p>{error}</p><button className="sales-icon-button" type="button" onClick={refresh} disabled={loading || busy} aria-label="Retry connection" title="Retry connection"><ChatIcon name="refresh" /></button></div>}
       {selected ? <>
         <div className="sales-message-log" ref={log} role="log" aria-label="Campaign messages" aria-live="polite" aria-relevant="additions">

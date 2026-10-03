@@ -15,7 +15,7 @@ export default function Layout({ children }) {
         Skip to content
       </a>
       <Header />
-      <main id="main" tabIndex={-1} className={`flex-1${chat ? " business-chat-page" : ""}`}>
+      <main id="main" tabIndex={-1} className={`flex-1${pathname === "/" ? " home-page" : ""}${chat ? " business-chat-page" : ""}`}>
         {children}
       </main>
       {!chat && <Footer />}
