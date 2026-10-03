@@ -481,11 +481,14 @@ fieldset.form-field legend { margin-bottom: 7px; color: #dfe4dc; font-size: 12px
 
 /* Download / company / close */
 .download-hero { padding-block: clamp(40px, 5vw, 72px) 56px; }
-.download-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; margin-top: 44px; }
+.download-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
 .download-option { min-height: 230px; padding: clamp(21px, 4vw, 34px); border: 1px solid #333a34; border-radius: 19px; background: linear-gradient(145deg, #151916, #0c0f0d); display: flex; flex-direction: column; align-items: flex-start; }
 .download-option h2 { margin: 18px 0 0; font-size: 24px; letter-spacing: -.05em; }
 .download-option p { flex: 1; max-width: 44ch; margin: 8px 0 20px; color: var(--muted); font-size: 13px; line-height: 1.6; }
 .platform-mark { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid #495149; border-radius: 12px; color: var(--accent); font-size: 18px; }
+.platform-mark img { display: block; filter: invert(1); }
+.download-feedback { display: grid; justify-items: start; gap: 4px; margin-top: 26px; }
+.download-feedback p { margin: 0; color: var(--muted); font-size: 14px; }
 .browser-note { margin-top: 18px; padding: 13px 15px; border: 1px solid #5b5030; border-radius: 12px; background: #201d14; color: #e1d6b5; font-size: 12px; line-height: 1.55; }
 .browser-note a { color: #d9f3b9; }
 .status-inline { display: inline-flex; align-items: center; gap: 8px; color: var(--faint); font-size: 11px; }
@@ -652,7 +655,7 @@ fieldset.form-field legend { margin-bottom: 7px; color: #dfe4dc; font-size: 12px
   .story-rail article + article { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
   .story-rail h3 { margin: 16px 0 7px; }
   .artist-sound { width: 88%; }
-  .download-grid { grid-template-columns: 1fr; margin-top: 30px; }
+  .download-grid { grid-template-columns: 1fr; }
   .download-option { min-height: 205px; }
   .company-points { grid-template-columns: 1fr; gap: 0; }
   .company-points article + article { border-top: 1px solid var(--line); }

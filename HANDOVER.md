@@ -42,6 +42,11 @@ Copy `.env.example` to ignored `.env.local`. Set `VITE_APP_SUPABASE_URL` and
 for this local workspace. Forms default to those values. No service-role key or
 Paystack secret belongs in a `VITE_` variable.
 
+The website also includes the shared app's public configuration as a fallback
+when a hosted build has no environment pair. Both values must be supplied to
+override it. Business chat SQL now lives only in the app repository at
+`migration_v102_business_sales_chat.sql`; see its `docs/BUSINESS_SALES_CHAT.md`.
+
 Apply the app's ordered migration history, including these new migrations:
 
 | Migration | Purpose |

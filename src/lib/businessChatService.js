@@ -16,9 +16,15 @@ export function createBusinessChatService(client) {
     save: (conversation) => request("save_business_conversation", {
       p_id: conversation.id, p_title: conversation.title, p_draft: conversation.draft || "",
     }),
-    send: ({ conversationId, id, body }) => request("send_business_conversation_message", {
-      p_conversation_id: conversationId, p_message_id: id, p_body: body,
-    }),
+    send: async ({ conversationId, id, body }) => {
+      const result = await request("send_business_conversation_message", {
+        p_conversation_id: conversationId, p_message_id: id, p_body: body,
+      });
+      if (!result.ok) return result;
+      // PostgREST can wrap a composite SQL return in a single-row array.
+      const message = Array.isArray(result.data) ? result.data[0] : result.data;
+      return message?.id ? { ok: true, data: message } : { ok: false, code: "invalid_response" };
+    },
   };
 }
 

@@ -1,7 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
+import publicAppBackend from "./publicAppBackend.json";
+import { resolvePublicBackendConfig } from "./publicBackendConfig";
 
-export const appBackendUrl = import.meta.env.VITE_APP_SUPABASE_URL?.trim();
-export const appPublicKey = import.meta.env.VITE_APP_SUPABASE_ANON_KEY?.trim();
+const backend = resolvePublicBackendConfig(import.meta.env, publicAppBackend);
+export const appBackendUrl = backend.url;
+export const appPublicKey = backend.key;
 
 export const isAppBackendConfigured = Boolean(appBackendUrl && appPublicKey);
 export const supabase = isAppBackendConfigured

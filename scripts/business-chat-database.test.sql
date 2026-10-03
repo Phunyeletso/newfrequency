@@ -1,7 +1,9 @@
 -- Run ONLY on a disposable local database. Bootstraps minimal shared-app fixtures.
 \set ON_ERROR_STOP on
-CREATE ROLE anon;
-CREATE ROLE authenticated;
+DO $$ BEGIN
+  IF NOT EXISTS(SELECT 1 FROM pg_roles WHERE rolname='anon') THEN CREATE ROLE anon; END IF;
+  IF NOT EXISTS(SELECT 1 FROM pg_roles WHERE rolname='authenticated') THEN CREATE ROLE authenticated; END IF;
+END $$;
 CREATE SCHEMA auth;
 CREATE TABLE auth.users(id uuid PRIMARY KEY);
 CREATE FUNCTION auth.uid() RETURNS uuid LANGUAGE sql STABLE AS $$ SELECT NULLIF(current_setting('request.jwt.claim.sub',true),'')::uuid $$;
@@ -12,7 +14,7 @@ GRANT EXECUTE ON FUNCTION auth.uid(),public.is_moderator() TO authenticated,anon
 INSERT INTO auth.users VALUES('00000000-0000-0000-0000-000000000001'),('00000000-0000-0000-0000-000000000002'),('00000000-0000-0000-0000-000000000003');
 INSERT INTO public.test_moderators VALUES('00000000-0000-0000-0000-000000000003');
 CREATE PUBLICATION supabase_realtime;
-\ir ../supabase/migrations/202610030001_business_sales_chat.sql
+\ir ../../newFrequency/migration_v102_business_sales_chat.sql
 
 SET ROLE authenticated;
 SELECT set_config('request.jwt.claim.sub','00000000-0000-0000-0000-000000000001',false);

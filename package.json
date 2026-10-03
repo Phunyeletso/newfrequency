@@ -11,7 +11,7 @@
     "check:render": "vite build --ssr scripts/render-check.jsx --outDir .checks/render --logLevel error && node .checks/render/render-check.js",
     "check:claims": "vite build --ssr scripts/claims-check.jsx --outDir .checks/claims --logLevel error && node .checks/claims/claims-check.js",
     "check:download": "node --test scripts/android-download.test.js",
-    "check:workspaces": "node --test scripts/business-chat.test.js scripts/business-missions.test.js scripts/investment-workspace.test.js scripts/project-funding.test.js",
+    "check:workspaces": "node --test scripts/public-backend-config.test.js scripts/business-chat.test.js scripts/business-missions.test.js scripts/investment-workspace.test.js scripts/project-funding.test.js",
     "check": "npm run lint && npm run check:render && npm run check:claims && npm run check:download && npm run check:workspaces"
   },
   "dependencies": {

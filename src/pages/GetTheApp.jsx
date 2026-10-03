@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import InviteForm from "../components/InviteForm";
 import useDocumentTitle from "../lib/useDocumentTitle";
 import { APP, DOWNLOAD } from "../lib/config";
+import googlePlayIcon from "../assets/platforms/googleplay.svg";
+import appleIcon from "../assets/platforms/apple.svg";
 
 export default function GetTheApp() {
   useDocumentTitle("Get the app", "Choose Android on Google Play or request an iOS invite for newFrequency.");
@@ -9,11 +11,10 @@ export default function GetTheApp() {
   return (
     <section className="download-hero">
       <div className="page-container download-launch">
-        <p className="eyebrow"><span className="signal-dot" /> newFrequency</p>
-        <h1 className="display-title">Get the<br /><em>app.</em></h1>
+        <h1 className="sr-only">Choose your device</h1>
         <div className="download-grid" aria-label="Choose your device">
           <article className="download-option">
-            <span className="platform-mark" aria-hidden="true">A</span>
+            <span className="platform-mark" aria-hidden="true"><img src={googlePlayIcon} alt="" width="24" height="24" /></span>
             <h2>Android</h2>
             <p>Download newFrequency from Google Play.</p>
             <a className="button-primary" href={APP.googlePlayUrl} target="_blank" rel="noopener noreferrer">
@@ -21,7 +22,7 @@ export default function GetTheApp() {
             </a>
           </article>
           <article className="download-option">
-            <span className="platform-mark" aria-hidden="true">iOS</span>
+            <span className="platform-mark" aria-hidden="true"><img src={appleIcon} alt="" width="24" height="24" /></span>
             <h2>iPhone and iPad</h2>
             <p>Leave your email to request an iOS invite.</p>
             {DOWNLOAD.iosTestFlightLive && DOWNLOAD.iosTestFlightUrl && (
@@ -32,7 +33,7 @@ export default function GetTheApp() {
             <InviteForm platform="ios" />
           </article>
         </div>
-        <p className="download-feedback"><Link className="text-link" to="/feedback">Already using newFrequency? Send feedback →</Link></p>
+        <div className="download-feedback"><p>Already using newFrequency?</p><Link className="text-link" to="/feedback">Send feedback →</Link></div>
       </div>
     </section>
   );

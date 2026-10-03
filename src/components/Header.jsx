@@ -72,8 +72,7 @@ export default function Header() {
             </NavLink>
           ))}
           <NavLink to="/get-the-app" className={navClass}>Get the app</NavLink>
-          <NavLink to="/account" className={navClass}>Your account</NavLink>
-          <NavLink to="/company" className={navClass}>Company</NavLink>
+          <NavLink to={session ? "/business/missions" : "/account"} className={navClass}>{session ? "Workspace" : "Log in"}</NavLink>
         </nav>
       )}
     </header>

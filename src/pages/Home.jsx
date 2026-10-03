@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import FrequencyPhone from "../components/FrequencyPhone";
 import useDocumentTitle from "../lib/useDocumentTitle";
 import "../story.css";
@@ -12,7 +11,6 @@ export default function Home() {
         <div className="page-container frequency-hero-grid frequency-home-content">
           <div className="frequency-hero-copy frequency-home-copy">
             <h1 id="frequency-hero-title">Social media<br />that <em>pays attention.</em></h1>
-            <Link className="button-primary" to="/get-the-app">Get the app <span aria-hidden="true">↗</span></Link>
           </div>
           <FrequencyPhone />
         </div>

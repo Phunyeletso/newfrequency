@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
 import { APP, COMPANY } from "../lib/config";
 import logo from "../assets/newFrequencyTransparentLogo.png";
+import { useAccountSession } from "../lib/useAccountSession";
 
 const LINKS = [
   ["Product", "/"],
   ["Creators", "/creators"],
   ["Business", "/business"],
   ["SOS", "/sos"],
-  ["Your account", "/account"],
   ["Get the app", "/get-the-app"],
-  ["Company", "/company"],
   ["Feedback", "/feedback"],
   ["Contact", "/contact"],
   ["Privacy", "/privacy"],
@@ -19,6 +18,7 @@ const LINKS = [
 ];
 
 export default function Footer() {
+  const { session } = useAccountSession();
   return (
     <footer className="site-footer">
       <div className="page-container">
@@ -32,6 +32,7 @@ export default function Footer() {
           </div>
           <nav className="footer-links" aria-label="Footer navigation">
             {LINKS.map(([label, to]) => <Link key={to} to={to}>{label}</Link>)}
+            <Link to={session ? "/business/missions" : "/account"}>{session ? "Workspace" : "Log in"}</Link>
           </nav>
         </div>
         <div className="footer-legal">

@@ -28,6 +28,16 @@ test("missing integration and network failures are reported without inventing me
   assert.equal((await createBusinessChatService(null).list()).code, "not_configured");
 });
 
+test("message acknowledgements handle composite RPC rows and reject empty responses", async () => {
+  const message = { id: "message-id", sender: "sales", body: "Reply", created_at: "2026-10-03T00:00:00Z" };
+  for (const data of [message, [message]]) {
+    const service = createBusinessChatService({ rpc: async () => ({ data, error: null }) });
+    assert.deepEqual(await service.send({ conversationId: "chat", id: message.id, body: message.body }), { ok: true, data: message });
+  }
+  const empty = createBusinessChatService({ rpc: async () => ({ data: [], error: null }) });
+  assert.equal((await empty.send({})).ok, false);
+});
+
 test("drafts are isolated by account and role, survive reloads, and handle unavailable storage", () => {
   const store = new Map();
   globalThis.localStorage = { getItem: key => store.get(key), setItem: (key, value) => store.set(key, value) };

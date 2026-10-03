@@ -23,11 +23,15 @@ Sales chat has no dependency on the Mission funding schema.
 
 ## Required chat integration
 
-Apply `supabase/migrations/202610030001_business_sales_chat.sql` to the **same app
+Apply `newFrequency/migration_v102_business_sales_chat.sql` from the **app
+repository** to the **same app
 Supabase project configured in `.env.local`**, using a trusted database connection
 or Supabase SQL editor. The file is safe to rerun. Its prerequisite is the app's
 existing `is_moderator()` helper and standard Supabase `auth.users`/`auth.uid()`.
 No AI provider, new payment integration or browser secret is required.
+
+Backend SQL is maintained only in the app repo. See its
+`docs/BUSINESS_SALES_CHAT.md` for the copy-and-run instructions.
 
 The migration creates:
 
@@ -70,6 +74,12 @@ The migration was verified in a disposable local PostgreSQL database, but has
 **not been applied to hosted Supabase**: this session has the public browser key
 and no authenticated management connection. Live sending, account draft sync and
 real-time sales replies remain unavailable there until deployment.
+
+The website now bundles the app's public Supabase URL/publishable key as a
+fallback in `src/lib/publicAppBackend.json`. Complete website environment
+overrides still take precedence; partial overrides never mix project pairs.
+This prevents missing hosted build environment values from disabling sign-in.
+Only public browser configuration is bundled; no secret or service-role key is used.
 
 ## Checks
 
