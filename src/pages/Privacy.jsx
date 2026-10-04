@@ -1,10 +1,11 @@
 import useDocumentTitle from "../lib/useDocumentTitle";
 
-const UPDATED = "2 October 2026";
+const UPDATED = "4 October 2026";
 
 const CONTACT_URL = "https://www.newfrequency.co.za/contact";
 const TERMS_URL = "https://www.newfrequency.co.za/terms";
 const REGULATOR_URL = "https://inforegulator.org.za/";
+const GOOGLE_PRIVACY_URL = "https://policies.google.com/privacy";
 
 function ExternalLink({ href, children }) {
   return (
@@ -236,9 +237,22 @@ export default function Privacy() {
           <section>
             <h2 className="mb-3 text-xl text-ink">Advertising and coin purchases</h2>
             <p>
-              Advertising is not available in the current release. The app does
-              not currently show ads or offer an ad-free tier. If advertising is
-              introduced, this policy will be updated before it is enabled.
+              The Android app uses the Google Mobile Ads SDK (AdMob) to show
+              native ads in the feed and may also show interstitial ads when that
+              placement is configured. The app requests non-personalized ads.
+              Google’s SDK automatically collects and shares the device’s IP
+              address (which may be used to estimate general location), product
+              interactions, diagnostic information, and device or account
+              identifiers for advertising, analytics, and fraud prevention. Google
+              processes this information to provide its advertising service. See
+              <ExternalLink href={GOOGLE_PRIVACY_URL}>Google’s Privacy Policy</ExternalLink>.
+            </p>
+            <p className="mt-4">
+              Where consent is required, Google’s User Messaging Platform (UMP)
+              collects and stores your advertising privacy choices before the app
+              requests ads. You can review or change available choices in the app
+              under Account → Advertising privacy options. Whether an ad is shown
+              also depends on your choices, device settings, and ad availability.
             </p>
             <p className="mt-4">
               Where coin purchases are available, Android uses Google Play
@@ -287,6 +301,7 @@ export default function Privacy() {
               <li><strong className="font-medium text-ink">Paystack:</strong> Mission checkout where enabled, payment verification and payout processing where available.</li>
               <li><strong className="font-medium text-ink">Cloudflare Stream:</strong> video upload, encoding, playback, thumbnails and downloads when enabled for the project.</li>
               <li><strong className="font-medium text-ink">Expo services:</strong> the app uses Expo/EAS update and push-registration infrastructure. Push delivery can involve the platform notification services required by Android or iOS.</li>
+              <li><strong className="font-medium text-ink">Google Mobile Ads (AdMob):</strong> delivers and measures Android in-app ads. Its SDK may process the information and purposes described in the advertising section above.</li>
               <li><strong className="font-medium text-ink">Google Play and Apple:</strong> process coin purchases where available. New Frequency sends the product and purchase identifier to the relevant store for verification and receives the verification result and store transaction information needed to credit or reverse coins.</li>
             </ul>
             <p className="mt-4">
